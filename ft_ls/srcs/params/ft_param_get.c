@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls.h                                            :+:      :+:    :+:   */
+/*   ft_getparams.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/04 16:07:56 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/03/04 17:11:03 by pprikazs         ###   ########.fr       */
+/*   Created: 2018/03/04 17:14:08 by pprikazs          #+#    #+#             */
+/*   Updated: 2018/03/04 17:29:21 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_LS_H
-# define FT_LS_H
+#include "ft_ls.h"
 
-# define FT_LS_PARAMS_NB 5
-# define FT_LS_PARAMS_EXP "-"
-# define FT_LS_PARAMS "Rlart"
-
-typedef enum		e_bool
+t_bool			ft_param_get(t_param **params, char key)
 {
-	FALSE;
-	TRUE;
-}					t_bool;
+	int			i;
 
-typedef struct		s_params
-{
-	char			key;
-	t_bool			val;
-}					t_params;
-
-#endif
+	i = 0;
+	while (params[i]->key != 0)
+	{
+		if (params[i]->key == key)
+			return (params[i]->val);
+		i++;
+	}
+	return (FALSE);
+}

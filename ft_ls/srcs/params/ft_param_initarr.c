@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls.h                                            :+:      :+:    :+:   */
+/*   ft_param_initarr.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/04 16:07:56 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/03/04 17:11:03 by pprikazs         ###   ########.fr       */
+/*   Created: 2018/03/04 17:24:02 by pprikazs          #+#    #+#             */
+/*   Updated: 2018/03/04 17:29:43 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_LS_H
-# define FT_LS_H
+#include <stddef.h>
+#include "ft_ls.h"
 
-# define FT_LS_PARAMS_NB 5
-# define FT_LS_PARAMS_EXP "-"
-# define FT_LS_PARAMS "Rlart"
-
-typedef enum		e_bool
+t_params		*ft_params_init(size_t max_size)
 {
-	FALSE;
-	TRUE;
-}					t_bool;
+	t_params	*arr;
+	size_t		i;
 
-typedef struct		s_params
-{
-	char			key;
-	t_bool			val;
-}					t_params;
-
-#endif
+	if (!(arr = (t_param *)ft_memalloc(sizeof(t_param) * (max_size + 1))))
+		return (0);
+	while (i < max_size + 1)
+	{
+		arr[i]->key = 0;
+		arr[i]->val = 0;
+	}
+	return (*arr);
+}
