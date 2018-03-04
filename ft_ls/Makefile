@@ -1,4 +1,4 @@
-NAME = push_swap
+NAME = ft_ls
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
 LIB_DIR = ../libs
