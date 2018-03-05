@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 12:19:16 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/03/05 12:23:02 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/03/05 12:41:27 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int			ft_param_arrsize(t_param *param)
 	if (param == 0)
 		return (0);
 	i = 0;
-	while (param[i]->key != 0)
+	while (param[i].key != 0)
 		i++;
 	return (i);
 }
