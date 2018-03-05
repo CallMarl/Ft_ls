@@ -12,15 +12,15 @@ endif
 INCLUDES = -I./includes/
 LIBS = ./libs/libft.a
 
-SRCS = main.c \
-	   srcs/ft_display.c \
-	   srcs/ft_ls.c \
-	   srcs/params/ft_param_arrsize.c \
-	   srcs/params/ft_param_display.c \
-	   srcs/params/ft_param_get.c \
-	   srcs/params/ft_param_initarr.c \
-	   srcs/params/ft_param_parse.c \
-	   srcs/params/ft_param_set.c 
+SRCS = ./main.c\
+	   ./srcs/ft_display.c\
+	   ./srcs/ft_ls.c\
+	   ./srcs/params/ft_param_arrsize.c\
+	   ./srcs/params/ft_param_display.c\
+	   ./srcs/params/ft_param_get.c\
+	   ./srcs/params/ft_param_initarr.c\
+	   ./srcs/params/ft_param_parse.c\
+	   ./srcs/params/ft_param_set.c
 
 OBJ = $(SRCS:./%.c=./%.o)
 
@@ -38,10 +38,10 @@ $(NAME) : $(OBJ)
 
 clean :
 	@$(MAKE) clean "LIB_NEED = $(LIB_NEED)" -C $(LIB_DIR)
-	@rm -f $(OBJ)
+	rm -f $(OBJ)
 
 fclean :
 	@$(MAKE) fclean "LIB_NEED = $(LIB_NEED)" -C $(LIB_DIR)
-	@rm -f $(OBJ) $(NAME)
+	rm -f $(OBJ) $(NAME)
 
 re : fclean $(NAME)
