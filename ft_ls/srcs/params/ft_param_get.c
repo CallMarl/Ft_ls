@@ -6,13 +6,13 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 17:14:08 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/03/04 17:29:21 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/03/05 12:17:54 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_bool			ft_param_get(t_param **params, char key)
+extern t_bool	ft_param_get(t_param **params, char key)
 {
 	int			i;
 

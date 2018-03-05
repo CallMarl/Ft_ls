@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 16:06:04 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/03/04 16:07:01 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/03/05 12:17:49 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 int			main(int argc, char **argv)
 {
-	(void)argc;
-	(void)argv;
+	int		ret;
+
+	ret = ft_ls(argc, argv);
 	return (0);
 }

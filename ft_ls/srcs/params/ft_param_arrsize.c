@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_setparams.c                                     :+:      :+:    :+:   */
+/*   ft_param_arrsize.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/04 17:14:53 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/03/05 12:18:02 by pprikazs         ###   ########.fr       */
+/*   Created: 2018/03/05 12:19:16 by pprikazs          #+#    #+#             */
+/*   Updated: 2018/03/05 12:23:02 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-extern void		ft_param_set(t_param *param, char key, t_bool val)
+int			ft_param_arrsize(t_param *param)
 {
-	param->key = key;
-	param->val = val;
+	int		i;
+
+	if (param == 0)
+		return (0);
+	i = 0;
+	while (param[i]->key != 0)
+		i++;
+	return (i);
 }
