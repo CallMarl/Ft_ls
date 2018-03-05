@@ -39,10 +39,10 @@ $(NAME) : $(OBJ)
 
 clean :
 	@$(MAKE) clean "LIB_NEED = $(LIB_NEED)" -C $(LIB_DIR)
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
 
 fclean :
 	@$(MAKE) fclean "LIB_NEED = $(LIB_NEED)" -C $(LIB_DIR)
-	rm -f $(OBJ) $(NAME)
+	@rm -f $(OBJ) $(NAME)
 
 re : fclean $(NAME)
