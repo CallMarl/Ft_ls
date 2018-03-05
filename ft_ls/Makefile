@@ -16,6 +16,7 @@ SRCS = ./main.c\
 	   ./srcs/ft_display.c\
 	   ./srcs/ft_ls.c\
 	   ./srcs/params/ft_param_arrsize.c\
+	   ./srcs/params/ft_param_delarr.c\
 	   ./srcs/params/ft_param_display.c\
 	   ./srcs/params/ft_param_get.c\
 	   ./srcs/params/ft_param_initarr.c\
