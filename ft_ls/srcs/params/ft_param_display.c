@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 11:13:01 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/03/05 12:49:06 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/03/05 14:49:49 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ extern void		ft_param_displayusage(char param)
 	ft_putchar('\n');
 	ft_putstr("usage: ");
 	ft_putstr(FT_PARAM_PRGNAME);
-	ft_putstr("[-");
+	ft_putstr(" [-");
 	ft_putstr(FT_PARAM);
 	ft_putstr("]");
 	ft_putstr("[file ...]\n");
