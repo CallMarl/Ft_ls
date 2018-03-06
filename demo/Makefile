@@ -6,11 +6,11 @@
 #    By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/06 12:01:52 by pprikazs          #+#    #+#              #
-#    Updated: 2018/03/06 12:02:02 by pprikazs         ###   ########.fr        #
+#    Updated: 2018/03/06 14:38:55 by pprikazs         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ft_ls
+NAME = demo
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
 LIB_DIR = ../libs
