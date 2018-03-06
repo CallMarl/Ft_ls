@@ -6,13 +6,14 @@
 #    By: blefeuvr <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/29 11:26:31 by blefeuvr          #+#    #+#              #
-#    Updated: 2018/03/04 14:09:14 by pprikazs         ###   ########.fr        #
+#    Updated: 2018/03/06 12:09:41 by pprikazs         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ROOT = $(shell pwd)/
 
-PRGS = $(ROOT)/ft_ls/
+PRGS = $(ROOT)/ft_ls/ \
+	   $(ROOT)/demo/
 
 .PHONY: all clean fclean re
 
