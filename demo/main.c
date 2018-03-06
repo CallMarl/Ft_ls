@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 12:02:26 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/03/06 19:04:27 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/03/06 19:12:50 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ int			main(int argc, char *argv[])
 {
 	DIR				*dir_descriptor;
 	t_dirent		*dir_detail; // file and dir, symlink...
+	t_stat			dir_extradetail; // file and dir, symlink...
 
 	if ((dir_descriptor = opendir("..")) == 0)
 		return (0);
@@ -139,6 +140,14 @@ int			main(int argc, char *argv[])
 		ft_putstr("Type : ");
 		ft_putnbr(dir_detail->d_type);RC;
 		RC;
+
+		int tmp;
+		tmp = stat("./main.c", &dir_extradetail);
+		ft_putnbr(tmp);RC;
+		ft_putstr("Id device : ");RC;
+		ft_putnbr(dir_extradetail.st_rdev);RC;
+		ft_putnbr(major(dir_extradetail.st_rdev));RC;
+		ft_putnbr(minor(dir_extradetail.st_rdev));RC;
 
 		RC;
 		RC;
