@@ -2,5 +2,6 @@
 	[x] Parsing des paramettres
 
 [ ] Gestion de l'heure avec ctime et ca struct tm
+[ ] Ajout d'un system de gestion des path avec chemin relatif
 [ ] Gestion des type de fichier avec la struct dirent.d_type
 [ ] Gestion des droit d'acces fichier ca la struct stats.stmode
