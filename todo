@@ -1,2 +1,6 @@
-[ ] Gestionnaire de paramettres
-	[ ] Parsing des paramettres
+[x] Gestionnaire de paramettres
+	[x] Parsing des paramettres
+
+[ ] Gestion de l'heure avec ctime et ca struct tm
+[ ] Gestion des type de fichier avec la struct dirent.d_type
+[ ] Gestion des droit d'acces fichier ca la struct stats.stmode
