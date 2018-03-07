@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_getparams.c                                     :+:      :+:    :+:   */
+/*   ft_node_getinfo.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/04 17:14:08 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/03/07 15:18:19 by pprikazs         ###   ########.fr       */
+/*   Created: 2018/03/07 19:10:42 by pprikazs          #+#    #+#             */
+/*   Updated: 2018/03/07 19:39:10 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <time.h>
+#include <dirent.h>
 #include "ft_ls.h"
 
-extern t_bool	ft_param_get(t_param *params, char key)
+int			ft_node_getinfo(DIR *nd, char *bpath, t_ninfo *ninfo)
 {
-	int			i;
+	t_dirent		*ndetail;
+	t_stat			*nextra;
+	char			*path;
+	int				ret;
 
-	i = 0;
-	while (params[i]->key != 0)
-	{
-		if (params[i]->key == key)
-			return (params[i]->val);
-		i++;
-	}
-	return (FALSE);
+	if (!(ndetail = readdir(nd)))
+		return (0);
+	path = ft_implode(bpath, ndetail->d_name, "/");
+	if(ret = stat(path, &nextra) == -1)
+		return (0);
+	ft_node_setinfo(ndetail, nextra, ninfo);
 }

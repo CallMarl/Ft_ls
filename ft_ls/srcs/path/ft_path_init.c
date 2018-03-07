@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_getparams.c                                     :+:      :+:    :+:   */
+/*   ft_path_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/04 17:14:08 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/03/07 15:18:19 by pprikazs         ###   ########.fr       */
+/*   Created: 2018/03/07 13:36:11 by pprikazs          #+#    #+#             */
+/*   Updated: 2018/03/07 13:41:24 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-extern t_bool	ft_param_get(t_param *params, char key)
+void		ft_path_init(int argc, char **argv, int cur, t_path *path)
 {
-	int			i;
+	char	*no_args;
 
-	i = 0;
-	while (params[i]->key != 0)
-	{
-		if (params[i]->key == key)
-			return (params[i]->val);
-		i++;
-	}
-	return (FALSE);
+	if (cur < argc)
+		path->path = &argv[cur];
+	else if (cur == argc)
+		path->path = 0;
+	path->cur = 0;
+	path->size = argc - size;
 }
+
