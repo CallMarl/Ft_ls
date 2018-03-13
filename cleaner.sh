@@ -1,19 +1,26 @@
-#!/bin/zsh
+#!/bin/bash
 
-find . -type f -name '*.o~' -delete
-find . -type f -name '*.c~' -delete
-find . -type f -name '*.h~' -delete
-find . -type f -name '*.a~' -delete
-find . -type f -name '*.sh~' -delete
-find . -type f -name '*.txt~' -delete
-find . -type f -name '*.md~' -delete
-find . -type f -name 'makefile~' -delete
-find . -type f -name 'Makefile~' -delete
-find . -type f -name '.gitignore~' -delete
-find . -type f -name 'auteur~' -delete
-find . -type f -name 'todo~' -delete
+make fclean &>/dev/null
 
-find . -type f -name '[._]*.s[a-v][a-z]' -delete
-find . -type f -name '[._]*.sw[a-p]' -delete
-find . -type f -name '[._]s[a-v][a-z]' -delete
-find . -type f -name '[._]sw[a-p]' -delete
+EXT=""
+	EXT=$EXT"\.o\~|"
+	EXT=$EXT"\.c\~|"
+	EXT=$EXT"\.h\~|"
+	EXT=$EXT"\.a\~|"
+	EXT=$EXT"\.sh\~|"
+	EXT=$EXT"\.txt\~|"
+	EXT=$EXT"\.md\~"
+
+REG_EXT=""
+	REG_EXT=$REG_EXT"[._]*.s[a-v][a-z]|"
+	REG_EXT=$REG_EXT"[._]*.sw[a-p]|"
+	REG_EXT=$REG_EXT"[._]s[a-v][a-z]|"
+	REG_EXT=$REG_EXT"[._]sw[a-p]"
+
+FILE=""
+	FILE=$FILE"makefile\~|"
+	FILE=$FILE"Makefile\~|"
+	FILE=$FILE"\.gitignore\~|"
+	FILE=$FILE"todo~"
+
+find -E . -regex "(.*($EXT|$REG_EXT|$FILE))" -delete
