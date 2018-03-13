@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:36:11 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/03/07 13:41:24 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/03/13 15:48:01 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,3 @@ void		ft_path_init(int argc, char **argv, int cur, t_path *path)
 	path->cur = 0;
 	path->size = argc - size;
 }
-

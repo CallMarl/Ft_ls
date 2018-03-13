@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 16:07:56 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/03/07 19:36:51 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/03/13 17:15:31 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct stat			t_stat;
 typedef struct timespec		t_time;
 
 int							ft_buffer_initarr(int size, t_buffer *buffer);
+void						ft_buffer_setinfo(t_nbuff *nbuffer, t_ninfo ninfo);
 
 typedef	struct				s_nbuff
 {
@@ -47,6 +48,12 @@ typedef	struct				s_nbuff
 	t_ninfo					*ninfo;
 }							t_nbuff;
 
+
+/*
+** Display
+*/
+
+void						ft_display_nbuffer(t_nbuffer nbuffer);
 
 /*
 ** Nodes
