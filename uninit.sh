@@ -6,16 +6,13 @@
 #    By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/01 19:12:19 by pprikazs          #+#    #+#              #
-#    Updated: 2018/03/06 12:05:55 by pprikazs         ###   ########.fr        #
+#    Updated: 2018/03/13 18:43:43 by pprikazs         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #!bin/zsh
 
 root=`pwd`
-
-echo "Suppression des fichiers superflux..."
-sh $root/cleaner.sh
 
 echo "Desinisialisation des liens..."
 
