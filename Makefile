@@ -6,7 +6,7 @@
 #    By: blefeuvr <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/29 11:26:31 by blefeuvr          #+#    #+#              #
-#    Updated: 2018/03/06 12:09:41 by pprikazs         ###   ########.fr        #
+#    Updated: 2018/03/14 11:34:54 by pprikazs         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,4 +37,6 @@ fclean :
 		done
 	@sh uninit.sh
 
-re : fclean all
+re :
+	$(MAKE) -C fclean
+	$(MAKE) -C all
