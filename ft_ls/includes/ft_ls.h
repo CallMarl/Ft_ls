@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 16:07:56 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/03/14 12:00:46 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/03/14 17:41:47 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ struct					s_ninfo
 	off_t				n_size;
 	t_time				n_mtime;
 	char				*n_name;
+	ino_t				n_node;
 };
 
 int						ft_node_getinfo(DIR *nd, char *bpath, t_ninfo *ninfo);

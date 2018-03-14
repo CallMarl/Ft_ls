@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 19:25:49 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/03/14 11:05:25 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/03/14 17:52:17 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <time.h>
 #include <dirent.h>
 #include "ft_ls.h"
+#include "libft.h"
 
 extern void		ft_node_setinfo(t_dirent *ndetail, t_stat *nextra, \
 		t_ninfo *ninfo)
@@ -26,5 +27,6 @@ extern void		ft_node_setinfo(t_dirent *ndetail, t_stat *nextra, \
 	ninfo->n_gid = nextra->st_gid;
 	ninfo->n_size = nextra->st_size;
 	ninfo->n_mtime = nextra->st_mtimespec;
-	ninfo->n_name = ndetail->d_name;
+	ninfo->n_name = ft_strdup(ndetail->d_name);
+	ninfo->n_node = ndetail->d_ino;
 }

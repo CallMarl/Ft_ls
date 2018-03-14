@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 11:04:54 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/03/14 11:02:00 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/03/14 17:56:33 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,9 @@ static int			ft_dir_iter(DIR *nd, char *bpath, char opt, t_param *param)
 	if (!(ft_buffer_initarr(nd, bpath, &nbuffer)))
 		return (0);
 	while ((ft_node_getinfo(nd, bpath, &ninfo)) != 0)
+	{
 		ft_buffer_setinfo(&nbuffer, &ninfo);
+	}
 	//ft_display_buffer(nbuffer, bpath, param);
 	ft_display_nbuffer(nbuffer);
 	if (opt == 1)
@@ -96,7 +98,7 @@ extern int			ft_ls(int argc, char **argv)
 		return (0);
 	ft_path_init(argc, argv, cur, &path_list);
 	if (path_list.size == 0)
-		ft_ls_checkparam(".", param);
+		ft_ls_checkparam(ft_strdup("."), param);
 	else
 	{
 		while (path_list.cur < path_list.size)

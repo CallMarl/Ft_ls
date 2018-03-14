@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:04:00 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/03/14 11:01:27 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/03/14 17:39:36 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ extern void			ft_buffer_setinfo(t_nbuff *nbuffer, t_ninfo *ninfo)
 	nbuffer->ninfo[nbuffer->cur].n_size = ninfo->n_size;
 	nbuffer->ninfo[nbuffer->cur].n_mtime = ninfo->n_mtime;
 	nbuffer->ninfo[nbuffer->cur].n_name = ninfo->n_name;
-	(nbuffer->cur++);
+	nbuffer->ninfo[nbuffer->cur].n_node = ninfo->n_node;
+	(nbuffer->cur)++;
 }

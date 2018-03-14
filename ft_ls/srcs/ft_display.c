@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 11:40:13 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/03/14 10:16:26 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/03/14 17:56:56 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,14 @@
 
 extern void			ft_display_ninfo(t_ninfo ninfo)
 {
-	ft_putnbr(ninfo.n_type);RC;
-	ft_putnbr(ninfo.n_mode);RC;
-	ft_putnbr(ninfo.n_nblink);RC;
-	ft_putnbr(ninfo.n_uid);RC;
-	ft_putnbr(ninfo.n_gid);RC;
-	ft_putnbr(ninfo.n_size);RC;
-	ft_putnbr(ninfo.n_mtime.tv_sec);RC;
+//	ft_putnbr(ninfo.n_type);RC;
+//	ft_putnbr(ninfo.n_mode);RC;
+//	ft_putnbr(ninfo.n_nblink);RC;
+//	ft_putnbr(ninfo.n_uid);RC;
+//	ft_putnbr(ninfo.n_gid);RC;
+//	ft_putnbr(ninfo.n_size);RC;
+//	ft_putnbr(ninfo.n_mtime.tv_sec);RC;
 	ft_putstr(ninfo.n_name);RC;
-	RC;RC;
 }
 
 extern void			ft_display_nbuffer(t_nbuff nbuffer)
@@ -40,5 +39,6 @@ extern void			ft_display_nbuffer(t_nbuff nbuffer)
 		i = 0;
 		while (i < nbuffer.size)
 			ft_display_ninfo(nbuffer.ninfo[i++]);
+		RC;
 	}
 }
