@@ -20,4 +20,6 @@ fclean :
 			$(MAKE) $@ -C $(ROOT)$$dir; \
 		done
 
-re : fclean all
+re :
+	$(MAKE) -C fclean
+	$(MAKE) -C all
