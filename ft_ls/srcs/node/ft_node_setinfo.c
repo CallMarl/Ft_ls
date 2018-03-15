@@ -6,13 +6,13 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 19:25:49 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/03/14 17:52:17 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/03/15 14:39:02 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <time.h>
+#include <sys/time.h>
 #include <dirent.h>
 #include "ft_ls.h"
 #include "libft.h"
