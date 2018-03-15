@@ -29,6 +29,7 @@ SRCS = ./main.c \
 	   ./srcs/path/ft_path_init.c
 
 OBJ = $(SRCS:./%.c=./%.o)
+
 DEPS = includes/*.h Makefile
 DEPS += $(shell find -E . -regex ".*\.[ch]")
 
@@ -46,11 +47,11 @@ $(NAME) : $(OBJ)
 	@$(CC) $^ -o $@ $(LIBS)
 
 clean :
-	@$(MAKE) clean "LIB_NEED = $(LIB_NEED)" -C $(LIB_DIR)
+	@$(MAKE) clean -C $(LIB_DIR)
 	@rm -f $(OBJ)
 
 fclean :
-	@$(MAKE) fclean "LIB_NEED = $(LIB_NEED)" -C $(LIB_DIR)
+	@$(MAKE) fclean -C $(LIB_DIR)
 	@rm -f $(OBJ) $(NAME)
 
 re :
