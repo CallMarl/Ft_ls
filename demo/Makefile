@@ -6,7 +6,7 @@
 #    By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/06 12:01:52 by pprikazs          #+#    #+#              #
-#    Updated: 2018/03/06 14:38:55 by pprikazs         ###   ########.fr        #
+#    Updated: 2018/05/03 17:27:38 by pprikazs         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ all : $(NAME)
 	@$(CC) $(INCLUDES) -c $< -o $@ $(FLAGS)
 
 $(NAME) : $(OBJ)
-	@echo "Compilation ft_ls..."
+	@echo "Compilation Demo..."
 	@$(MAKE) -C $(LIB_DIR)
 	@$(CC) $^ -o $@ $(LIBS)
 
