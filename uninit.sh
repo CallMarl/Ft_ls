@@ -16,6 +16,8 @@ echo "Desinisialisation des liens..."
 
 rm -f $root/ft_ls/libs/libft.a
 rm -rf $root/ft_ls/libs
+rm -f $root/ft_ls1/libs/libft.a
+rm -rf $root/ft_ls1/libs
 rm -f $root/demo/libs/libft.a
 rm -rf $root/demo/libs
 
