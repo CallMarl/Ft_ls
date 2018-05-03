@@ -1,6 +1,6 @@
 # Binary files
-./ft_ls/ft_ls
-./demo/demo
+ft_ls/ft_ls
+demo/demo
 
 # Swap
 [._]*.s[a-v][a-z]
