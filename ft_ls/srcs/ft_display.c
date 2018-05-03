@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 11:40:13 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/03/14 17:56:56 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/03 16:15:13 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@
 #include "ft_ls.h"
 #include "libft.h"
 #define RC ft_putchar('\n')
+#define SP ft_putchar(' ')
+
+/*
+static char			ft_lstime(t_tm date, char *buff)
+{
+}
+*/
 
 extern void			ft_display_ninfo(t_ninfo ninfo)
 {
@@ -26,6 +33,10 @@ extern void			ft_display_ninfo(t_ninfo ninfo)
 //	ft_putnbr(ninfo.n_uid);RC;
 //	ft_putnbr(ninfo.n_gid);RC;
 //	ft_putnbr(ninfo.n_size);RC;
+
+//	t_tm	date;
+
+//	ft_localtime_r(&(ninfo.n_mtime.tv_sec), &date);RC;
 //	ft_putnbr(ninfo.n_mtime.tv_sec);RC;
 	ft_putstr(ninfo.n_name);RC;
 }

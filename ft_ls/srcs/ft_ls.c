@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 11:04:54 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/03/14 17:56:33 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/03 16:50:01 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ static int			ft_dir_iter(DIR *nd, char *bpath, char opt, t_param *param)
 	{
 		ft_buffer_setinfo(&nbuffer, &ninfo);
 	}
-	//ft_display_buffer(nbuffer, bpath, param);
 	ft_display_nbuffer(nbuffer);
 	if (opt == 1)
 	{
@@ -61,6 +60,21 @@ static int			ft_dir_iter(DIR *nd, char *bpath, char opt, t_param *param)
 	return (1);
 }
 
+extern int			ft_ls_launch(char *bpath, char opt, t_param *param)
+{
+	DIR				*nd;
+	int				ret;
+
+	nd = 0;
+	if (!(nd = opendir(bpath)))
+		return (0);
+	ret = 1;
+	if (!(ft_dir_iter(nd, bpath, opt, param)))
+		ret = 0;
+	closedir(nd);
+	return (ret);
+}
+
 static int			ft_ls_checkparam(char *bpath, t_param *param)
 {
 	char			opt;
@@ -68,21 +82,6 @@ static int			ft_ls_checkparam(char *bpath, t_param *param)
 	opt = (ft_param_get(param, 'R') == TRUE) ? 1 : 0;
 	if (!(ft_ls_launch(bpath, opt,  param)))
 		return (0);
-	return (1);
-}
-
-extern int			ft_ls_launch(char *bpath, char opt, t_param *param)
-{
-	DIR				*nd;
-
-	if (!(nd = opendir(bpath)))
-		return (0);
-	if (!(ft_dir_iter(nd, bpath, opt, param)))
-	{
-		closedir(nd);
-		return (0);
-	}
-	closedir(nd);
 	return (1);
 }
 

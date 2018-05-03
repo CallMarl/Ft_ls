@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 16:07:56 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/03/14 17:41:47 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/03/16 12:22:16 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <stddef.h>
 # include <time.h>
 # include <dirent.h>
+# include "libft.h"
 
-typedef enum e_bool		t_bool;
 typedef struct dirent	t_dirent;
 typedef struct stat		t_stat;
 typedef struct timespec	t_time;
@@ -30,12 +30,6 @@ typedef struct s_path	t_path;
 /*
 ** ft_ls
 */
-
-enum					e_bool
-{
-	FALSE = 0,
-	TRUE = 1
-};
 
 int						ft_ls(int argc, char **argv);
 int						ft_ls_launch(char *bpath, char opt, t_param *param);
