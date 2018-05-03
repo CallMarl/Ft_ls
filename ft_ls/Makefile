@@ -55,5 +55,5 @@ fclean :
 	@rm -f $(OBJ) $(NAME)
 
 re :
-	$(MAKE) fclean
-	$(MAKE) all
+	@$(MAKE) fclean
+	@$(MAKE) all
