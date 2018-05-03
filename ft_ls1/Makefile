@@ -6,7 +6,7 @@
 #    By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/03 17:06:17 by pprikazs          #+#    #+#              #
-#    Updated: 2018/05/03 17:26:03 by pprikazs         ###   ########.fr        #
+#    Updated: 2018/05/03 19:10:10 by pprikazs         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,11 @@ endif
 DEPS = includes/*.h Makefile
 INCLUDES = -I./includes/
 
-SRCS = ./main.c
+SRCS = ./main.c \
+	   ./srcs/ft_display.c \
+	   ./srcs/ft_error.c \
+	   ./srcs/ft_global.c \
+	   ./srcs/ft_ls.c
 
 OBJ = $(SRCS:./%.c=./%.o)
 	

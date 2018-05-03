@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_global.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/03 17:07:38 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/03 18:08:48 by pprikazs         ###   ########.fr       */
+/*   Created: 2018/05/03 18:26:00 by pprikazs          #+#    #+#             */
+/*   Updated: 2018/05/03 19:17:38 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "ft_ls.h"
 
-int			main(int argc, char **argv)
-{
-	int		ret;
+/*
+** Variable global définissant les différente paramettre appelé par la commande
+** ft_ls. Si le flag est à un alors il est définit sinon non.
+*/
 
-	ret = ft_ls(argc, argv);
-	(void)argc;
-	(void)argv;
-	return (ret);
-}
+t_param		g_param[] = 
+{
+	{'l', 0},
+	{'R', 0},
+	{'a', 0},
+	{'r', 0},
+	{'t', 0},
+	{0, 0}
+};

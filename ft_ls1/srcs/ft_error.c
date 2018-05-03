@@ -1,24 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/03 17:07:38 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/03 18:08:48 by pprikazs         ###   ########.fr       */
+/*   Created: 2018/05/03 17:39:31 by pprikazs          #+#    #+#             */
+/*   Updated: 2018/05/03 19:15:46 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_ls.h"
 
-int			main(int argc, char **argv)
+static t_error			*ft_init_error1(void)
 {
-	int		ret;
+	static t_error		error_list[] = {
+		{ ERR_CODE_1, ERR_MESSAGE_1 },
+		{ 0, 0 }
+	};
 
-	ret = ft_ls(argc, argv);
-	(void)argc;
-	(void)argv;
-	return (ret);
+	return (error_list);
+}
+
+/*
+** Fonction de gestion des erreurs.
+*/
+
+extern int			ft_error(int err_code)
+{
+	t_error			*error_list;
+	
+	error_list = ft_init_error1();
+	(void)error_list;
+	(void)err_code;	
+	return (0);
 }
