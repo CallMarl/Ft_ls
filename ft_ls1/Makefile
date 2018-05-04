@@ -6,7 +6,7 @@
 #    By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/03 17:06:17 by pprikazs          #+#    #+#              #
-#    Updated: 2018/05/03 19:10:10 by pprikazs         ###   ########.fr        #
+#    Updated: 2018/05/04 12:19:18 by pprikazs         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,9 @@ SRCS = ./main.c \
 	   ./srcs/ft_display.c \
 	   ./srcs/ft_error.c \
 	   ./srcs/ft_global.c \
-	   ./srcs/ft_ls.c
+	   ./srcs/ft_ls.c \
+	   ./srcs/param/ft_param_get.c \
+	   ./srcs/param/ft_param_parse.c
 
 OBJ = $(SRCS:./%.c=./%.o)
 	
