@@ -1,42 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_buff_rm.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/03 17:39:31 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/07 14:30:25 by pprikazs         ###   ########.fr       */
+/*   Created: 2018/05/07 14:09:24 by pprikazs          #+#    #+#             */
+/*   Updated: 2018/05/07 14:39:03 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_ls.h"
 
-static t_error			*ft_init_error1(void)
-{
-	static t_error		error_list[] = {
-		{ ERR_CODE_1, ERR_MESS_1 },
-		{ ERR_CODE_2, ERR_MESS_2 },
-		{ ERR_CODE_3, ERR_MESS_3 },
-		{ ERR_CODE_4, ERR_MESS_4 },
-		{ ERR_CODE_4, ERR_MESS_5 },
-		{ 0, 0 }
-	};
-
-	return (error_list);
-}
-
 /*
-** Fonction de gestion des erreurs.
+** Fonction de rappel utilisé par ft_lstdel, afin de libairé le contenu de
+** chacun des élement de la list chainé.
 */
 
-extern int			ft_error(int err_code)
+extern void			ft_buff_rm(void *elem, size_t size)
 {
-	t_error			*error_list;
-	
-	error_list = ft_init_error1();
-	(void)error_list;
-	(void)err_code;	
-	return (0);
+	ft_buffdel((t_buff *)elem);
+	elem = 0;
+	(void)size;
 }

@@ -6,7 +6,7 @@
 #    By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/03 17:06:17 by pprikazs          #+#    #+#              #
-#    Updated: 2018/05/04 12:19:18 by pprikazs         ###   ########.fr        #
+#    Updated: 2018/05/07 14:46:18 by pprikazs         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,9 @@ SRCS = ./main.c \
 	   ./srcs/ft_error.c \
 	   ./srcs/ft_global.c \
 	   ./srcs/ft_ls.c \
+	   ./srcs/buff/ft_buff_get.c \
+	   ./srcs/buff/ft_buff_insert.c \
+	   ./srcs/buff/ft_buff_rm.c \
 	   ./srcs/param/ft_param_get.c \
 	   ./srcs/param/ft_param_parse.c
 
@@ -48,7 +51,7 @@ export LIB_NEED = ./libft
 all : $(NAME)
 
 %.o : %.c
-	@$(CC) $(INCLUDES) -c $< -o $@ $(FLAGS)
+	$(CC) $(INCLUDES) -c $< -o $@ $(FLAGS)
 
 $(NAME) : $(OBJ) $(DEPS)
 	@echo "Compilation ft_ls1..."

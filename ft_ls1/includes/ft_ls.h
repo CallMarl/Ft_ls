@@ -6,16 +6,19 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:07:46 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/04 17:22:11 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/07 14:31:31 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_LS_H
 # define FT_LS_H
 
+# include <sys/types.h>
+# include <sys/stat.h>
 # include <dirent.h>
 # include <stddef.h>
 # include <unistd.h>
+# include "libft.h"
 
 /*
 ** ft_ls
@@ -28,11 +31,19 @@ typedef struct s_file	t_file;
 struct					s_file
 {
 	char				*name;
-	DIR					*dd;
-	FILE				*fd;
+	struct stat			stat;
 };
 
 int						ft_ls(int argc, char **argv);
+
+/*
+** Gestion du buffer
+*/
+
+
+t_file					*ft_buff_get(t_list *buff, int i);
+int						ft_buff_insert(t_list **list, t_file *elem, size_t b_size);
+void					ft_buff_rm(void *elem, size_t size);
 
 /*
 ** Gestion des paramettres
@@ -70,8 +81,8 @@ struct					s_error
 # define ERR_CODE_1 -1
 # define ERR_CODE_2 -2
 # define ERR_CODE_3 -3
-# define ERR_CODE_3 -4
-# define ERR_CODE_3 -5
+# define ERR_CODE_4 -4
+# define ERR_CODE_5 -5
 
 # define ERR_MESS_1 "Erreur d'allocation lors de l'execuion du programme"
 # define ERR_MESS_2 "Erreur de définition de paramettre"
