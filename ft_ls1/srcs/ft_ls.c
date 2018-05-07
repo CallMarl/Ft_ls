@@ -6,34 +6,14 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:39:35 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/07 16:48:16 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/07 19:00:27 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <sys/types.h>
-#include <dirent.h>
-#include <errno.h>
 #include "libft.h"
 #include "ft_ls.h"
 
-static int			ft_ls_init(char **argv, int size, t_list **buff)
-{
-	int				i;
-	t_file			file;
-
-	i = 0;
-	while (i < size)
-	{
-		file.name = argv[i];
-		if (lstat(argv[i], &file.stat) == -1)
-			return (-1); // Erreur d'acces fichier, vérifier si erreur fatale ou non.
-		ft_buff_insert(buff, &file, size);
-		i++;
-	}
-	ft_debug_buff((t_buff *)(*buff)->content);
-	//ft_sort_file((t_buff *)buff->content);
-	return (1); // Valeur de retour temporaire.
-}
 
 /*
 ** Surcouche de la fonction main().
@@ -52,7 +32,11 @@ extern int			ft_ls(int argc, char **argv)
 	if (ret > 0)
 	{	
 		if (cur < argc)
-			ft_ls_init(&argv[cur], argc - cur, &buff);
+		{
+			ret = ft_ls_args(&argv[cur], argc - cur, &buff);
+		}
+		else
+			ret = ft_ls_noargs(".", ft_param_get('R'));
 	}
 	if (ret < 0)
 		ret = ft_error(ret);

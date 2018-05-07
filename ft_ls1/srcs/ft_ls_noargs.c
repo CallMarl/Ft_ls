@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_buff_get.c                                      :+:      :+:    :+:   */
+/*   ft_ls_noarg.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/07 13:59:00 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/07 17:17:51 by pprikazs         ###   ########.fr       */
+/*   Created: 2018/05/07 18:04:20 by pprikazs          #+#    #+#             */
+/*   Updated: 2018/05/07 19:00:05 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "ft_ls.h"
-
 /*
-** Retourne un pointeur t_file qui pointe sur l'élément i du premier élément 
-** t_buff de la liste de buffeur (chainé).
+** Ouverture d'un dossier et lecture de celui-ci
 */
 
-extern t_file		*ft_buff_get(t_list *buff, int i)
+extern int			ft_ls_noargs(char *path, _Bool opt_R)
 {
-	t_buff			*tmp;
-
-	tmp = (t_buff *)buff->content;
-	return (&((t_file *)tmp->buff)[i]);
+	(void)path;
+	(void)opt_R;
+	return (1);
 }

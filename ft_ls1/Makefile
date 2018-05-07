@@ -6,7 +6,7 @@
 #    By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/03 17:06:17 by pprikazs          #+#    #+#              #
-#    Updated: 2018/05/07 16:46:41 by pprikazs         ###   ########.fr        #
+#    Updated: 2018/05/07 18:09:43 by pprikazs         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,8 @@ SRCS = ./main.c \
 	   ./srcs/ft_error.c \
 	   ./srcs/ft_global.c \
 	   ./srcs/ft_ls.c \
+	   ./srcs/ft_ls_args.c \
+	   ./srcs/ft_ls_noargs.c \
 	   ./srcs/buff/ft_buff_get.c \
 	   ./srcs/buff/ft_buff_insert.c \
 	   ./srcs/buff/ft_buff_rm.c \
