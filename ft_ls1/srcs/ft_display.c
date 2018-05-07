@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:39:40 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/03 19:11:30 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/04 12:49:43 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,15 @@ extern t_param		g_param[];
 
 extern void			ft_display_param(void)
 {
-	while (g_param->key != 0)
+	int				i;
+
+	i = 0;
+	while (g_param[i].key != 0)
 	{
 		ft_putstr("key => ");
-		ft_putchar(g_param->key);
+		ft_putchar(g_param[i].key);
 		ft_putstr(", value => ");
-		(g_param->val == 1) ? ft_putendl("True") : ft_putendl("False");
+		(g_param[i].val == 1) ? ft_putendl("True") : ft_putendl("False");
+		i++;
 	}
 }
