@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:07:46 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/07 19:00:13 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/07 19:11:14 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_file	t_file;
 struct					s_file
 {
 	char				*name;
+	int					err;
 	struct stat			stat;
 };
 

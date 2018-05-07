@@ -6,11 +6,13 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:02:45 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/07 19:02:20 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/07 19:11:31 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <sys/types.h>
+#include <errno.h>
+	#include <string.h>
 #include "libft.h"
 #include "ft_ls.h"
 
@@ -56,7 +58,7 @@ static int			ft_ls_argsdir(t_list *buff, _Bool opt_R)
 ** soit elle appel ft_ls_noargs() dans le cas d'un dossier
 */
 
-static int			ft_ls_arglaunch(t_list *buff, _Bool opt_R)
+static int			ft_ls_argslaunch(t_list *buff, _Bool opt_R)
 {
 	int				i;
 	int				ret;
@@ -70,6 +72,7 @@ static int			ft_ls_arglaunch(t_list *buff, _Bool opt_R)
 			ret = ft_ls_argsfile(buff);
 		else
 			ret = ft_ls_argsdir(buff, opt_R);
+		i++;
 	}
 	return (ret);
 }
@@ -88,14 +91,15 @@ extern int			ft_ls_args(char **argv, int size, t_list **buff)
 	while (i < size)
 	{
 		file.name = argv[i];
+		file.err = 0;
 		if (lstat(argv[i], &file.stat) == -1) // Penser à l'ajouter dans le buffer pour le trie.
-			return (-1); // Erreur d'acces fichier, vérifier si erreur fatale ou non.
+			file.err = errno;
 		if (ft_buff_insert(buff, &file, size) == -1)
 			return (ERR_CODE_1);
 		i++;
 	}
 	ft_debug_buff((t_buff *)(*buff)->content);
-	ft_ls_arglaunch(*buff, ft_param_get('R'));
+	ft_ls_argslaunch(*buff, ft_param_get('R'));
 	return (1); // Valeur de retour temporaire
 }
 
