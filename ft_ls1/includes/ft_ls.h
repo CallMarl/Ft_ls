@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:07:46 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/07 14:31:31 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/07 15:13:29 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,10 @@ int						ft_param_parse(int argc, char **argv);
 _Bool					ft_param_get(char param);
 
 /*
-**
+** Gestion des display en mode debug
 */
 
-/*
-** Gestion des display
-*/
-
-void					ft_display_param(void);
+void					ft_debug_param(void);
 
 /*
 ** Gestion des erreurs

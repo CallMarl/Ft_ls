@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:39:40 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/04 12:49:43 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/07 15:13:35 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ extern t_param		g_param[];
 ** ft_ls.
 */
 
-extern void			ft_display_param(void)
+extern void			ft_debug_param(void)
 {
 	int				i;
 

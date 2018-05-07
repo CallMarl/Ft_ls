@@ -6,7 +6,7 @@
 #    By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/03 17:06:17 by pprikazs          #+#    #+#              #
-#    Updated: 2018/05/07 14:46:18 by pprikazs         ###   ########.fr        #
+#    Updated: 2018/05/07 15:14:05 by pprikazs         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ DEPS = includes/*.h Makefile
 INCLUDES = -I./includes/
 
 SRCS = ./main.c \
-	   ./srcs/ft_display.c \
+	   ./srcs/ft_debug.c \
 	   ./srcs/ft_error.c \
 	   ./srcs/ft_global.c \
 	   ./srcs/ft_ls.c \
