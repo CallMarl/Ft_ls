@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:02:45 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/07 19:11:31 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/08 14:47:17 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,30 @@
 ** les range par ordre ascii. Et affiche les erreurs
 */
 
-static int			ft_ls_argserr(t_list *buff)
+static int			ft_ls_argserr(t_list *buff, int count)
 {
+	char			**file_name;
+	size_t			i;
+	int				j;
+	t_buff			tmp;
+
+	if (!(file_name = (char **)ft_memalloc(sizeof(char *) * (count + 1))))
+		return (ERR_CODE_1);
+	file_name[count] == 0;
+	i = 0;
+	j = 0;
+	tmp = (t_buff *)buff->content;
+	while (i < tmp->cr)
+	{
+		if (tmp->buff[i].err != 0)
+		{
+			file_name[j] = tmp->buff[i].name;
+			j++;
+		}
+		i++;
+	}
+	ft_sort_ascii(file_name, count);
 	//Appel la fonction de display d'erreur
-	(void)buff;
 	return (1);
 }
 
@@ -58,7 +78,7 @@ static int			ft_ls_argsdir(t_list *buff, _Bool opt_R)
 ** soit elle appel ft_ls_noargs() dans le cas d'un dossier
 */
 
-static int			ft_ls_argslaunch(t_list *buff, _Bool opt_R)
+static int			ft_ls_argslaunch(t_list *buff, int count[3], _Bool opt_R)
 {
 	int				i;
 	int				ret;
@@ -67,11 +87,11 @@ static int			ft_ls_argslaunch(t_list *buff, _Bool opt_R)
 	while (i < 3)
 	{
 		if (i == 0)
-			ret = ft_ls_argserr(buff);
+			ret = ft_ls_argserr(buff, count[i]);
 		else if (i == 1)
-			ret = ft_ls_argsfile(buff);
+			ret = ft_ls_argsfile(buff, count[i]);
 		else
-			ret = ft_ls_argsdir(buff, opt_R);
+			ret = ft_ls_argsdir(buff, count[i], opt_R);
 		i++;
 	}
 	return (ret);
@@ -85,21 +105,28 @@ static int			ft_ls_argslaunch(t_list *buff, _Bool opt_R)
 extern int			ft_ls_args(char **argv, int size, t_list **buff)
 {
 	int				i;
+	int				count[3];
 	t_file			file;
 
+	i = 0;
+	while (i < 2)
+		count[i++] = 0;
 	i = 0;
 	while (i < size)
 	{
 		file.name = argv[i];
 		file.err = 0;
-		if (lstat(argv[i], &file.stat) == -1) // Penser à l'ajouter dans le buffer pour le trie.
-			file.err = errno;
+		if (lstat(argv[i], &file.stat) == -1)
+			file.err = errno;;
 		if (ft_buff_insert(buff, &file, size) == -1)
 			return (ERR_CODE_1);
+		if (file.err != 0)
+			(count[0])++;
+		else
+			((file.stat.st_mode & S_IFDIR) != 0) ? (count[2])++ : (count[1])++;
 		i++;
 	}
-	ft_debug_buff((t_buff *)(*buff)->content);
-	ft_ls_argslaunch(*buff, ft_param_get('R'));
+	ft_ls_argslaunch(*buff, count, ft_param_get('R'));
 	return (1); // Valeur de retour temporaire
 }
 
