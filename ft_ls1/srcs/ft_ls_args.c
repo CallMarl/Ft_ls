@@ -6,13 +6,12 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:02:45 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/09 17:18:31 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/09 17:28:57 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <sys/types.h>
 #include <errno.h>
-	#include <string.h>
 #include "libft.h"
 #include "ft_ls.h"
 
@@ -48,7 +47,9 @@ ft_debug_strarr(arr_err);
 
 /*
 ** Récupère dans le buffer tout les appel à lstat correspondant à un fichier
-** les range par ordre ascii et les affiche.
+** les range par ordre ascii et les affiche. Elle recupère aussi tout les appel
+** a lstat correcpondant et les place dans le tableau arr_dir par soucie de 
+** performance.
 */
 
 static int			ft_ls_argsfile(t_list *buff, char **arr_file, int count, char **arr_dir)
@@ -79,16 +80,22 @@ ft_debug_strarr(arr_file);
 }
 
 /*
-** Récupère dans le buffer tout les appel à lstat correspondant à un dossier
-** et fait un appel à ft_ls_noarg pour chacun d'entre eux.
+** Fait un appel à ft_ls_noarg pour chacun des dossier du tableau arr_dir
 */
 
 static int			ft_ls_argsdir(t_list *buff, char **arr_dir, int count, _Bool opt_R)
 {
+	int 			i;
 	//Appel la fonction ft_ls_noarg()
+	i = 0;
 	ft_qsort((void *)arr_dir, count, sizeof(char *), &ft_sort_strcmp_c);
 ft_putendl("\ndirs : ");
 ft_debug_strarr(arr_dir);
+	while (i < count)
+	{
+		ft_ls_noargs(arr_dir[i], opt_R);
+		i++;
+	}
 	(void)buff;
 	(void)count;
 	(void)opt_R;
