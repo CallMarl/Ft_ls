@@ -6,36 +6,12 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 12:33:19 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/07 17:26:31 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/09 19:15:31 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_ls.h"
-
-/*
-** Fonction de rappel, demandé par la libft et la fonction ft_buffinit, 
-** afin de définir la taille d'un élément du buffer.
-*/
-
-static size_t		ft_e_size(void)
-{
-	return ((size_t)sizeof(t_file));
-}
-
-/*
-** Insertion d'un nouveau maillon t_list en tete de list et allocation
-** du buffer.
-*/
-
-static int			ft_buff_new(t_list **list, size_t b_size)
-{
-	t_buff			buff;
-
-	if (!ft_lstpush(list, (void *)&buff, sizeof(t_buff), &ft_lstpushf))
-		return (-1);
-	return (ft_buffinit((t_buff *)(*list)->content, b_size, &ft_e_size));
-}
 
 /*
 ** Fonction d'insertion du buffer si le buffer est trop petit ou pas encore
