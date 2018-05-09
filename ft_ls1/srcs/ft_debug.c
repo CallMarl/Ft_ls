@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:39:40 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/07 19:13:02 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/09 16:27:28 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,16 @@
 #include "ft_ls.h"
 
 extern t_param		g_param[];
+
+extern void			ft_debug_strarr(char **strarr)
+{
+	int				i;
+
+	i = 0;
+	while (strarr[i] != 0)
+		ft_putendl(strarr[i++]);
+}
+
 
 extern void			ft_debug_buff(t_buff *buff)
 {

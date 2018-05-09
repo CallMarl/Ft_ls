@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:07:46 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/07 19:11:14 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/09 16:23:11 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int						ft_ls_noargs(char *path, _Bool opt_R);
 */
 
 
-t_file					*ft_buff_get(t_list *buff, int i);
+t_file					*ft_buff_get(t_buff *buff, int i);
 int						ft_buff_insert(t_list **list, t_file *elem, size_t b_size);
 void					ft_buff_rm(void *elem, size_t size);
 
@@ -67,6 +67,7 @@ _Bool					ft_param_get(char param);
 
 void					ft_debug_buff(t_buff *buff);
 void					ft_debug_param(void);
+void					ft_debug_strarr(char **strarr);
 
 /*
 ** Gestion des erreurs

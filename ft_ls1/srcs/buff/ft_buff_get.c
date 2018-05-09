@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 13:59:00 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/07 17:17:51 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/09 16:25:03 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@
 ** t_buff de la liste de buffeur (chainé).
 */
 
-extern t_file		*ft_buff_get(t_list *buff, int i)
+extern t_file		*ft_buff_get(t_buff *buff, int i)
 {
-	t_buff			*tmp;
-
-	tmp = (t_buff *)buff->content;
-	return (&((t_file *)tmp->buff)[i]);
+	return (&((t_file *)buff->buff)[i]);
 }
