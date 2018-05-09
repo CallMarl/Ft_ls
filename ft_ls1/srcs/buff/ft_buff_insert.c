@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 12:33:19 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/09 19:15:31 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/09 19:17:32 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ extern int			ft_buff_insert(t_list **list, t_file *elem, size_t b_size)
 	if (list == 0 || *list == 0)
 		ret = ft_buff_new(list, b_size);
 	i = 0;
-	while (ret >= 0 && (ret = ft_buffadd((t_buff *)(*list)->content, (void *)elem)) <= 0 \
+	while (ret >= 0 && \ 
+			(ret = ft_buffadd((t_buff *)(*list)->content, (void *)elem)) <= 0 \
 			&& i < 1)
 	{
 		if (ret == 0)
