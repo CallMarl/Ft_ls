@@ -6,12 +6,14 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:02:45 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/09 17:28:57 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/09 19:07:02 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/types.h>
 #include <errno.h>
+#include <stddef.h>
+#include <sys/stat.h>
+#include <sys/types.h>
 #include "libft.h"
 #include "ft_ls.h"
 
@@ -20,7 +22,7 @@
 ** les range par ordre ascii. Et affiche les erreurs
 */
 
-static int			ft_ls_argserr(t_list *buff, int count)
+static int			ft_ls_argserr(t_list **buff, int count)
 {
 	char			**arr_err;
 	size_t			i;
@@ -31,7 +33,7 @@ static int			ft_ls_argserr(t_list *buff, int count)
 	arr_err[count] = 0;
 	i = 0;
 	count = 0;
-	tmp = (t_buff *)buff->content;
+	tmp = (t_buff *)(*buff)->content;
 	while (i < tmp->cr)
 	{
 		if (ft_buff_get(tmp, i)->err != 0)
@@ -52,7 +54,7 @@ ft_debug_strarr(arr_err);
 ** performance.
 */
 
-static int			ft_ls_argsfile(t_list *buff, char **arr_file, int count, char **arr_dir)
+static int			ft_ls_argsfile(t_list **buff, char **arr_file, int count, char **arr_dir)
 {
 	size_t			i;
 	size_t			j;
@@ -61,7 +63,7 @@ static int			ft_ls_argsfile(t_list *buff, char **arr_file, int count, char **arr
 	i = 0;
 	j = 0;
 	count = 0;
-	tmp = (t_buff *)buff->content;
+	tmp = (t_buff *)(*buff)->content;
 	while (i < tmp->cr)
 	{
 		if (ft_buff_get(tmp, i)->err == 0 && \
@@ -83,7 +85,7 @@ ft_debug_strarr(arr_file);
 ** Fait un appel à ft_ls_noarg pour chacun des dossier du tableau arr_dir
 */
 
-static int			ft_ls_argsdir(t_list *buff, char **arr_dir, int count, _Bool opt_R)
+static int			ft_ls_argsdir(t_list **buff, char **arr_dir, int count, _Bool opt_R)
 {
 	int 			i;
 	//Appel la fonction ft_ls_noarg()
@@ -93,7 +95,7 @@ ft_putendl("\ndirs : ");
 ft_debug_strarr(arr_dir);
 	while (i < count)
 	{
-		ft_ls_noargs(arr_dir[i], opt_R);
+		ft_ls_noargs(arr_dir[i], buff, opt_R);
 		i++;
 	}
 	(void)buff;
@@ -107,7 +109,7 @@ ft_debug_strarr(arr_dir);
 ** soit elle appel ft_ls_noargs() dans le cas d'un dossier
 */
 
-static int			ft_ls_argslaunch(t_list *buff, int count[3], _Bool opt_R)
+static int			ft_ls_argslaunch(t_list **buff, int count[3], _Bool opt_R)
 {
 	char			**arr_dir;
 	char			**arr_file;
@@ -151,10 +153,10 @@ extern int			ft_ls_args(char **argv, int size, t_list **buff)
 	i = 0;
 	while (i < size)
 	{
-		file.name = argv[i];
+		ft_strcpy(file.name, argv[i]);
 		file.err = 0;
 		if (lstat(argv[i], &file.stat) == -1)
-			file.err = errno;;
+			file.err = errno;
 		if (ft_buff_insert(buff, &file, size) == -1)
 			return (ERR_CODE_1);
 		if (file.err != 0)
@@ -163,6 +165,5 @@ extern int			ft_ls_args(char **argv, int size, t_list **buff)
 			((file.stat.st_mode & S_IFDIR) != 0) ? (count[2])++ : (count[1])++;
 		i++;
 	}
-	return (ft_ls_argslaunch(*buff, count, ft_param_get('R')));
+	return (ft_ls_argslaunch(buff, count, ft_param_get('R')));
 }
-

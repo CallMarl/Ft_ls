@@ -6,17 +6,18 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:07:46 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/09 16:23:11 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/09 19:05:28 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_LS_H
 # define FT_LS_H
 
+# include <dirent.h>
+# include <limits.h>
+# include <stddef.h>
 # include <sys/types.h>
 # include <sys/stat.h>
-# include <dirent.h>
-# include <stddef.h>
 # include <unistd.h>
 # include "libft.h"
 
@@ -30,14 +31,14 @@ typedef struct s_file	t_file;
 
 struct					s_file
 {
-	char				*name;
+	char				name[PATH_MAX];
 	int					err;
 	struct stat			stat;
 };
 
 int						ft_ls(int argc, char **argv);
 int						ft_ls_args(char **argv, int size, t_list **buff);
-int						ft_ls_noargs(char *path, _Bool opt_R);
+int						ft_ls_noargs(char *path, t_list **buff, _Bool opt_R);
 
 /*
 ** Gestion du buffer
