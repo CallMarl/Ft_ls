@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:04:20 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/09 19:07:54 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/09 19:13:56 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ extern int			ft_ls_noargs(char *path, t_list **buff, _Bool opt_R)
 		return (errno); // Erreur lecture fichier
 	if (!(dd = opendir(path))) // Ajout de la fonction de retourn d'erreur avrc errno
 		return (-1); // ft_err_diropen(errno);
+	(void)buff;
 	(void)path;
 	(void)opt_R;
 	return (1);
