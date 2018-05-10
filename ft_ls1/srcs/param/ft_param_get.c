@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 12:12:04 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/04 12:50:00 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/10 17:15:10 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ extern _Bool		ft_param_get(char param)
 	i = 0;
 	while (g_param[i].key != 0)
 	{
-		if (param == g_param[i].val)
+		if (param == g_param[i].key)
 			return (g_param[i].val);
 		i++;
 	}
