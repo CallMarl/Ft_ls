@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:07:46 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/10 11:57:19 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/10 16:56:01 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include <dirent.h>
 # include <limits.h>
 # include <stddef.h>
-# include <sys/types.h>
 # include <sys/stat.h>
+# include <sys/types.h>
 # include <unistd.h>
 # include "libft.h"
 
@@ -25,13 +25,14 @@
 ** ft_ls
 */
 
+typedef struct dirent	t_dirent;
 typedef struct s_param	t_param;
 typedef struct s_error	t_error;
 typedef struct s_file	t_file;
 
 struct					s_file
 {
-	char				*name[255];
+	char				name[255];
 	char				*path;
 	int					err;
 	struct stat			stat;
@@ -63,6 +64,14 @@ struct					s_param
 
 int						ft_param_parse(int argc, char **argv);
 _Bool					ft_param_get(char param);
+
+/*
+** Gestion du trie
+*/
+
+void					ft_sort_file(t_file *files, size_t size);
+int						ft_sort_filecmp_c(const void *f1, const void *f2);
+int						ft_sort_filecmp_d(const void *f1, const void *f2);
 
 /*
 ** Gestion des display en mode debug

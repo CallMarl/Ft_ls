@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:04:20 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/10 12:11:25 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/10 18:19:37 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,30 +19,63 @@
 #include "ft_ls.h"
 
 /*
-** Ouverture d'un dossier et lecture de celui-ci
+** Dans le cas de récursif rappel de noarg pour chaque dossier
+*/
+
+static int			ft_ls_subdir(t_list **buff, _Bool opt_R)
+{
+	size_t			i;
+	t_buff			*tmp;
+	t_file			*file;
+
+	i = 0;
+	tmp = (t_buff *)(*buff)->content;
+	while (i < tmp->b_size)
+	{
+		file = ft_buff_get(tmp, i);
+		if (ft_strcmp(file->name, ".") != 0 && ft_strcmp(file->name, "..") != 0 \
+				&& (file->stat.st_mode & S_IFDIR) == S_IFDIR)
+		{
+			//display du chemin du dossier
+			ft_putendl(ft_buff_get(tmp, i)->path);
+			ft_ls_noargs(ft_buff_get(tmp, i)->path, buff, opt_R);
+		}
+		i++;
+	}
+	return (1);
+}
+
+/*
+** Ouverture d'un dossier et lecture de celui-ci recursif ou non suivant
+** le status de opt_R
 */
 
 extern int			ft_ls_noargs(char *path, t_list **buff, _Bool opt_R)
 {
 	DIR				*dd;
 	size_t			dir_size;
+	t_dirent		*ndetail;
 	t_file			file;
-	t_dirent		*ninfo;
 
 	if (lstat(path, &file.stat))
 		return (errno); // Erreur lecture fichier
-	dir_size = file.stat.st_link;
-	else if (!(ft_buff_new(buff, dir_size)))
+	else if (!(ft_buff_new(buff, file.stat.st_nlink)))
 		return (ERR_CODE_1);
-	else if (!(dd = opendir(path))) // Ajout de la fonction de retourn d'erreur avrc errno
+	else if (!(dd = opendir(path)))
 		return (-1); // ft_err_diropen(errno);
-	while (!(ndetail = readdir(dd)))
+	dir_size = file.stat.st_nlink;
+	while ((ndetail = readdir(dd)) != 0)
 	{
-		file.name = ft_strcpy(ndetail.d_name);
-		file.path = ft_strattach(path, ndetail.d_name, '/');	
-		if (lstat(path, &file.stat))
+		ft_strcpy(file.name, ndetail->d_name);
+		file.path = ft_strattach(path, ndetail->d_name, "/");
+		if (lstat(file.path, &file.stat))
 			return (errno); // Erreur lecture fichier
-		ft_buff_insert(buff, file, dir_size);
+		ft_buff_insert(buff, &file, dir_size);
 	}
+	ft_sort_file((t_file *)((t_buff *)(*buff)->content)->buff, \
+			((t_buff *)(*buff)->content)->b_size); // Simplifier ces appel avec des accesseurs
+ft_debug_buff((t_buff *)(*buff)->content);
+	if (opt_R == 1)
+		ft_ls_subdir(buff, opt_R);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 19:12:24 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/09 19:15:25 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/10 16:30:15 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,3 @@ extern int			ft_buff_new(t_list **list, size_t b_size)
 		return (-1);
 	return (ft_buffinit((t_buff *)(*list)->content, b_size, &ft_e_size));
 }
-

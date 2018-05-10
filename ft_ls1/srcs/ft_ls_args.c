@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:02:45 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/10 11:56:25 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/10 17:39:35 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ static int			ft_ls_argserr(t_list **buff, int count)
 ** performance.
 */
 
-static int			ft_ls_argsfile(t_list **buff, char **arr_file, int count, char **arr_dir)
+
+static int			ft_ls_argsfile(t_list **buff, t_file *arr_file, int count, t_file *arr_dir)
 {
 	size_t			i;
 	size_t			j;
@@ -66,13 +67,18 @@ static int			ft_ls_argsfile(t_list **buff, char **arr_file, int count, char **ar
 	{
 		if (ft_buff_get(tmp, i)->err == 0 && \
 				(ft_buff_get(tmp, i)->stat.st_mode & S_IFDIR) == 0)
-			arr_file[count++] = ft_buff_get(tmp, i)->name;
+			ft_strcpy(arr_file[count++].name, ft_buff_get(tmp, i)->name);
 		else if (ft_buff_get(tmp, i)->err == 0 && \
 				(ft_buff_get(tmp, i)->stat.st_mode & S_IFDIR) != 0)
-			arr_dir[j++] = ft_buff_get(tmp, i)->name;
+			ft_strcpy(arr_dir[j++].name, ft_buff_get(tmp, i)->name);
 		i++;
 	}
-	ft_qsort((void *)arr_file, count, sizeof(char *), &ft_sort_strcmp_c);
+	int z = 0;
+	while (z < count)
+	{
+		ft_putendl(arr_file[z++].name);
+	}
+	ft_sort_file(arr_file, count);
 	// Appel display arr file
 	return (1);
 }
@@ -81,14 +87,15 @@ static int			ft_ls_argsfile(t_list **buff, char **arr_file, int count, char **ar
 ** Fait un appel à ft_ls_noarg pour chacun des dossier du tableau arr_dir
 */
 
-static int			ft_ls_argsdir(t_list **buff, char **arr_dir, int count, _Bool opt_R)
+static int			ft_ls_argsdir(t_list **buff, t_file *arr_dir, int count, _Bool opt_R)
 {
 	int 			i;
 	i = 0;
-	ft_qsort((void *)arr_dir, count, sizeof(char *), &ft_sort_strcmp_c);
+	ft_sort_file(arr_dir, count);
 	while (i < count)
 	{
-		ft_ls_noargs(arr_dir[i], buff, opt_R);
+		//display du chemin du dossier
+		ft_ls_noargs(arr_dir[i].name, buff, opt_R);
 		i++;
 	}
 	return (1);
@@ -101,17 +108,15 @@ static int			ft_ls_argsdir(t_list **buff, char **arr_dir, int count, _Bool opt_R
 
 static int			ft_ls_argslaunch(t_list **buff, int count[3], _Bool opt_R)
 {
-	char			**arr_dir;
-	char			**arr_file;
+	t_file			*arr_dir;
+	t_file			*arr_file;
 	int				i;
 	int				ret;
 
-	if (!(arr_file = (char **)ft_memalloc(sizeof(char *) * (count[1] + 1))))
+	if (!(arr_file = (t_file *)ft_memalloc(sizeof(t_file) * (count[1] + 1))))
 		return (ERR_CODE_1);
-	else if (!(arr_dir = (char **)ft_memalloc(sizeof(char *) * (count[2] + 1))))
+	else if (!(arr_dir = (t_file *)ft_memalloc(sizeof(t_file) * (count[2] + 1))))
 		return (ERR_CODE_1);
-	arr_file[count[1]] = 0;
-	arr_dir[count[2]] = 0;
 	i = 0;
 	while (i < 3)
 	{

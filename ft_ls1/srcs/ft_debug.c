@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:39:40 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/09 16:27:28 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/10 17:15:49 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ extern void			ft_debug_strarr(char **strarr)
 		ft_putendl(strarr[i++]);
 }
 
-
+/*
+** Fonction qui affiche le contenu du buffer
+*/ 
 extern void			ft_debug_buff(t_buff *buff)
 {
 	size_t			i;
@@ -36,11 +38,12 @@ extern void			ft_debug_buff(t_buff *buff)
 		file = &((t_file *)buff->buff)[i];
 		ft_putstr("file name : ");
 		ft_putendl(file->name);
-		ft_putstr("file mode : ");
-		ft_putnbr(file->stat.st_mode);
-		ft_putstr("file err : ");
-		ft_putnbr(file->err);
-		ft_putendl("");
+//		ft_putstr("file mode : ");
+//		ft_putnbr(file->stat.st_mode);
+//		ft_putchar('\n');
+//		ft_putstr("file err : ");
+//		ft_putnbr(file->err);
+//		ft_putendl("");
 		i++;
 	}
 }
@@ -63,4 +66,5 @@ extern void			ft_debug_param(void)
 		(g_param[i].val == 1) ? ft_putendl("True") : ft_putendl("False");
 		i++;
 	}
+	ft_putchar('\n');
 }
