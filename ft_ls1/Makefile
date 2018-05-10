@@ -6,7 +6,7 @@
 #    By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/03 17:06:17 by pprikazs          #+#    #+#              #
-#    Updated: 2018/05/09 19:15:53 by pprikazs         ###   ########.fr        #
+#    Updated: 2018/05/10 14:19:41 by pprikazs         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,10 @@ SRCS = ./main.c \
 	   ./srcs/buff/ft_buff_new.c \
 	   ./srcs/buff/ft_buff_rm.c \
 	   ./srcs/param/ft_param_get.c \
-	   ./srcs/param/ft_param_parse.c
+	   ./srcs/param/ft_param_parse.c \
+	   ./srcs/sort/ft_sort_file.c \
+	   ./srcs/sort/ft_sort_filecmp_c.c \
+	   ./srcs/sort/ft_sort_filecmp_d.c
 
 OBJ = $(SRCS:./%.c=./%.o)
 	
