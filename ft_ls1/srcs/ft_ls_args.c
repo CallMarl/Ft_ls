@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:02:45 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/09 19:07:02 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/10 11:56:25 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ static int			ft_ls_argserr(t_list **buff, int count)
 		i++;
 	}
 	ft_qsort((void *)arr_err, count, sizeof(char *), &ft_sort_strcmp_c);
-ft_putendl("\nfile err : ");
-ft_debug_strarr(arr_err);
 	//Appel la fonction de display d'erreur
 	return (1);
 }
@@ -75,8 +73,6 @@ static int			ft_ls_argsfile(t_list **buff, char **arr_file, int count, char **ar
 		i++;
 	}
 	ft_qsort((void *)arr_file, count, sizeof(char *), &ft_sort_strcmp_c);
-ft_putendl("\nfile : ");
-ft_debug_strarr(arr_file);
 	// Appel display arr file
 	return (1);
 }
@@ -88,19 +84,13 @@ ft_debug_strarr(arr_file);
 static int			ft_ls_argsdir(t_list **buff, char **arr_dir, int count, _Bool opt_R)
 {
 	int 			i;
-	//Appel la fonction ft_ls_noarg()
 	i = 0;
 	ft_qsort((void *)arr_dir, count, sizeof(char *), &ft_sort_strcmp_c);
-ft_putendl("\ndirs : ");
-ft_debug_strarr(arr_dir);
 	while (i < count)
 	{
 		ft_ls_noargs(arr_dir[i], buff, opt_R);
 		i++;
 	}
-	(void)buff;
-	(void)count;
-	(void)opt_R;
 	return (1);
 }
 
