@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:39:40 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/10 17:15:49 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/11 18:40:03 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ extern void			ft_debug_param(void)
 		ft_putstr("key => ");
 		ft_putchar(g_param[i].key);
 		ft_putstr(", value => ");
-		(g_param[i].val == 1) ? ft_putendl("True") : ft_putendl("False");
+		(g_param[i].val != 0) ? ft_putendl("True") : ft_putendl("False");
 		i++;
 	}
 	ft_putchar('\n');

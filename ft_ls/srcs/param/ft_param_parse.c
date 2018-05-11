@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 11:39:44 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/04 12:23:02 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/11 18:38:05 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ extern t_param		g_param[];
 ** sinon le paramettre n'existe pas.
 */
 
-static int			ft_param_insert(char param)
+static int			ft_param_insert(char param, int val)
 {
 	int				i;
 
@@ -32,7 +32,8 @@ static int			ft_param_insert(char param)
 	{
 		if (param == g_param[i].key)
 		{
-			g_param[i].val = 1;
+			if (g_param[i].val == 0)
+				g_param[i].val = val;
 			return (1);
 		}
 		i++;
@@ -40,7 +41,7 @@ static int			ft_param_insert(char param)
 	return (ERR_CODE_2);
 }
 
-static int			ft_param_read(char *param)
+static int			ft_param_read(char *param, int call)
 {
 	int				i;
 	int				ret;
@@ -49,7 +50,7 @@ static int			ft_param_read(char *param)
 	ret = 1;
 	while (param[i] != '\0')
 	{
-		if ((ret = ft_param_insert(param[i])) < 0)
+		if ((ret = ft_param_insert(param[i], call + i)) < 0)
 			return (ret);
 		i++;
 	}
@@ -72,7 +73,7 @@ extern int			ft_param_parse(int argc, char **argv)
 			return (i);
 		else if (argv[i][0] == '-' && argv[i][1] == '-')
 			return (i + 1);
-		if ((ret = ft_param_read(&argv[i][1])) < 0)
+		if ((ret = ft_param_read(&argv[i][1], i * 10000000)) < 0)
 			return (ret);
 		i++;
 	}

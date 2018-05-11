@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:07:46 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/11 18:03:50 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/11 18:35:02 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ struct					s_file
 
 int						ft_ls(int argc, char **argv);
 int						ft_ls_args(char **argv, int size, t_list **buff);
-int						ft_ls_noargs(char *path, t_list **buff, _Bool opt_R);
+int						ft_ls_noargs(char *path, t_list **buff, int opt_R);
 
 /*
 ** Gestion du buffer
@@ -60,11 +60,11 @@ void					ft_buff_rm(void *elem, size_t size);
 struct					s_param
 {
 	char				key;
-	_Bool				val;
+	int					val;
 };
 
 int						ft_param_parse(int argc, char **argv);
-_Bool					ft_param_get(char param);
+int						ft_param_get(char param);
 
 /*
 ** Gestion du trie

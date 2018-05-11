@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:04:20 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/11 18:10:37 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/11 18:36:01 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 ** Dans le cas de récursif rappel de noarg pour chaque dossier
 */
 
-static int			ft_ls_subdir(t_list **buff, _Bool opt_R)
+static int			ft_ls_subdir(t_list **buff, int opt_R)
 {
 	int				ret;
 	size_t			i;
@@ -51,7 +51,7 @@ static int			ft_ls_subdir(t_list **buff, _Bool opt_R)
 ** le status de opt_R
 */
 
-extern int			ft_ls_noargs(char *path, t_list **buff, _Bool opt_R)
+extern int			ft_ls_noargs(char *path, t_list **buff, int opt_R)
 {
 	DIR				*dd;
 	t_dirent		*ndetail;
@@ -75,7 +75,7 @@ extern int			ft_ls_noargs(char *path, t_list **buff, _Bool opt_R)
 	ft_sort_file((t_file *)((t_buff *)(*buff)->content)->buff, \
 			((t_buff *)(*buff)->content)->cr); // Simplifier ces appel avec des accesseurs
 	//ft_display_dir((t_buff *)buff->content);
-	if (opt_R == 1)
+	if (opt_R)
 		ft_ls_subdir(buff, opt_R);
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:02:45 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/11 18:09:13 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/11 18:34:35 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ static int			ft_ls_argsdir(t_list **buff, t_file *arr_dir, int count, _Bool opt_
 ** soit elle appel ft_ls_noargs() dans le cas d'un dossier
 */
 
-static int			ft_ls_argslaunch(t_list **buff, int count[3], _Bool opt_R)
+static int			ft_ls_argslaunch(t_list **buff, int count[3], int opt_R)
 {
 	t_file			*arr_dir;
 	t_file			*arr_file;
