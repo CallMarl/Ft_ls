@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:02:45 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/10 17:39:35 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/11 14:41:16 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,13 +146,15 @@ extern int			ft_ls_args(char **argv, int size, t_list **buff)
 	while (i < 3)
 		count[i++] = 0;
 	i = 0;
+	if (!(ft_buff_new(buff, LS_BUFFSIZE)))
+		return (ERR_CODE_1);
 	while (i < size)
 	{
 		ft_strcpy(file.name, argv[i]);
 		file.err = 0;
 		if (lstat(argv[i], &file.stat) == -1)
 			file.err = errno;
-		if (ft_buff_insert(buff, &file, size) == -1)
+		if (ft_buff_insert(buff, &file, LS_BUFFSIZE) == -1)
 			return (ERR_CODE_1);
 		if (file.err != 0)
 			(count[0])++;

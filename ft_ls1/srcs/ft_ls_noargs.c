@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:04:20 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/10 18:19:37 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/11 15:55:18 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,27 +53,23 @@ static int			ft_ls_subdir(t_list **buff, _Bool opt_R)
 extern int			ft_ls_noargs(char *path, t_list **buff, _Bool opt_R)
 {
 	DIR				*dd;
-	size_t			dir_size;
 	t_dirent		*ndetail;
 	t_file			file;
 
-	if (lstat(path, &file.stat))
-		return (errno); // Erreur lecture fichier
-	else if (!(ft_buff_new(buff, file.stat.st_nlink)))
+	if (!(ft_buff_new(buff, LS_BUFFSIZE)))
 		return (ERR_CODE_1);
 	else if (!(dd = opendir(path)))
 		return (-1); // ft_err_diropen(errno);
-	dir_size = file.stat.st_nlink;
 	while ((ndetail = readdir(dd)) != 0)
 	{
 		ft_strcpy(file.name, ndetail->d_name);
 		file.path = ft_strattach(path, ndetail->d_name, "/");
 		if (lstat(file.path, &file.stat))
 			return (errno); // Erreur lecture fichier
-		ft_buff_insert(buff, &file, dir_size);
+		ft_buff_insert(buff, &file, LS_BUFFSIZE);
 	}
 	ft_sort_file((t_file *)((t_buff *)(*buff)->content)->buff, \
-			((t_buff *)(*buff)->content)->b_size); // Simplifier ces appel avec des accesseurs
+			((t_buff *)(*buff)->content)->cr); // Simplifier ces appel avec des accesseurs
 ft_debug_buff((t_buff *)(*buff)->content);
 	if (opt_R == 1)
 		ft_ls_subdir(buff, opt_R);
