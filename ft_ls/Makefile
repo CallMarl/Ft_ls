@@ -6,7 +6,7 @@
 #    By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/03 17:06:17 by pprikazs          #+#    #+#              #
-#    Updated: 2018/05/11 19:21:46 by pprikazs         ###   ########.fr        #
+#    Updated: 2018/05/11 19:45:27 by pprikazs         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRCS = ./main.c \
 	   ./srcs/buff/ft_buff_new.c \
 	   ./srcs/buff/ft_buff_rm.c \
 	   ./srcs/display/ft_display_dir.c \
+	   ./srcs/display/ft_display_file.c \
 	   ./srcs/display/ft_display_path.c \
 	   ./srcs/error/ft_err_opendir.c \
 	   ./srcs/error/ft_err_openstat.c \

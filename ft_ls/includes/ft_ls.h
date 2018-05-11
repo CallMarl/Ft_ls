@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:07:46 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/11 19:20:43 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/11 19:45:36 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,9 @@ int						ft_sort_filecmp_d(const void *f1, const void *f2);
 ** Gestion des display
 */
 
-void					ft_display_path(char *path);
 void					ft_display_dir(t_buff *buff);
+void					ft_display_file(t_file *file, int pl, int p1, int pa);
+void					ft_display_path(char *path);
 
 /*
 ** Gestion des display en mode debug
