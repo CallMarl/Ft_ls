@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_buff_get.c                                      :+:      :+:    :+:   */
+/*   ft_buff_getfile.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/07 13:59:00 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/11 19:21:22 by pprikazs         ###   ########.fr       */
+/*   Created: 2018/05/11 19:12:12 by pprikazs          #+#    #+#             */
+/*   Updated: 2018/05/11 19:21:59 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** t_buff de la liste de buffeur (chainé).
 */
 
-extern t_buff		*ft_buff_get(t_list *buff)
+extern t_file		*ft_buff_getfile(t_buff *buff, int i)
 {
-	return (((t_buff *)buff->content));
+	return (&((t_file *)buff->buff)[i]);
 }

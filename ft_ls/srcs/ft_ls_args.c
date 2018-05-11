@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:02:45 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/11 18:34:35 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/11 19:16:08 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ static int			ft_ls_argserr(t_list **buff, int count)
 	tmp = (t_buff *)(*buff)->content;
 	while (i < tmp->cr)
 	{
-		if (ft_buff_get(tmp, i)->err != 0)
-			arr_err[count++] = ft_buff_get(tmp, i)->name;
+		if (ft_buff_getfile(tmp, i)->err != 0)
+			arr_err[count++] = ft_buff_getfile(tmp, i)->name;
 		i++;
 	}
 	ft_qsort((void *)arr_err, count, sizeof(char *), &ft_sort_strcmp_c);
@@ -53,7 +53,8 @@ static int			ft_ls_argserr(t_list **buff, int count)
 */
 
 
-static int			ft_ls_argsfile(t_list **buff, t_file *arr_file, int count, t_file *arr_dir)
+static int			ft_ls_argsfile(t_list **buff, t_file *arr_file, \
+		int count, t_file *arr_dir)
 {
 	size_t			i;
 	size_t			j;
@@ -65,12 +66,12 @@ static int			ft_ls_argsfile(t_list **buff, t_file *arr_file, int count, t_file *
 	tmp = (t_buff *)(*buff)->content;
 	while (i < tmp->cr)
 	{
-		if (ft_buff_get(tmp, i)->err == 0 && \
-				(ft_buff_get(tmp, i)->stat.st_mode & S_IFDIR) == 0)
-			ft_strcpy(arr_file[count++].name, ft_buff_get(tmp, i)->name);
-		else if (ft_buff_get(tmp, i)->err == 0 && \
-				(ft_buff_get(tmp, i)->stat.st_mode & S_IFDIR) != 0)
-			ft_strcpy(arr_dir[j++].name, ft_buff_get(tmp, i)->name);
+		if (ft_buff_getfile(tmp, i)->err == 0 && \
+				(ft_buff_getfile(tmp, i)->stat.st_mode & S_IFDIR) == 0)
+			ft_strcpy(arr_file[count++].name, ft_buff_getfile(tmp, i)->name);
+		else if (ft_buff_getfile(tmp, i)->err == 0 && \
+				(ft_buff_getfile(tmp, i)->stat.st_mode & S_IFDIR) != 0)
+			ft_strcpy(arr_dir[j++].name, ft_buff_getfile(tmp, i)->name);
 		i++;
 	}
 	int z = 0;
@@ -87,7 +88,8 @@ static int			ft_ls_argsfile(t_list **buff, t_file *arr_file, int count, t_file *
 ** Fait un appel à ft_ls_noarg pour chacun des dossier du tableau arr_dir
 */
 
-static int			ft_ls_argsdir(t_list **buff, t_file *arr_dir, int count, _Bool opt_R)
+static int			ft_ls_argsdir(t_list **buff, t_file *arr_dir, \
+		int count, _Bool opt_R)
 {
 	int 			i;
 
