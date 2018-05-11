@@ -1,37 +1,55 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2018/05/03 17:06:17 by pprikazs          #+#    #+#              #
+#    Updated: 2018/05/10 14:19:41 by pprikazs         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = ft_ls
 CC = gcc
-FLAGS = -Wall -Wextra -Werror
-LIB_DIR = ../libs
-export LIB_NEED = ./libft
 
 DEBUG = no
+FLAGS = -Wall -Wextra -Werror
+
+ifeq ($(DEBUG), yes)
+	FLAGS = $(FLAGS) -g -fsanitize=adress
+endif
+
+NOFLAGS = no
 ifeq ($(DEBUG), yes)
 	FLAGS = -g -w
 endif
 	
+DEPS = includes/*.h Makefile
 INCLUDES = -I./includes/
-LIBS = ./libs/libft.a
 
 SRCS = ./main.c \
-	   ./srcs/buffer/ft_buffer_initarr.c \
-	   ./srcs/buffer/ft_buffer_setinfo.c \
-	   ./srcs/ft_display.c \
+	   ./srcs/ft_debug.c \
+	   ./srcs/ft_error.c \
+	   ./srcs/ft_global.c \
 	   ./srcs/ft_ls.c \
-	   ./srcs/node/ft_node_getinfo.c \
-	   ./srcs/node/ft_node_setinfo.c \
-	   ./srcs/params/ft_param_arrsize.c \
-	   ./srcs/params/ft_param_delarr.c \
-	   ./srcs/params/ft_param_display.c \
-	   ./srcs/params/ft_param_get.c \
-	   ./srcs/params/ft_param_initarr.c \
-	   ./srcs/params/ft_param_parse.c \
-	   ./srcs/params/ft_param_set.c \
-	   ./srcs/path/ft_path_init.c
+	   ./srcs/ft_ls_args.c \
+	   ./srcs/ft_ls_noargs.c \
+	   ./srcs/buff/ft_buff_get.c \
+	   ./srcs/buff/ft_buff_insert.c \
+	   ./srcs/buff/ft_buff_new.c \
+	   ./srcs/buff/ft_buff_rm.c \
+	   ./srcs/param/ft_param_get.c \
+	   ./srcs/param/ft_param_parse.c \
+	   ./srcs/sort/ft_sort_file.c \
+	   ./srcs/sort/ft_sort_filecmp_c.c \
+	   ./srcs/sort/ft_sort_filecmp_d.c
 
 OBJ = $(SRCS:./%.c=./%.o)
-
-DEPS = includes/*.h Makefile
-DEPS += $(shell find -E . -regex ".*\.[ch]")
+	
+LIB_DIR = ../libs
+LIBS = ./libs/libft.a
+export LIB_NEED = ./libft
 
 .PHONY: all clean fclean re
 .SUFFIXES:
@@ -39,12 +57,12 @@ DEPS += $(shell find -E . -regex ".*\.[ch]")
 all : $(NAME)
 
 %.o : %.c
-	@$(CC) $(INCLUDES) -c $< -o $@ $(FLAGS)
+	$(CC) $(INCLUDES) -c $< -o $@ $(FLAGS)
 
-$(NAME) : $(OBJ)
-	@echo "Compilation ft_ls..."
+$(NAME) : $(OBJ) $(DEPS)
+	@echo "Compilation ft_ls1..."
 	@$(MAKE) -C $(LIB_DIR)
-	@$(CC) $^ -o $@ $(LIBS)
+	@$(CC) $(OBJ) -o $@ $(LIBS)
 
 clean :
 	@$(MAKE) clean -C $(LIB_DIR)

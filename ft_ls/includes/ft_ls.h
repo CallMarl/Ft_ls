@@ -5,111 +5,105 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/04 16:07:56 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/03/16 12:22:16 by pprikazs         ###   ########.fr       */
+/*   Created: 2018/05/03 17:07:46 by pprikazs          #+#    #+#             */
+/*   Updated: 2018/05/11 14:41:13 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_LS_H
 # define FT_LS_H
 
-# include <sys/types.h>
-# include <stddef.h>
-# include <time.h>
 # include <dirent.h>
+# include <limits.h>
+# include <stddef.h>
+# include <sys/stat.h>
+# include <sys/types.h>
+# include <unistd.h>
 # include "libft.h"
-
-typedef struct dirent	t_dirent;
-typedef struct stat		t_stat;
-typedef struct timespec	t_time;
-typedef struct s_nbuff	t_nbuff;
-typedef struct s_ninfo	t_ninfo;
-typedef struct s_param	t_param;
-typedef struct s_path	t_path;
 
 /*
 ** ft_ls
 */
 
-int						ft_ls(int argc, char **argv);
-int						ft_ls_launch(char *bpath, char opt, t_param *param);
+typedef struct dirent	t_dirent;
+typedef struct s_param	t_param;
+typedef struct s_error	t_error;
+typedef struct s_file	t_file;
 
-/*
-** Buffer
-*/
-
-struct					s_nbuff
+struct					s_file
 {
+	char				name[255];
 	char				*path;
-	size_t				size;
-	size_t				cur;
-	t_ninfo				*ninfo;
+	int					err;
+	struct stat			stat;
 };
 
-int						ft_buffer_initarr(DIR *nd, char *bpath, t_nbuff *nbuffer);
-void					ft_buffer_setinfo(t_nbuff *nbuffer, t_ninfo *ninfo);
+int						ft_ls(int argc, char **argv);
+int						ft_ls_args(char **argv, int size, t_list **buff);
+int						ft_ls_noargs(char *path, t_list **buff, _Bool opt_R);
 
 /*
-** Display
+** Gestion du buffer
 */
 
-void					ft_display_ninfo(t_ninfo ninfo);
-void					ft_display_nbuffer(t_nbuff nbuffer);
+# define LS_BUFFSIZE 256
+
+t_file					*ft_buff_get(t_buff *buff, int i);
+int						ft_buff_insert(t_list **list, t_file *elem, size_t b_size);
+int						ft_buff_new(t_list **list, size_t b_size);
+void					ft_buff_rm(void *elem, size_t size);
 
 /*
-** Nodes
+** Gestion des paramettres
 */
-
-struct					s_ninfo
-{
-	unsigned char		n_type;
-	mode_t				n_mode;
-	nlink_t				n_nblink;
-	uid_t				n_uid;
-	gid_t				n_gid;
-	off_t				n_size;
-	t_time				n_mtime;
-	char				*n_name;
-	ino_t				n_node;
-};
-
-int						ft_node_getinfo(DIR *nd, char *bpath, t_ninfo *ninfo);
-void					ft_node_setinfo(t_dirent *ndetail, t_stat *nextra, t_ninfo *ninfo);
-
-/*
-** Params
-*/
-
-# define FT_PARAM_PRGNAME "ft_ls"
-# define FT_PARAM "Rlart"
-# define FT_PARAM_NBMAX (size_t)5
 
 struct					s_param
 {
 	char				key;
-	t_bool				val;
+	_Bool				val;
 };
 
-int						ft_param_arrsize(t_param *param);
-void					ft_param_delarr(t_param **param);
-void					ft_param_display(t_param *param, int state);
-void					ft_param_displayusage(char param);
-t_bool					ft_param_get(t_param *params, char key);
-t_param					*ft_param_initarr(size_t max_size);
-int						ft_param_parse(int argc, char **argv, t_param **param);
-void					ft_param_set(t_param *param, char key, t_bool val);
+int						ft_param_parse(int argc, char **argv);
+_Bool					ft_param_get(char param);
 
 /*
-** Path
+** Gestion du trie
 */
 
-typedef struct			s_path
-{
-	char				**path;
-	int					size;
-	int					cur;
-}						t_path;
+void					ft_sort_file(t_file *files, size_t size);
+int						ft_sort_filecmp_c(const void *f1, const void *f2);
+int						ft_sort_filecmp_d(const void *f1, const void *f2);
 
-void					ft_path_init(int argc, char **argv, int cur, t_path *path);
+/*
+** Gestion des display en mode debug
+*/
+
+void					ft_debug_buff(t_buff *buff);
+void					ft_debug_param(void);
+void					ft_debug_strarr(char **strarr);
+
+/*
+** Gestion des erreurs
+*/
+
+struct					s_error
+{
+	int					err_code;
+	char				*err_message;
+};
+
+# define ERR_CODE_1 -1
+# define ERR_CODE_2 -2
+# define ERR_CODE_3 -3
+# define ERR_CODE_4 -4
+# define ERR_CODE_5 -5
+
+# define ERR_MESS_1 "Erreur d'allocation lors de l'execuion du programme"
+# define ERR_MESS_2 "Erreur de définition de paramettre"
+# define ERR_MESS_3 "Erreur vous ne possédez pas les droits d'accès"
+# define ERR_MESS_4 "Erreur le nom du chemin est trop long"
+# define ERR_MESS_5 "Erreur n'est pas un fichier ou un dossier" 
+
+int				ft_error(int err_code);
 
 #endif
