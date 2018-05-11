@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_buff_get.c                                      :+:      :+:    :+:   */
+/*   ft_err_openstat.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/07 13:59:00 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/11 18:10:09 by pprikazs         ###   ########.fr       */
+/*   Created: 2018/05/11 17:43:32 by pprikazs          #+#    #+#             */
+/*   Updated: 2018/05/11 17:46:27 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <errno.h>
 #include "libft.h"
-#include "ft_ls.h"
 
-/*
-** Retourne un pointeur t_file qui pointe sur l'élément i du premier élément 
-** t_buff de la liste de buffeur (chainé).
-*/
-
-extern t_file		*ft_buff_get(t_buff *buff, int i)
+extern int			ft_err_openstat(void)
 {
-	return (&((t_file *)buff->buff)[i]);
+	return (1);
 }

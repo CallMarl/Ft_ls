@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:02:45 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/11 14:41:16 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/11 18:09:13 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,13 @@ static int			ft_ls_argsfile(t_list **buff, t_file *arr_file, int count, t_file *
 static int			ft_ls_argsdir(t_list **buff, t_file *arr_dir, int count, _Bool opt_R)
 {
 	int 			i;
+
 	i = 0;
 	ft_sort_file(arr_dir, count);
 	while (i < count)
 	{
-		//display du chemin du dossier
-		ft_ls_noargs(arr_dir[i].name, buff, opt_R);
+		ft_display_path(arr_dir[i].name);	
+		ft_ls_noargs(ft_strdup(arr_dir[i].name), buff, opt_R);
 		i++;
 	}
 	return (1);
@@ -142,12 +143,12 @@ extern int			ft_ls_args(char **argv, int size, t_list **buff)
 	int				count[3];
 	t_file			file;
 
+	if (!(ft_buff_new(buff, LS_BUFFSIZE)))
+		return (ERR_CODE_1);
 	i = 0;
 	while (i < 3)
 		count[i++] = 0;
 	i = 0;
-	if (!(ft_buff_new(buff, LS_BUFFSIZE)))
-		return (ERR_CODE_1);
 	while (i < size)
 	{
 		ft_strcpy(file.name, argv[i]);
@@ -156,7 +157,7 @@ extern int			ft_ls_args(char **argv, int size, t_list **buff)
 			file.err = errno;
 		if (ft_buff_insert(buff, &file, LS_BUFFSIZE) == -1)
 			return (ERR_CODE_1);
-		if (file.err != 0)
+		else if (file.err != 0)
 			(count[0])++;
 		else
 			((file.stat.st_mode & S_IFDIR) != 0) ? (count[2])++ : (count[1])++;

@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_buff_get.c                                      :+:      :+:    :+:   */
+/*   ft_display_path.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/07 13:59:00 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/11 18:10:09 by pprikazs         ###   ########.fr       */
+/*   Created: 2018/05/11 17:36:09 by pprikazs          #+#    #+#             */
+/*   Updated: 2018/05/11 18:11:36 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stddef.h>
+#include <unistd.h>
 #include "libft.h"
-#include "ft_ls.h"
 
-/*
-** Retourne un pointeur t_file qui pointe sur l'élément i du premier élément 
-** t_buff de la liste de buffeur (chainé).
-*/
-
-extern t_file		*ft_buff_get(t_buff *buff, int i)
+extern void			ft_display_path(char *path)
 {
-	return (&((t_file *)buff->buff)[i]);
+	ft_putstr(path);
+	ft_putstr(":\n");
 }

@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:04:20 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/11 15:55:18 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/11 18:10:37 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include <stddef.h>
 #include <sys/stat.h>
 #include <sys/types.h>
-#include <errno.h>
 #include "libft.h"
 #include "ft_ls.h"
 
@@ -24,6 +23,7 @@
 
 static int			ft_ls_subdir(t_list **buff, _Bool opt_R)
 {
+	int				ret;
 	size_t			i;
 	t_buff			*tmp;
 	t_file			*file;
@@ -36,9 +36,10 @@ static int			ft_ls_subdir(t_list **buff, _Bool opt_R)
 		if (ft_strcmp(file->name, ".") != 0 && ft_strcmp(file->name, "..") != 0 \
 				&& (file->stat.st_mode & S_IFDIR) == S_IFDIR)
 		{
-			//display du chemin du dossier
-			ft_putendl(ft_buff_get(tmp, i)->path);
-			ft_ls_noargs(ft_buff_get(tmp, i)->path, buff, opt_R);
+			ft_display_path(ft_buff_get(tmp, i)->path);
+			ret = ft_ls_noargs(ft_buff_get(tmp, i)->path, buff, opt_R);
+			if (ret < 0)
+				return (ret);
 		}
 		i++;
 	}
@@ -55,23 +56,26 @@ extern int			ft_ls_noargs(char *path, t_list **buff, _Bool opt_R)
 	DIR				*dd;
 	t_dirent		*ndetail;
 	t_file			file;
+	int				ret;
 
+	ret = 1;
 	if (!(ft_buff_new(buff, LS_BUFFSIZE)))
-		return (ERR_CODE_1);
-	else if (!(dd = opendir(path)))
-		return (-1); // ft_err_diropen(errno);
-	while ((ndetail = readdir(dd)) != 0)
+		ret = ERR_CODE_1;
+	else if (ret > 0 && !(dd = opendir(path)))
+		ret = ft_err_opendir();
+	while (ret > 0 && (ndetail = readdir(dd)) != 0)
 	{
 		ft_strcpy(file.name, ndetail->d_name);
 		file.path = ft_strattach(path, ndetail->d_name, "/");
 		if (lstat(file.path, &file.stat))
-			return (errno); // Erreur lecture fichier
+			ret = ft_err_openstat();
 		ft_buff_insert(buff, &file, LS_BUFFSIZE);
 	}
+
 	ft_sort_file((t_file *)((t_buff *)(*buff)->content)->buff, \
 			((t_buff *)(*buff)->content)->cr); // Simplifier ces appel avec des accesseurs
-ft_debug_buff((t_buff *)(*buff)->content);
+	//ft_display_dir((t_buff *)buff->content);
 	if (opt_R == 1)
 		ft_ls_subdir(buff, opt_R);
-	return (1);
+	return (ret);
 }
