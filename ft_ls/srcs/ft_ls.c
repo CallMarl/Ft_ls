@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:39:35 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/13 16:46:42 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/13 16:58:55 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ extern int			ft_ls(int argc, char **argv)
 		if (cur + 1 < argc)
 			ret = ft_ls_args(&argv[cur], argc - cur, &buff);
 		else if (cur == argc - 1)
-			ret = ft_ls_oneargs(argv[cur], &buff);
+			ret = ft_ls_noargs(argv[cur], &buff, ft_param_get('R'));
 		else
 			ret = ft_ls_noargs(ft_strdup("."), &buff, ft_param_get('R'));
 	}
