@@ -6,11 +6,12 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:04:20 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/13 19:16:42 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/13 19:20:49 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <dirent.h>
+#include <errno.h>
 #include <stddef.h>
 #include <sys/stat.h>
 #include <sys/types.h>
@@ -65,10 +66,11 @@ extern int			ft_ls_noargs(char *path, t_list **buff, int opt_R)
 		ret = ft_err_opendir();
 	while (ret > 0 && (ndetail = readdir(dd)) != 0)
 	{
+		file.err = 0;
 		ft_strcpy(file.name, ndetail->d_name);
 		file.path = ft_strattach(path, ndetail->d_name, "/");
 		if (lstat(file.path, &file.stat))
-			ret = ft_err_openstat();
+			file.err = errno;
 		ft_buff_insert(buff, &file, LS_BUFFSIZE);
 	}
 	ft_sort_file((t_file *)ft_buff_get(*buff)->buff, ft_buff_get(*buff)->cr);
