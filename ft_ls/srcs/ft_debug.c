@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:39:40 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/11 18:40:03 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/13 19:16:28 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ extern void			ft_debug_buff(t_buff *buff)
 		ft_putendl(file->name);
 //		ft_putstr("file mode : ");
 //		ft_putnbr(file->stat.st_mode);
+//		ft_putchar('\n');
+//		ft_putnbr(file->stat.st_rdev);
 //		ft_putchar('\n');
 //		ft_putstr("file err : ");
 //		ft_putnbr(file->err);
