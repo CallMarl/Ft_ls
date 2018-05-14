@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:04:20 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/13 19:20:49 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/14 11:30:39 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ extern int			ft_ls_noargs(char *path, t_list **buff, int opt_R)
 		ft_buff_insert(buff, &file, LS_BUFFSIZE);
 	}
 	ft_sort_file((t_file *)ft_buff_get(*buff)->buff, ft_buff_get(*buff)->cr);
-	ft_display_dir((t_buff *)(*buff)->content);
+	ft_display_ls((t_buff *)(*buff)->content);
 	if (opt_R > 0)
 		ft_ls_subdir(buff, opt_R);
 	return (ret);

@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:07:46 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/13 18:55:30 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/14 11:41:58 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,16 +91,23 @@ struct					s_disp
 	int					minor;
 };
 
-void					ft_display_dir(t_buff *buff);
+void					ft_display_ls(t_buff *buff);
+void					ft_display_dir(t_buff *buff, int pl, int p1, int pa);
 void					ft_display_file(t_file *file, int pl, int p1, int pa);
 void					ft_display_path(char *path);
 void					ft_display_prepare(t_buff *buff, t_disp *disp);
+int						ft_display_preparestr(t_disp *disp, char **str);
+int						ft_getuidlen(int uid);
+int						ft_getgidlen(int gid);
+char					*ft_insertnbr(char *str, int nbr);
+int						ft_nbweight(int nb);
 
 /*
 ** Gestion des display en mode debug
 */
 
 void					ft_debug_buff(t_buff *buff);
+void					ft_debug_disp(t_disp *disp);
 void					ft_debug_param(void);
 void					ft_debug_strarr(char **strarr);
 

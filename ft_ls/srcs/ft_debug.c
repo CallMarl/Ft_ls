@@ -6,12 +6,13 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:39:40 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/13 19:16:28 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/14 09:35:29 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_ls.h"
+#define RC ft_putchar('\n');
 
 extern t_param		g_param[];
 
@@ -48,6 +49,24 @@ extern void			ft_debug_buff(t_buff *buff)
 //		ft_putendl("");
 		i++;
 	}
+}
+
+extern void			ft_debug_disp(t_disp *disp)
+{
+	ft_putstr("mode len : ");
+	ft_putnbr(disp->mode);RC;
+	ft_putstr("nlink len : ");
+	ft_putnbr(disp->nlink);RC;
+	ft_putstr("uid len : ");
+	ft_putnbr(disp->uid);RC;
+	ft_putstr("gid len : ");
+	ft_putnbr(disp->gid);RC;
+	ft_putstr("size len : ");
+	ft_putnbr(disp->size);RC;
+	ft_putstr("major len : ");
+	ft_putnbr(disp->major);RC;
+	ft_putstr("minor len : ");
+	ft_putnbr(disp->minor);RC;
 }
 
 /*
