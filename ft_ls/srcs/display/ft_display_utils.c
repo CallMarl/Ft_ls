@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 10:06:09 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/14 14:54:13 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/14 16:18:46 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,19 +85,19 @@ extern char				*ft_insertnbr(char *str, int nbr)
 
 extern int			ft_modetype(mode_t st_mode)
 {
-	if ((S_IFIFO & st_mode) != 0)
+	if (S_ISFIFO(st_mode))
 		return (0);
-	else if ((S_IFCHR & st_mode) != 0)
+	else if (S_ISCHR(st_mode))
 		return (1);
-	else if ((S_IFDIR & st_mode) != 0)
+	else if (S_ISDIR(st_mode))
 		return (2);
-	else if ((S_IFBLK & st_mode) != 0)
+	else if (S_ISBLK(st_mode))
 		return (3);
-	else if ((S_IFREG & st_mode) != 0)
+	else if (S_ISREG(st_mode))
 		return (4);
-	else if ((S_IFLNK & st_mode) != 0)
+	else if (S_ISLNK(st_mode))
 		return (5);
-	else if ((S_IFSOCK & st_mode) != 0)
+	else if (S_ISSOCK(st_mode))
 		return (6);
 	else
 		return (7);
