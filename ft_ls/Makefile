@@ -6,7 +6,7 @@
 #    By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/03 17:06:17 by pprikazs          #+#    #+#              #
-#    Updated: 2018/05/14 12:37:44 by pprikazs         ###   ########.fr        #
+#    Updated: 2018/05/14 17:15:22 by pprikazs         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRCS = ./main.c \
 	   ./srcs/buff/ft_buff_insert.c \
 	   ./srcs/buff/ft_buff_new.c \
 	   ./srcs/buff/ft_buff_rm.c \
+	   ./srcs/display/ft_display_column.c \
 	   ./srcs/display/ft_display_file.c \
 	   ./srcs/display/ft_display_long.c \
 	   ./srcs/display/ft_display_ls.c \

@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 10:01:17 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/14 14:57:13 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/14 17:26:19 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int			ft_insert_basic_str(char **str, int dispval, int count)
 ** insert un %-s avec une valeur dispval dans str. Par exemple %-10s.
 */
 
-static int			ft_insert_offset_str(char **str, int dispval, int count)
+extern int			ft_insert_offset_str(char **str, int dispval, int count)
 {
 	char			*tmp;
 

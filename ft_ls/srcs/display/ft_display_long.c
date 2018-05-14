@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 09:53:54 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/14 15:40:20 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/14 18:43:31 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ static void			ft_display_long_aux(t_file *file, char *str, int mm)
 			);
 	}
 	ft_display_file(file);
+	ft_putchar('\n');
 }
 
 /*
