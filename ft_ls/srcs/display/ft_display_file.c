@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/11 19:31:18 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/14 12:38:02 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/14 14:35:46 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,4 +17,3 @@ extern void			ft_display_file(t_file *file)
 {
 	ft_putendl(file->name);
 }
-

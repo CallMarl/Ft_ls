@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/13 17:46:06 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/14 12:39:33 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/14 15:33:30 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,11 @@ static void				ft_display_prepare_aux(t_disp *disp, t_file *file)
 		tmp = ft_nbweight(minor(file->stat.st_rdev));
 		disp->minor = (tmp > disp->minor) ? tmp : disp->minor;
 	}
-	tmp = ft_nbweight(file->stat.st_size);
-	disp->size = (tmp > disp->size) ? tmp : disp->size;
+	else
+	{
+		tmp = ft_nbweight(file->stat.st_size);
+		disp->size = (tmp > disp->size) ? tmp : disp->size;
+	}
 }
 
 /*

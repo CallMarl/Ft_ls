@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 10:01:17 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/14 11:57:43 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/14 14:57:13 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int			ft_count_strlen(t_disp *disp)
 ** insert un %s avec une valeur dispval dans str. Par exemple %10s.
 */
 
-static int			ft_insert_basicstr(char **str, int dispval, int count)
+static int			ft_insert_basic_str(char **str, int dispval, int count)
 {
 	char			*tmp;
 
@@ -68,12 +68,22 @@ static int			ft_insert_offset_str(char **str, int dispval, int count)
 	return (count);
 }
 
+static int			ft_insert_basic_digit(char **str, int dispval, int count)
+{
+	char			*tmp;
+
+	count += ft_strcpy_x(&(*str)[count], "%");
+	tmp = ft_insertnbr(&(*str)[count], dispval);
+	count += ((int)tmp - (int)&(*str)[count]);
+	count += ft_strcpy_x(&(*str)[count], "d");
+	return (count);
+}
 
 /*
 ** Prepare les chaines ci-dessous pour etre utilisé avec printf
 ** suivant si major et minor sont définit ou non.
-** "%-s %s %-s  %-s  %s %s"
-** "%-s %s %-s  %-s  %s,%s %s"
+** "%-s %d %-s  %-s  %d %s"
+** "%-s %d %-s  %-s  %d,%d %s"
 */
 extern int			ft_display_preparestr(t_disp *disp, char **str)
 {
@@ -84,9 +94,9 @@ extern int			ft_display_preparestr(t_disp *disp, char **str)
 	if (!(*str = ft_strnew(str_len)))
 		return (-1);
 	count = 0;
-	count = ft_insert_basicstr(str, disp->mode, count);
+	count = ft_insert_basic_str(str, disp->mode, count);
 	count += ft_strcpy_x(&(*str)[count], " ");
-	count = ft_insert_basicstr(str, disp->nlink, count);
+	count = ft_insert_basic_digit(str, disp->nlink, count);
 	count += ft_strcpy_x(&(*str)[count], " ");
 	count = ft_insert_offset_str(str, disp->uid, count);
 	count += ft_strcpy_x(&(*str)[count], "  ");
@@ -94,11 +104,12 @@ extern int			ft_display_preparestr(t_disp *disp, char **str)
 	count += ft_strcpy_x(&(*str)[count], "  ");
 	if (disp->major != 0 || disp->minor != 0)
 	{
-		count = ft_insert_basicstr(str, disp->major + 1, count);
+		count = ft_insert_basic_digit(str, disp->major + 1, count);
 		count += ft_strcpy_x(&(*str)[count], ",");
-		count = ft_insert_basicstr(str, disp->minor + 1, count);
+		count = ft_insert_basic_digit(str, disp->minor + 1, count);
 	}
 	else
-		count = ft_insert_basicstr(str, disp->size, count);
+		count = ft_insert_basic_digit(str, disp->size, count);
+	count += ft_strcpy_x(&(*str)[count], " %s ");
 	return (1);
 }

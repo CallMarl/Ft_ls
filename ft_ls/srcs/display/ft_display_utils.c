@@ -6,12 +6,14 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 10:06:09 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/14 11:19:38 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/14 14:54:13 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pwd.h>
 #include <grp.h>
+#include <sys/stat.h>
+#include <sys/types.h>
 #include "libft.h"
 #include "ft_ls.h"
 
@@ -75,6 +77,30 @@ extern char				*ft_insertnbr(char *str, int nbr)
 		size /= 10;
 	}
 	return (str);
+}
+
+/*
+** Return a value for the type mode
+*/
+
+extern int			ft_modetype(mode_t st_mode)
+{
+	if ((S_IFIFO & st_mode) != 0)
+		return (0);
+	else if ((S_IFCHR & st_mode) != 0)
+		return (1);
+	else if ((S_IFDIR & st_mode) != 0)
+		return (2);
+	else if ((S_IFBLK & st_mode) != 0)
+		return (3);
+	else if ((S_IFREG & st_mode) != 0)
+		return (4);
+	else if ((S_IFLNK & st_mode) != 0)
+		return (5);
+	else if ((S_IFSOCK & st_mode) != 0)
+		return (6);
+	else
+		return (7);
 }
 
 /*

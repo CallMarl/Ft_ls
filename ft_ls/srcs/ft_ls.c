@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:39:35 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/13 16:58:55 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/14 12:47:53 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ extern int			ft_ls(int argc, char **argv)
 	t_list			*buff;
 
 	cur = ft_param_parse(argc, argv);
-	ft_debug_param();
+//	ft_debug_param();
 	ret = cur;
 	buff = 0;
 	if (ret > 0)
