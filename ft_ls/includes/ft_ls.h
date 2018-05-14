@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:07:46 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/14 11:41:58 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/14 12:39:14 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,12 @@ struct					s_disp
 };
 
 void					ft_display_ls(t_buff *buff);
-void					ft_display_dir(t_buff *buff, int pl, int p1, int pa);
-void					ft_display_file(t_file *file, int pl, int p1, int pa);
+void					ft_display_long(t_buff *buff, int pa);
+void					ft_display_file(t_file *file);
 void					ft_display_path(char *path);
-void					ft_display_prepare(t_buff *buff, t_disp *disp);
+void					ft_display_prepare(t_buff *buff, t_disp *disp, int pa);
 int						ft_display_preparestr(t_disp *disp, char **str);
+void					ft_display_short(t_buff *buff, int pa);
 int						ft_getuidlen(int uid);
 int						ft_getgidlen(int gid);
 char					*ft_insertnbr(char *str, int nbr);

@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/13 17:46:06 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/14 10:08:25 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/14 12:39:33 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@ static void				ft_display_prepare_aux(t_disp *disp, t_file *file)
 {
 	int					tmp;
 
+	tmp = ft_nbweight(file->stat.st_nlink);
+	disp->nlink = (tmp > disp->nlink) ? tmp : disp->nlink;
+	tmp = ft_getuidlen(file->stat.st_uid);
+	disp->uid = (tmp > disp->uid) ? tmp : disp->uid;
+	tmp = ft_getgidlen(file->stat.st_gid);
+	disp->gid = (tmp > disp->gid) ? tmp : disp->gid;
 	if (file->stat.st_rdev != 0)
 	{
 		tmp = ft_nbweight(major(file->stat.st_rdev));
@@ -39,21 +45,19 @@ static void				ft_display_prepare_aux(t_disp *disp, t_file *file)
 ** éléments, sauvegarde dans disp la plus grande valeur trouvé.
 */
 
-extern void				ft_display_prepare(t_buff *buff, t_disp *disp)
+extern void				ft_display_prepare(t_buff *buff, t_disp *disp, int pa)
 {
 	size_t				i;
-	int					tmp;
+	t_file				*file;
 
 	i = 0;
 	while (i < buff->cr)
 	{
-		tmp = ft_nbweight(ft_buff_getfile(buff, i)->stat.st_nlink);
-		disp->nlink = (tmp > disp->nlink) ? tmp : disp->nlink;
-		tmp = ft_getuidlen(ft_buff_getfile(buff, i)->stat.st_uid);
-		disp->uid = (tmp > disp->uid) ? tmp : disp->uid;
-		tmp = ft_getgidlen(ft_buff_getfile(buff, i)->stat.st_gid);
-		disp->gid = (tmp > disp->gid) ? tmp : disp->gid;
-		ft_display_prepare_aux(disp, ft_buff_getfile(buff, i));
+		file = ft_buff_getfile(buff, i);
+		if (file->name[0] != '.')
+			ft_display_prepare_aux(disp, file);
+		else if (pa != 0)
+			ft_display_prepare_aux(disp, file);
 		i++;
 	}
 }
