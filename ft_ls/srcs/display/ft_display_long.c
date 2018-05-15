@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 09:53:54 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/15 12:43:51 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/15 13:25:10 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include <pwd.h>
 #include <stddef.h>
 #include <sys/types.h>
-#include <time.h>
 #include "libft.h"
 #include "ft_ls.h"
 
@@ -43,20 +42,31 @@ static void			ft_display_classic(char *str, t_file *file, char *time, char *mode
 		);
 }
 
-static void			ft_display_long_aux(t_file *file, char *str, int mm, int opt_l)
+static void			ft_display_long_aux(t_buff *buff, char *str, int mm, int opt_a)
 {
 	char			mode[12];
 	char 			*time;
+	size_t			i;
+	t_file			*file;
 
-	ft_mode(file->stat.st_mode, mode);
-	time = 0;
-	time = ft_ls_time(&file->stat.st_mtimespec.tv_sec, time);
-	if (mm != 0)
-		ft_display_mm(str, file, time, mode);
-	else
-		ft_display_classic(str, file, time, mode);
-	ft_display_file(file, opt_l);
-	ft_putchar('\n');
+	i = 0;
+	while (i < buff->cr)
+	{
+		file = &((t_file *)buff->buff)[i];
+		if (file->name[0] != '.' || opt_a != 0)
+		{
+			ft_mode(file->stat.st_mode, mode);
+			time = 0;
+			time = ft_ls_time(&file->stat.st_mtimespec.tv_sec, time);
+			if (mm != 0)
+				ft_display_mm(str, file, time, mode);
+			else
+				ft_display_classic(str, file, time, mode);
+			ft_display_file(file, 1);
+			ft_putchar('\n');
+		}
+		i++;
+	}
 }
 
 /*
@@ -78,23 +88,18 @@ static	void		ft_disp_init(t_disp *disp)
 ** Affichage basic des dossier comme avec ls -1
 */
 
-extern void			ft_display_long(t_buff *buff, int opt_a, int opt_l)
+extern void			ft_display_long(t_buff *buff, int opt_a)
 {
-	size_t			i;
-	t_file			*file;
 	t_disp			disp;
 	char			*str;
+	int				block;
 
 	str = 0;
 	ft_disp_init(&disp);
-	ft_display_prepare(buff, &disp, opt_a);
+	ft_display_prepare(buff, &disp, opt_a, &block);
 	ft_display_preparestr(&disp, &str);
-	i = 0;
-	while (i < buff->cr)
-	{
-		file = &((t_file *)buff->buff)[i];
-		if (file->name[0] != '.' || opt_a != 0)
-			ft_display_long_aux(file, str, disp.major + disp.minor, opt_l);
-		i++;
-	}
+	ft_putstr("total ");
+	ft_putnbr(block);
+	ft_putchar('\n');
+	ft_display_long_aux(buff, str, disp.major + disp.minor, opt_a);
 }

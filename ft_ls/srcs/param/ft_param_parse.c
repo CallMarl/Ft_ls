@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 11:39:44 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/11 18:38:05 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/15 12:48:36 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ static int			ft_param_insert(char param, int val)
 	{
 		if (param == g_param[i].key)
 		{
-			if (g_param[i].val == 0)
-				g_param[i].val = val;
+			g_param[i].val = val;
 			return (1);
 		}
 		i++;

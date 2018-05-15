@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/13 17:46:06 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/15 12:08:29 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/15 13:23:31 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,19 @@ static void				ft_display_prepare_aux(t_disp *disp, t_file *file)
 ** éléments, sauvegarde dans disp la plus grande valeur trouvé.
 */
 
-extern void				ft_display_prepare(t_buff *buff, t_disp *disp, int opt_a)
+extern void				ft_display_prepare(t_buff *buff, t_disp *disp, int opt_a, int *block)
 {
 	size_t				i;
 	t_file				*file;
 
 	i = 0;
+	*block = 0;
 	while (i < buff->cr)
 	{
 		file = ft_buff_getfile(buff, i);
 		if (file->name[0] != '.' || opt_a != 0)
 			ft_display_prepare_aux(disp, file);
+		(*block) += file->stat.st_blocks;
 		i++;
 	}
 }

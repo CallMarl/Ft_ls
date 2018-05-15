@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/11 18:13:21 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/15 12:09:22 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/15 13:24:50 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ extern void			ft_display_ls(t_buff *buff)
 	opt_1 = ft_param_get('1');
 	opt_a = ft_param_get('a');
 	if (opt_l != 0 && opt_l > opt_1)
-		ft_display_long(buff, opt_a, opt_l);
+		ft_display_long(buff, opt_a);
 	else if (opt_1 != 0 && opt_1 > opt_l)
 		ft_display_short(buff, opt_a);
 	else
