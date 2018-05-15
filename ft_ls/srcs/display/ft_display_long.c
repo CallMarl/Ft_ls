@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 09:53:54 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/15 11:32:26 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/15 12:07:45 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void			ft_display_mode(mode_t st_mode, char mode[12])
 	mode[11] = '\0';
 }
 
-static void			ft_display_long_aux(t_file *file, char *str, int mm)
+static void			ft_display_long_aux(t_file *file, char *str, int mm, int opt_l)
 {
 	char			mode[12];
 	char 			*time;
@@ -76,7 +76,7 @@ static void			ft_display_long_aux(t_file *file, char *str, int mm)
 				time
 			);
 	}
-	ft_display_file(file);
+	ft_display_file(file, opt_l);
 	ft_putchar('\n');
 }
 
@@ -99,7 +99,7 @@ static	void		ft_disp_init(t_disp *disp)
 ** Affichage basic des dossier comme avec ls -1
 */
 
-extern void			ft_display_long(t_buff *buff, int pa)
+extern void			ft_display_long(t_buff *buff, int opt_a, int opt_l)
 {
 	size_t			i;
 	t_file			*file;
@@ -108,14 +108,14 @@ extern void			ft_display_long(t_buff *buff, int pa)
 
 	str = 0;
 	ft_disp_init(&disp);
-	ft_display_prepare(buff, &disp, pa);
+	ft_display_prepare(buff, &disp, opt_a);
 	ft_display_preparestr(&disp, &str);
 	i = 0;
 	while (i < buff->cr)
 	{
 		file = &((t_file *)buff->buff)[i];
-		if (file->name[0] != '.' || pa != 0)
-			ft_display_long_aux(file, str, disp.major + disp.minor);
+		if (file->name[0] != '.' || opt_a != 0)
+			ft_display_long_aux(file, str, disp.major + disp.minor, opt_l);
 		i++;
 	}
 }

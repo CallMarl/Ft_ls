@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:07:46 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/15 11:21:19 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/15 12:22:51 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,14 +91,14 @@ struct					s_disp
 	int					minor;
 };
 
-int						ft_display_column(t_buff *buff, int pa);
-void					ft_display_file(t_file *file);
-void					ft_display_long(t_buff *buff, int pa);
+int						ft_display_column(t_buff *buff, int opt_a);
+void					ft_display_file(t_file *file, int opt_l);
+void					ft_display_long(t_buff *buff, int opt_a, int opt_l);
 void					ft_display_ls(t_buff *buff);
 void					ft_display_path(char *path);
-void					ft_display_prepare(t_buff *buff, t_disp *disp, int pa);
+void					ft_display_prepare(t_buff *buff, t_disp *disp, int opt_a);
 int						ft_display_preparestr(t_disp *disp, char **str);
-void					ft_display_short(t_buff *buff, int pa);
+void					ft_display_short(t_buff *buff, int opt_a);
 int						ft_getuidlen(int uid);
 int						ft_getgidlen(int gid);
 char					*ft_insertnbr(char *str, int nbr);
@@ -140,5 +140,6 @@ struct					s_error
 int				ft_error(int err_code);
 int				ft_err_opendir(void);
 int				ft_err_openstat(void);
+int				ft_err_readlink(void);
 
 #endif

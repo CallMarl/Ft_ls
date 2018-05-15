@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 12:27:48 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/15 11:32:54 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/15 12:23:43 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include "ft_ls.h"
 
-extern void			ft_display_short(t_buff *buff, int pa)
+extern void			ft_display_short(t_buff *buff, int opt_a)
 {
 	size_t			i;
 	t_file			*file;
@@ -23,9 +23,9 @@ extern void			ft_display_short(t_buff *buff, int pa)
 	while (i < buff->cr)
 	{
 		file = &((t_file *)buff->buff)[i];
-		if (file->name[0] != '.' || pa != 0)
+		if (file->name[0] != '.' || opt_a != 0)
 		{
-			ft_display_file(file);
+			ft_display_file(file, 0);
 			ft_putchar('\n');
 		}
 		i++;

@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 16:53:15 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/15 11:34:24 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/15 12:10:07 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void			ft_putblanck(size_t size)
 }
 
 static void			ft_display_column_aux(t_buff *buff, size_t max_len, \
-		size_t nb_file, int pa)
+		size_t nb_file, int opt_a)
 {
 	size_t			i;
 	size_t			y;
@@ -84,9 +84,9 @@ static void			ft_display_column_aux(t_buff *buff, size_t max_len, \
 	while (i < buff->cr)
 	{
 		file = &((t_file *)buff->buff)[i];
-		if (file->name[0] != '.' || pa != 0)
+		if (file->name[0] != '.' || opt_a != 0)
 		{
-			ft_display_file(file);
+			ft_display_file(file, 0);
 			ft_putblanck(max_len - ft_strlen(file->name) + 1);
 			y++;
 		}
@@ -104,13 +104,13 @@ static void			ft_display_column_aux(t_buff *buff, size_t max_len, \
 ** Bonus display fonction
 */
 
-extern int			ft_display_column(t_buff *buff, int pa)
+extern int			ft_display_column(t_buff *buff, int opt_a)
 {
 	size_t			max_len;
 	size_t			column;
 
 	max_len = ft_display_getmaxlen(buff);
 	column = ft_compt_nb_column();
-	ft_display_column_aux(buff, max_len, column / (max_len + 1), pa);
+	ft_display_column_aux(buff, max_len, column / (max_len + 1), opt_a);
 	return (1);
 }

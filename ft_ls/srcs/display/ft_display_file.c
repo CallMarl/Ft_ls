@@ -6,14 +6,27 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/11 19:31:18 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/14 19:11:17 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/15 12:25:24 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include "libft.h"
 #include "ft_ls.h"
 
-extern void			ft_display_file(t_file *file)
+static void			ft_display_link(char *path)
+{
+	char			link[LS_BUFFSIZE];
+	ft_putstr(" -> ");
+	if (!(readlink(path, link, LS_BUFFSIZE)))
+		ft_err_readlink();
+	else
+	{
+		ft_putstr(link);
+	}
+}
+
+extern void			ft_display_file(t_file *file, int opt_l)
 {
 	int				type;
 
@@ -25,9 +38,13 @@ extern void			ft_display_file(t_file *file)
 	else if (type == 3)
 		ft_putcolor_24("001;049;180", file->name);
 	else if (type == 4)
-		ft_putcolor_24("255;255;255", file->name);
+		ft_putstr(file->name);
 	else if (type == 5)
+	{
 		ft_putcolor_24("205;000;205", file->name);
+		if (opt_l != 0)
+			ft_display_link(file->path);
+	}
 	else if (type == 6)
 		ft_putcolor_24("059;234;031", file->name);
 	else
