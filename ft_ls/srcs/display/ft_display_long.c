@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 09:53:54 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/15 20:27:39 by                  ###   ########.fr       */
+/*   Updated: 2018/05/15 21:16:53 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,6 @@ extern int			ft_display_long(t_buff *buff, int opt_a)
 	ft_printf("%ld", block);
 	ft_putchar('\n');
 	ft_display_long_aux(buff, str, disp.major + disp.minor, opt_a);
+	ft_strdel(&str);
 	return (1);
 }
