@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 16:53:15 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/15 11:07:12 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/15 11:34:24 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,7 @@ static void			ft_display_column_aux(t_buff *buff, size_t max_len, \
 	while (i < buff->cr)
 	{
 		file = &((t_file *)buff->buff)[i];
-		if (file->name[0] != '.')
-		{
-			ft_display_file(file);
-			ft_putblanck(max_len - ft_strlen(file->name) + 1);
-			y++;
-		}
-		else if (pa != 0)
+		if (file->name[0] != '.' || pa != 0)
 		{
 			ft_display_file(file);
 			ft_putblanck(max_len - ft_strlen(file->name) + 1);

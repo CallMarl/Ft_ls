@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/13 17:46:06 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/14 15:33:30 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/15 11:33:14 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,7 @@ extern void				ft_display_prepare(t_buff *buff, t_disp *disp, int pa)
 	while (i < buff->cr)
 	{
 		file = ft_buff_getfile(buff, i);
-		if (file->name[0] != '.')
-			ft_display_prepare_aux(disp, file);
-		else if (pa != 0)
+		if (file->name[0] != '.' || pa != 0)
 			ft_display_prepare_aux(disp, file);
 		i++;
 	}

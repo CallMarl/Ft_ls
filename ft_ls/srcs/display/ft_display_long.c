@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 09:53:54 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/14 18:43:31 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/15 11:32:26 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,11 @@
 #include "libft.h"
 #include "ft_ls.h"
 
-/*
-** Structure qui indique la largeur des colone pour chacun des précision
-*/
-
-static	void		ft_disp_init(t_disp *disp)
+static char			*ft_display_time(time_t *time, char *str)
 {
-	disp->mode = 11;
-	disp->nlink = 0;
-	disp->uid = 0;
-	disp->gid = 0;
-	disp->size = 0;
-	disp->major = 0;
-	disp->minor = 0;
+	str = ctime(time);
+	str = ft_strsub(str, 4, 12);
+	return (str);
 }
 
 static void			ft_display_mode(mode_t st_mode, char mode[12])
@@ -57,13 +49,6 @@ static void			ft_display_mode(mode_t st_mode, char mode[12])
 	mode[11] = '\0';
 }
 
-static char			*ft_display_time(time_t *time, char *str)
-{
-	str = ctime(time);
-	str = ft_strsub(str, 4, 12);
-	return (str);
-}
-
 static void			ft_display_long_aux(t_file *file, char *str, int mm)
 {
 	char			mode[12];
@@ -74,9 +59,7 @@ static void			ft_display_long_aux(t_file *file, char *str, int mm)
 	time = ft_display_time(&file->stat.st_mtimespec.tv_sec, time);
 	if (mm != 0)
 	{
-		ft_printf(str, \
-				mode, \
-				file->stat.st_nlink, \
+		ft_printf(str, mode, file->stat.st_nlink, \
 				getpwuid(file->stat.st_uid)->pw_name, \
 				getgrgid(file->stat.st_gid)->gr_name, \
 				(file->stat.st_rdev) ? major(file->stat.st_rdev) : 0, \
@@ -86,9 +69,7 @@ static void			ft_display_long_aux(t_file *file, char *str, int mm)
 	}
 	else
 	{
-		ft_printf(str, \
-				mode, \
-				file->stat.st_nlink, \
+		ft_printf(str, mode, file->stat.st_nlink, \
 				getpwuid(file->stat.st_uid)->pw_name, \
 				getgrgid(file->stat.st_gid)->gr_name, \
 				file->stat.st_size, \
@@ -97,6 +78,21 @@ static void			ft_display_long_aux(t_file *file, char *str, int mm)
 	}
 	ft_display_file(file);
 	ft_putchar('\n');
+}
+
+/*
+** Structure qui indique la largeur des colone pour chacun des précision
+*/
+
+static	void		ft_disp_init(t_disp *disp)
+{
+	disp->mode = 11;
+	disp->nlink = 0;
+	disp->uid = 0;
+	disp->gid = 0;
+	disp->size = 0;
+	disp->major = 0;
+	disp->minor = 0;
 }
 
 /*
@@ -118,9 +114,7 @@ extern void			ft_display_long(t_buff *buff, int pa)
 	while (i < buff->cr)
 	{
 		file = &((t_file *)buff->buff)[i];
-		if (file->name[0] != '.')
-			ft_display_long_aux(file, str, disp.major + disp.minor);
-		else if (pa != 0)
+		if (file->name[0] != '.' || pa != 0)
 			ft_display_long_aux(file, str, disp.major + disp.minor);
 		i++;
 	}
