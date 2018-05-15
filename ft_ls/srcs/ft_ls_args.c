@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:02:45 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/11 19:16:08 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/15 11:20:18 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,8 @@ static int			ft_ls_argsdir(t_list **buff, t_file *arr_dir, \
 	ft_sort_file(arr_dir, count);
 	while (i < count)
 	{
-		ft_display_path(arr_dir[i].name);	
-		ft_ls_noargs(ft_strdup(arr_dir[i].name), buff, opt_R);
+		ft_display_path(arr_dir[i].name);
+		ft_ls_noargs(ft_strdup(arr_dir[i].name), buff, opt_R, ft_param_get('a'));
 		i++;
 	}
 	return (1);

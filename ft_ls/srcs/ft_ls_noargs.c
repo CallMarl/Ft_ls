@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:04:20 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/14 11:30:39 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/15 11:15:04 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 ** Dans le cas de récursif rappel de noarg pour chaque dossier
 */
 
-static int			ft_ls_subdir(t_list **buff, int opt_R)
+static int			ft_ls_subdir(t_list **buff, int opt_R, int opt_A)
 {
 	int				ret;
 	size_t			i;
@@ -37,8 +37,11 @@ static int			ft_ls_subdir(t_list **buff, int opt_R)
 		if (ft_strcmp(file->name, ".") != 0 && ft_strcmp(file->name, "..") != 0 \
 				&& (file->stat.st_mode & S_IFDIR) == S_IFDIR)
 		{
-			ft_display_path(ft_buff_getfile(tmp, i)->path);
-			ret = ft_ls_noargs(ft_buff_getfile(tmp, i)->path, buff, opt_R);
+			if (file->name[0] != '.' || opt_A != 0)
+			{
+				ft_display_path(file->path);
+				ret = ft_ls_noargs(file->path, buff, opt_R, opt_A);
+			}
 			if (ret < 0)
 				return (ret);
 		}
@@ -52,7 +55,7 @@ static int			ft_ls_subdir(t_list **buff, int opt_R)
 ** le status de opt_R
 */
 
-extern int			ft_ls_noargs(char *path, t_list **buff, int opt_R)
+extern int			ft_ls_noargs(char *path, t_list **buff, int opt_R, int opt_A)
 {
 	DIR				*dd;
 	t_dirent		*ndetail;
@@ -76,6 +79,6 @@ extern int			ft_ls_noargs(char *path, t_list **buff, int opt_R)
 	ft_sort_file((t_file *)ft_buff_get(*buff)->buff, ft_buff_get(*buff)->cr);
 	ft_display_ls((t_buff *)(*buff)->content);
 	if (opt_R > 0)
-		ft_ls_subdir(buff, opt_R);
+		ft_ls_subdir(buff, opt_R, opt_A);
 	return (ret);
 }

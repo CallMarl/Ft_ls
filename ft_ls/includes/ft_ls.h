@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:07:46 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/14 17:15:00 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/15 11:21:19 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ struct					s_file
 
 int						ft_ls(int argc, char **argv);
 int						ft_ls_args(char **argv, int size, t_list **buff);
-int						ft_ls_noargs(char *path, t_list **buff, int opt_R);
+int						ft_ls_noargs(char *path, t_list **buff, int opt_R, int opt_A);
 
 /*
 ** Gestion du buffer
