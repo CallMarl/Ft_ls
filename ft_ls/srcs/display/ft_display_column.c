@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 16:53:15 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/15 14:44:36 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/15 15:00:04 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,8 +128,8 @@ extern int			ft_display_column(t_buff *buff, int opt_a)
 			nb_file = buff->cr / tmp;
 		tmp++;
 	}
-	if (nb_file == 1 || (max_len + 1) * (buff->cr / nb_file) > column)
-		nb_file= column / (max_len + 1);
+	if (nb_file == 1 || (max_len + 1) * nb_file > column)
+		nb_file = column / (max_len + 1);
 	if (opt_a == 0)
 		(buff->cr) += 2;
 	ft_display_column_aux(buff, max_len, nb_file, opt_a);
