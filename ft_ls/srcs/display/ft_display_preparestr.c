@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 10:01:17 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/15 18:05:03 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/15 20:37:36 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 ** de l'observation de ls -l, et correspond aux schemas ci-dessous suivant si
 ** un minor ou un major sont définit.
 */
+
 static int			ft_count_strlen(t_disp *disp)
 {
 	int				len;
@@ -42,13 +43,13 @@ static int			ft_count_strlen(t_disp *disp)
 ** insert un %s avec une valeur dispval dans str. Par exemple %10s.
 */
 
-static int			ft_insert_basic_str(char **str, int dispval, int count)
+static size_t			ft_insert_basic_str(char **str, int dispval, size_t count)
 {
 	char			*tmp;
 
 	count += ft_strcpy_x(&(*str)[count], "%");
 	tmp = ft_insertnbr(&(*str)[count], dispval);
-	count += ((int)tmp - (int)&(*str)[count]);
+	count += ((size_t)tmp - (size_t)&(*str)[count]);
 	count += ft_strcpy_x(&(*str)[count], "s");
 	return (count);
 }
@@ -57,24 +58,24 @@ static int			ft_insert_basic_str(char **str, int dispval, int count)
 ** insert un %-s avec une valeur dispval dans str. Par exemple %-10s.
 */
 
-extern int			ft_insert_offset_str(char **str, int dispval, int count)
+extern size_t			ft_insert_offset_str(char **str, int dispval, size_t count)
 {
 	char			*tmp;
 
 	count += ft_strcpy_x(&(*str)[count], "%-");
 	tmp = ft_insertnbr(&(*str)[count], dispval);
-	count += ((int)tmp - (int)&(*str)[count]);
+	count += ((size_t)tmp - (size_t)&(*str)[count]);
 	count += ft_strcpy_x(&(*str)[count], "s");
 	return (count);
 }
 
-static int			ft_insert_basic_digit(char **str, int dispval, int count)
+static size_t			ft_insert_basic_digit(char **str, int dispval, size_t count)
 {
 	char			*tmp;
 
 	count += ft_strcpy_x(&(*str)[count], "%");
 	tmp = ft_insertnbr(&(*str)[count], dispval);
-	count += ((int)tmp - (int)&(*str)[count]);
+	count += ((size_t)tmp - (size_t)&(*str)[count]);
 	count += ft_strcpy_x(&(*str)[count], "d");
 	return (count);
 }
@@ -89,28 +90,28 @@ extern char				*ft_display_preparestr(t_disp *disp)
 {
 	int				str_len;
 	char			*str;
-	int				count;
+	size_t				count;
 
 	str_len = ft_count_strlen(disp);
-	if (!(*str = ft_strnew(str_len)))
+	if (!(str = ft_strnew(str_len)))
 		return (0);
 	count = 0;
-	count = ft_insert_basic_str(str, disp->mode, count);
-	count += ft_strcpy_x(&(*str)[count], " ");
-	count = ft_insert_basic_digit(str, disp->nlink, count);
-	count += ft_strcpy_x(&(*str)[count], " ");
-	count = ft_insert_offset_str(str, disp->uid, count);
-	count += ft_strcpy_x(&(*str)[count], "  ");
-	count = ft_insert_offset_str(str, disp->gid, count);
-	count += ft_strcpy_x(&(*str)[count], "  ");
+	count = ft_insert_basic_str(&str, disp->mode, count);
+	count += ft_strcpy_x(&str[count], " ");
+	count = ft_insert_basic_digit(&str, disp->nlink, count);
+	count += ft_strcpy_x(&str[count], " ");
+	count = ft_insert_offset_str(&str, disp->uid, count);
+	count += ft_strcpy_x(&str[count], "  ");
+	count = ft_insert_offset_str(&str, disp->gid, count);
+	count += ft_strcpy_x(&str[count], "  ");
 	if (disp->major != 0 || disp->minor != 0)
 	{
-		count = ft_insert_basic_digit(str, disp->major + 1, count);
-		count += ft_strcpy_x(&(*str)[count], ",");
-		count = ft_insert_basic_digit(str, disp->minor + 1, count);
+		count = ft_insert_basic_digit(&str, disp->major + 1, count);
+		count += ft_strcpy_x(&str[count], ",");
+		count = ft_insert_basic_digit(&str, disp->minor + 1, count);
 	}
 	else
-		count = ft_insert_basic_digit(str, disp->size, count);
-	count += ft_strcpy_x(&(*str)[count], " %s ");
+		count = ft_insert_basic_digit(&str, disp->size, count);
+	count += ft_strcpy_x(&str[count], " %s ");
 	return (str);
 }

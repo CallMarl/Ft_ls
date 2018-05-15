@@ -6,20 +6,36 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:32:19 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/15 12:44:29 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/15 20:38:44 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <time.h>
+#include <sys/stat.h>
 #include "libft.h"
 #include "ft_ls.h"
 
-extern char			*ft_ls_time(time_t *time, char *str)
-{
-	str = ctime(time);
-	str = ft_strsub(str, 4, 12);
-	return (str);
-}
+#ifndef _POSIX_SOURCE
+
+	extern char			*ft_ls_time(struct stat *stat, char *str)
+	{
+		time_t			time;
+	
+		time = stat.st_mtimespec.tv_sec;
+		str = ctime(time);
+		str = ft_strsub(str, 4, 12);
+		return (str);
+	}
+#else
+
+	extern char			*ft_ls_time(struct stat *stat, char *str)
+	{
+		(void)stat;
+		str = 0;
+		return (str);
+	}
+
+#endif
 
 extern void			ft_mode(mode_t st_mode, char mode[12])
 {

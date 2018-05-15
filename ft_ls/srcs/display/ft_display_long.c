@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 09:53:54 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/15 18:03:54 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/15 20:27:39 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void			ft_display_long_aux(t_buff *buff, char *str, int mm, int opt_a)
 		{
 			ft_mode(file->stat.st_mode, mode);
 			time = 0;
-			time = ft_ls_time(&file->stat.st_mtimespec.tv_sec, time);
+			time = ft_ls_time(&file->stat, time);
 			if (mm != 0)
 				ft_display_mm(str, file, time, mode);
 			else
@@ -88,7 +88,7 @@ static	void		ft_disp_init(t_disp *disp)
 ** Affichage basic des dossier comme avec ls -1
 */
 
-extern void			ft_display_long(t_buff *buff, int opt_a)
+extern int			ft_display_long(t_buff *buff, int opt_a)
 {
 	t_disp			disp;
 	char			*str;
@@ -98,9 +98,10 @@ extern void			ft_display_long(t_buff *buff, int opt_a)
 	ft_disp_init(&disp);
 	ft_display_prepare(buff, &disp, opt_a, &block);
 	if (!(str = ft_display_preparestr(&disp)))
-		return (ERR_CODE_1)
+		return (ERR_CODE_1);
 	ft_putstr("total ");
 	ft_printf("%ld", block);
 	ft_putchar('\n');
 	ft_display_long_aux(buff, str, disp.major + disp.minor, opt_a);
+	return (1);
 }
