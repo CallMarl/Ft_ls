@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:02:45 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/15 11:20:18 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/15 11:46:41 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,21 @@
 ** les range par ordre ascii. Et affiche les erreurs
 */
 
-static int			ft_ls_argserr(t_list **buff, int count)
+static int			ft_ls_argserr(t_buff *buff, int count)
 {
 	char			**arr_err;
 	size_t			i;
-	t_buff			*tmp;
+	t_file			*file;
 
 	if (!(arr_err = (char **)ft_memalloc(sizeof(char *) * (count + 1))))
 		return (ERR_CODE_1);
 	arr_err[count] = 0;
 	i = 0;
 	count = 0;
-	tmp = (t_buff *)(*buff)->content;
-	while (i < tmp->cr)
+	while (i < buff->cr)
 	{
-		if (ft_buff_getfile(tmp, i)->err != 0)
+		file = ft_buff_getfile(tmp, i);
+		if (file->err != 0)
 			arr_err[count++] = ft_buff_getfile(tmp, i)->name;
 		i++;
 	}
@@ -53,31 +53,24 @@ static int			ft_ls_argserr(t_list **buff, int count)
 */
 
 
-static int			ft_ls_argsfile(t_list **buff, t_file *arr_file, \
+static int			ft_ls_argsfile(t_buff *buff, t_file *arr_file, \
 		int count, t_file *arr_dir)
 {
 	size_t			i;
 	size_t			j;
-	t_buff			*tmp;
+	t_file			*file;
 
 	i = 0;
 	j = 0;
 	count = 0;
-	tmp = (t_buff *)(*buff)->content;
-	while (i < tmp->cr)
+	while (i < buff->cr)
 	{
-		if (ft_buff_getfile(tmp, i)->err == 0 && \
-				(ft_buff_getfile(tmp, i)->stat.st_mode & S_IFDIR) == 0)
-			ft_strcpy(arr_file[count++].name, ft_buff_getfile(tmp, i)->name);
-		else if (ft_buff_getfile(tmp, i)->err == 0 && \
-				(ft_buff_getfile(tmp, i)->stat.st_mode & S_IFDIR) != 0)
-			ft_strcpy(arr_dir[j++].name, ft_buff_getfile(tmp, i)->name);
+		file = ft_buff_getfile(buff, i);
+		if (file->err == 0 && S_ISDIR(file->stat.st_mode))
+			ft_strcpy(arr_dir[j++].name, file->name);
+		else if (file->err == 0 )
+			ft_strcpy(arr_file[count++].name, file->name);
 		i++;
-	}
-	int z = 0;
-	while (z < count)
-	{
-		ft_putendl(arr_file[z++].name);
 	}
 	ft_sort_file(arr_file, count);
 	// Appel display arr file
@@ -124,9 +117,9 @@ static int			ft_ls_argslaunch(t_list **buff, int count[3], int opt_R)
 	while (i < 3)
 	{
 		if (i == 0)
-			ret = ft_ls_argserr(buff, count[i]);
+			ret = ft_ls_argserr(ft_buff_get(buff), count[i]);
 		else if (i == 1)
-			ret = ft_ls_argsfile(buff, arr_file, count[i], arr_dir);
+			ret = ft_ls_argsfile(ft_buff_get(buff), arr_file, count[i], arr_dir);
 		else
 			ret = ft_ls_argsdir(buff, arr_dir, count[i], opt_R);
 		i++;

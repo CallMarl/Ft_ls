@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:04:20 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/15 11:15:04 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/15 12:02:52 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,14 @@ extern int			ft_ls_noargs(char *path, t_list **buff, int opt_R, int opt_A)
 
 	ret = 1;
 	if (!(ft_buff_new(buff, LS_BUFFSIZE)))
-		ret = ERR_CODE_1;
-	else if (ret > 0 && !(dd = opendir(path)))
+		return (ERR_CODE_1);
+	else if (!(dd = opendir(path)))
 		ret = ft_err_opendir();
 	while (ret > 0 && (ndetail = readdir(dd)) != 0)
 	{
 		file.err = 0;
-		ft_strcpy(file.name, ndetail->d_name);
 		file.path = ft_strattach(path, ndetail->d_name, "/");
+		ft_strcpy(file.name, ndetail->d_name);
 		if (lstat(file.path, &file.stat))
 			file.err = errno;
 		ft_buff_insert(buff, &file, LS_BUFFSIZE);
