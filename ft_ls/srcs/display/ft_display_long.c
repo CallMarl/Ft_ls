@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 09:53:54 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/15 12:07:45 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/15 12:43:51 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,35 +18,29 @@
 #include "libft.h"
 #include "ft_ls.h"
 
-static char			*ft_display_time(time_t *time, char *str)
+static void			ft_display_mm(char *str, t_file *file, char *time, char *mode)
 {
-	str = ctime(time);
-	str = ft_strsub(str, 4, 12);
-	return (str);
+	ft_printf(str, \
+			mode, \
+			file->stat.st_nlink, \
+			getpwuid(file->stat.st_uid)->pw_name, \
+			getgrgid(file->stat.st_gid)->gr_name, \
+			(file->stat.st_rdev) ? major(file->stat.st_rdev) : 0, \
+			(file->stat.st_rdev) ? minor(file->stat.st_rdev) : 0, \
+			time
+		);
 }
 
-static void			ft_display_mode(mode_t st_mode, char mode[12])
+static void			ft_display_classic(char *str, t_file *file, char *time, char *mode)
 {
-	char			*mode_type;
-	int				count;
-	static char		*right[] = {"---", "--x", "-w-", "-wx", "r--", "r-x",  \
-		"rw-", "rwx"
-	};
-
-	mode_type = "pcdb-ls ";
-	mode[0] = mode_type[ft_modetype(st_mode)];
-	count = 1;
-	count += ft_strcpy_x(&mode[count], right[(st_mode >> 6) & 7]);
-	count += ft_strcpy_x(&mode[count], right[(st_mode >> 3) & 7]);
-	count += ft_strcpy_x(&mode[count], right[(st_mode) & 7]);
-	if ((S_ISVTX & st_mode) != 0)
-		mode[3] = (S_IXOTH & st_mode) ? 't' : 'T';
-	else if ((S_ISGID & st_mode) != 0)
-		mode[6] = (S_IXGRP & st_mode) ? 's' : 'l';
-	else if ((S_ISUID & st_mode) != 0)
-		mode[9] = (S_IXUSR & st_mode) ? 's' : 'S';
-	mode[10] = ' '; // Acl read
-	mode[11] = '\0';
+	ft_printf(str, \
+			mode, \
+			file->stat.st_nlink, \
+			getpwuid(file->stat.st_uid)->pw_name, \
+			getgrgid(file->stat.st_gid)->gr_name, \
+			file->stat.st_size, \
+			time
+		);
 }
 
 static void			ft_display_long_aux(t_file *file, char *str, int mm, int opt_l)
@@ -54,28 +48,13 @@ static void			ft_display_long_aux(t_file *file, char *str, int mm, int opt_l)
 	char			mode[12];
 	char 			*time;
 
-	ft_display_mode(file->stat.st_mode, mode);
+	ft_mode(file->stat.st_mode, mode);
 	time = 0;
-	time = ft_display_time(&file->stat.st_mtimespec.tv_sec, time);
+	time = ft_ls_time(&file->stat.st_mtimespec.tv_sec, time);
 	if (mm != 0)
-	{
-		ft_printf(str, mode, file->stat.st_nlink, \
-				getpwuid(file->stat.st_uid)->pw_name, \
-				getgrgid(file->stat.st_gid)->gr_name, \
-				(file->stat.st_rdev) ? major(file->stat.st_rdev) : 0, \
-				(file->stat.st_rdev) ? minor(file->stat.st_rdev) : 0, \
-				time
-			);
-	}
+		ft_display_mm(str, file, time, mode);
 	else
-	{
-		ft_printf(str, mode, file->stat.st_nlink, \
-				getpwuid(file->stat.st_uid)->pw_name, \
-				getgrgid(file->stat.st_gid)->gr_name, \
-				file->stat.st_size, \
-				time
-			);
-	}
+		ft_display_classic(str, file, time, mode);
 	ft_display_file(file, opt_l);
 	ft_putchar('\n');
 }

@@ -6,7 +6,7 @@
 #    By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/03 17:06:17 by pprikazs          #+#    #+#              #
-#    Updated: 2018/05/15 12:24:03 by pprikazs         ###   ########.fr        #
+#    Updated: 2018/05/15 12:31:46 by pprikazs         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,8 @@ SRCS = ./main.c \
 	   ./srcs/display/ft_display_prepare.c \
 	   ./srcs/display/ft_display_preparestr.c \
 	   ./srcs/display/ft_display_short.c \
-	   ./srcs/display/ft_display_utils.c \
+	   ./srcs/display/ft_display_utils1.c \
+	   ./srcs/display/ft_display_utils2.c \
 	   ./srcs/error/ft_err_opendir.c \
 	   ./srcs/error/ft_err_openstat.c \
 	   ./srcs/error/ft_err_readlink.c \

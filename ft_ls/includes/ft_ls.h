@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:07:46 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/15 12:22:51 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/15 12:43:24 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@ int						ft_getuidlen(int uid);
 int						ft_getgidlen(int gid);
 char					*ft_insertnbr(char *str, int nbr);
 int						ft_insert_offset_str(char **str, int dispval, int count);
+char					*ft_ls_time(time_t *time, char *str);
+void					ft_mode(mode_t st_mode, char mode[12]);
 int						ft_modetype(mode_t st_mode);
 int						ft_nbweight(int nb);
 
