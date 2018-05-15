@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:02:45 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/15 11:46:41 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/15 12:18:58 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ static int			ft_ls_argserr(t_buff *buff, int count)
 	count = 0;
 	while (i < buff->cr)
 	{
-		file = ft_buff_getfile(tmp, i);
+		file = ft_buff_getfile(buff, i);
 		if (file->err != 0)
-			arr_err[count++] = ft_buff_getfile(tmp, i)->name;
+			arr_err[count++] = file->name;
 		i++;
 	}
 	ft_qsort((void *)arr_err, count, sizeof(char *), &ft_sort_strcmp_c);
@@ -117,9 +117,9 @@ static int			ft_ls_argslaunch(t_list **buff, int count[3], int opt_R)
 	while (i < 3)
 	{
 		if (i == 0)
-			ret = ft_ls_argserr(ft_buff_get(buff), count[i]);
+			ret = ft_ls_argserr(ft_buff_get(*buff), count[i]);
 		else if (i == 1)
-			ret = ft_ls_argsfile(ft_buff_get(buff), arr_file, count[i], arr_dir);
+			ret = ft_ls_argsfile(ft_buff_get(*buff), arr_file, count[i], arr_dir);
 		else
 			ret = ft_ls_argsdir(buff, arr_dir, count[i], opt_R);
 		i++;
