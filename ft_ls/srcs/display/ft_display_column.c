@@ -6,13 +6,14 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 16:53:15 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/14 18:48:26 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/15 11:07:12 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stddef.h>
 #include <fcntl.h>
+#include <sys/ioctl.h>
 #include <unistd.h>
 #include "libft.h"
 #include "ft_ls.h"
@@ -36,6 +37,75 @@ static size_t		ft_display_getmaxlen(t_buff *buff)
 	return (max_len);
 }
 
+static size_t		ft_compt_nb_column(void)
+{
+	struct winsize ws;
+
+	if (ioctl(STDIN_FILENO, TIOCGWINSZ, &ws) == -1)
+		return (0);
+	return ((size_t)ws.ws_col);
+}
+
+static void			ft_putblanck(size_t size)
+{
+	size_t			i;
+	char			*str;
+
+	i = 0;
+	if (size < 3)
+	{
+		while (i++ < size)
+			ft_putchar(' ');
+	}
+	else
+	{
+		if ((str = ft_strnew_c(size, ' ')))
+		{
+			ft_putstr(str);
+			ft_strdel(&str);
+		}
+		else
+		{
+			while (i++ < size)
+				ft_putchar(' ');
+		}
+	}
+}
+
+static void			ft_display_column_aux(t_buff *buff, size_t max_len, \
+		size_t nb_file, int pa)
+{
+	size_t			i;
+	size_t			y;
+	t_file			*file;
+
+	y = 0;
+	i = 0;
+	while (i < buff->cr)
+	{
+		file = &((t_file *)buff->buff)[i];
+		if (file->name[0] != '.')
+		{
+			ft_display_file(file);
+			ft_putblanck(max_len - ft_strlen(file->name) + 1);
+			y++;
+		}
+		else if (pa != 0)
+		{
+			ft_display_file(file);
+			ft_putblanck(max_len - ft_strlen(file->name) + 1);
+			y++;
+		}
+		if (y == nb_file)
+		{
+			ft_putchar('\n');
+			y = 0;
+		}
+		i++;
+	}
+	ft_putchar('\n');
+}
+
 /*
 ** Bonus display fonction
 */
@@ -43,27 +113,10 @@ static size_t		ft_display_getmaxlen(t_buff *buff)
 extern int			ft_display_column(t_buff *buff, int pa)
 {
 	size_t			max_len;
-	char			*str;
-	size_t			size;
-	char			*name;
+	size_t			column;
 
 	max_len = ft_display_getmaxlen(buff);
-	size = 4 + ft_nbweight(max_len);
-	if (!(str = ft_strnew(size)))
-		return (-1);
-	size = 0;
-	size = ft_insert_offset_str(&str, max_len, size);
-	size = ft_strcpy_x(&str[size], " ");
-	size = 0;
-	while (size < buff->cr)
-	{
-		name = (&((t_file *)buff->buff)[size])->name;
-		if (name[0] != '.')
-			ft_printf(str, name);
-		else if (pa != 0)
-			ft_printf(str, name);
-		size++;
-	}
-	ft_putchar('\n');
+	column = ft_compt_nb_column();
+	ft_display_column_aux(buff, max_len, column / (max_len + 1), pa);
 	return (1);
 }
