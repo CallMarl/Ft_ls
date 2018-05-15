@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:07:46 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/15 13:22:22 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/15 18:01:06 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,12 @@ struct					s_disp
 int						ft_display_column(t_buff *buff, int opt_a);
 void					ft_display_file(t_file *file, int opt_l);
 void					ft_display_long(t_buff *buff, int opt_a);
-void					ft_display_ls(t_buff *buff);
+int						ft_display_ls(t_buff *buff);
 void					ft_display_path(char *path);
-void					ft_display_prepare(t_buff *buff, t_disp *disp, int opt_a, int *block);
+void					ft_display_prepare(t_buff *buff, t_disp *disp, int opt_a, size_t *block);
 int						ft_display_preparestr(t_disp *disp, char **str);
 void					ft_display_short(t_buff *buff, int opt_a);
+void					ft_display_usage(void);
 int						ft_getuidlen(int uid);
 int						ft_getgidlen(int gid);
 char					*ft_insertnbr(char *str, int nbr);
@@ -129,17 +130,15 @@ struct					s_error
 
 # define ERR_CODE_1 -1
 # define ERR_CODE_2 -2
-# define ERR_CODE_3 -3
-# define ERR_CODE_4 -4
-# define ERR_CODE_5 -5
 
 # define ERR_MESS_1 "Erreur d'allocation lors de l'execuion du programme"
 # define ERR_MESS_2 "Erreur de définition de paramettre"
-# define ERR_MESS_3 "Erreur vous ne possédez pas les droits d'accès"
-# define ERR_MESS_4 "Erreur le nom du chemin est trop long"
-# define ERR_MESS_5 "Erreur n'est pas un fichier ou un dossier" 
 
 int				ft_error(int err_code);
+int				ft_err_args(t_file *file, int count);
+int				ft_err_basic(void);
+
+
 int				ft_err_opendir(void);
 int				ft_err_openstat(void);
 int				ft_err_readlink(void);

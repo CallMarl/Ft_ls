@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:04:20 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/15 12:02:52 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/15 18:00:47 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@
 #include "ft_ls.h"
 
 /*
-** Dans le cas de récursif rappel de noarg pour chaque dossier
+** Fonction récursive à ft_ls_noargs(), cette fonction iter sur l'ensemble
+** des sous dossiers d'un dossier courant. Appelé uniquement si opt_R est
+** différent de zero.
 */
 
-static int			ft_ls_subdir(t_list **buff, int opt_R, int opt_A)
+static int			ft_ls_subdir(t_list **buff, int opt_R, int opt_a)
 {
 	int				ret;
 	size_t			i;
@@ -37,10 +39,10 @@ static int			ft_ls_subdir(t_list **buff, int opt_R, int opt_A)
 		if (ft_strcmp(file->name, ".") != 0 && ft_strcmp(file->name, "..") != 0 \
 				&& (file->stat.st_mode & S_IFDIR) == S_IFDIR)
 		{
-			if (file->name[0] != '.' || opt_A != 0)
+			if (file->name[0] != '.' || opt_a != 0)
 			{
 				ft_display_path(file->path);
-				ret = ft_ls_noargs(file->path, buff, opt_R, opt_A);
+				ret = ft_ls_noargs(file->path, buff, opt_R, opt_a);
 			}
 			if (ret < 0)
 				return (ret);
@@ -51,34 +53,58 @@ static int			ft_ls_subdir(t_list **buff, int opt_R, int opt_A)
 }
 
 /*
-** Ouverture d'un dossier et lecture de celui-ci recursif ou non suivant
-** le status de opt_R
+** Fonction d'ouverture et de lecture d'un dossier, affiche une erreur dans le
+** cas ou l'ouverture echoue. Si opt_R est différent de zero alors elle iterera
+** dans les sous dossier.
 */
 
-extern int			ft_ls_noargs(char *path, t_list **buff, int opt_R, int opt_A)
+static int			ft_ls_noargs_aux(char *path, t_list **buff, int opt_R, int opt_a)
 {
+	int				ret;
 	DIR				*dd;
 	t_dirent		*ndetail;
 	t_file			file;
+
+	ret = 1;
+	if (!(dd = opendir(path)))
+		return (ft_err_basic());
+	while (ret > 0 && (ndetail = readdir(dd)) != 0)
+	{
+		file.path = ft_strattach(path, ndetail->d_name, "/");
+		file.err = (lstat(file.path, &file.stat)) ? errno : 0;
+		ft_strcpy(file.name, ndetail->d_name);
+		ft_buff_insert(buff, &file, LS_BUFFSIZE);
+	}
+	ft_sort_file((t_file *)ft_buff_get(*buff)->buff, ft_buff_get(*buff)->cr);
+	ret = ft_display_ls((t_buff *)(*buff)->content);
+	if (ret >= 0 && opt_R > 0)
+		ret = ft_ls_subdir(buff, opt_R, opt_a);
+	return (ret);
+}
+
+/*
+** Lecture de la path, dans le cas ou un seul argument est spécifié et que 
+** cette argument est différent d'un dossier, la fonction affiche cette
+** éléments sinon elle tente de lire dans le dossier.
+*/
+
+extern int			ft_ls_noargs(char *path, t_list **buff, int opt_R, int opt_a)
+{
 	int				ret;
+	t_file			file;
 
 	ret = 1;
 	if (!(ft_buff_new(buff, LS_BUFFSIZE)))
 		return (ERR_CODE_1);
-	else if (!(dd = opendir(path)))
-		ret = ft_err_opendir();
-	while (ret > 0 && (ndetail = readdir(dd)) != 0)
+	else if (lstat(path, &(file.stat)))
+		ret = ft_err_basic();
+	else if (S_ISDIR(file.stat.st_mode) || S_ISLNK(file.stat.st_mode))
+		ret = ft_ls_noargs_aux(path, buff, opt_R, opt_a);
+	else
 	{
-		file.err = 0;
-		file.path = ft_strattach(path, ndetail->d_name, "/");
-		ft_strcpy(file.name, ndetail->d_name);
-		if (lstat(file.path, &file.stat))
-			file.err = errno;
-		ft_buff_insert(buff, &file, LS_BUFFSIZE);
+		ft_strcpy(file.name, path);
+		ft_display_file(&file, ft_param_get('l'));
+		ft_putchar('\n');
 	}
-	ft_sort_file((t_file *)ft_buff_get(*buff)->buff, ft_buff_get(*buff)->cr);
-	ft_display_ls((t_buff *)(*buff)->content);
-	if (opt_R > 0)
-		ft_ls_subdir(buff, opt_R, opt_A);
 	return (ret);
 }

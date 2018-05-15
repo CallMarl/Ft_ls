@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 09:53:54 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/15 13:25:10 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/15 18:03:54 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,14 +92,15 @@ extern void			ft_display_long(t_buff *buff, int opt_a)
 {
 	t_disp			disp;
 	char			*str;
-	int				block;
+	size_t			block;
 
 	str = 0;
 	ft_disp_init(&disp);
 	ft_display_prepare(buff, &disp, opt_a, &block);
-	ft_display_preparestr(&disp, &str);
+	if (!(str = ft_display_preparestr(&disp)))
+		return (ERR_CODE_1)
 	ft_putstr("total ");
-	ft_putnbr(block);
+	ft_printf("%ld", block);
 	ft_putchar('\n');
 	ft_display_long_aux(buff, str, disp.major + disp.minor, opt_a);
 }

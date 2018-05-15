@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:02:45 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/15 12:18:58 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/15 17:41:24 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,27 @@
 
 static int			ft_ls_argserr(t_buff *buff, int count)
 {
-	char			**arr_err;
+	t_file			*arr_err;
 	size_t			i;
 	t_file			*file;
 
-	if (!(arr_err = (char **)ft_memalloc(sizeof(char *) * (count + 1))))
+	if (!(arr_err = (t_file *)ft_memalloc(sizeof(t_file) * (count))))
 		return (ERR_CODE_1);
-	arr_err[count] = 0;
 	i = 0;
 	count = 0;
 	while (i < buff->cr)
 	{
 		file = ft_buff_getfile(buff, i);
 		if (file->err != 0)
-			arr_err[count++] = file->name;
+		{
+			ft_strcpy(arr_err[count].name, file->name);
+			arr_err[count].err = file->err;
+			count++;
+		}
 		i++;
 	}
-	ft_qsort((void *)arr_err, count, sizeof(char *), &ft_sort_strcmp_c);
-	//Appel la fonction de display d'erreur
-	return (1);
+	ft_qsort((void *)arr_err, count, sizeof(t_file), &ft_sort_filecmp_c);
+	return (ft_err_args(arr_err, count));
 }
 
 /*
@@ -52,13 +54,13 @@ static int			ft_ls_argserr(t_buff *buff, int count)
 ** performance.
 */
 
-
-static int			ft_ls_argsfile(t_buff *buff, t_file *arr_file, \
+static void			ft_ls_argsfile(t_buff *buff, t_file *arr_file, \
 		int count, t_file *arr_dir)
 {
 	size_t			i;
 	size_t			j;
 	t_file			*file;
+	t_buff			tmp;
 
 	i = 0;
 	j = 0;
@@ -69,12 +71,16 @@ static int			ft_ls_argsfile(t_buff *buff, t_file *arr_file, \
 		if (file->err == 0 && S_ISDIR(file->stat.st_mode))
 			ft_strcpy(arr_dir[j++].name, file->name);
 		else if (file->err == 0 )
+		{
+			arr_file[count].stat = file->stat;
 			ft_strcpy(arr_file[count++].name, file->name);
+		}
 		i++;
 	}
 	ft_sort_file(arr_file, count);
-	// Appel display arr file
-	return (1);
+	tmp.buff = (void *)arr_file;
+	tmp.cr = count;
+	ft_display_ls(&tmp);
 }
 
 /*
@@ -85,16 +91,19 @@ static int			ft_ls_argsdir(t_list **buff, t_file *arr_dir, \
 		int count, _Bool opt_R)
 {
 	int 			i;
+	int				ret;
 
 	i = 0;
+	ret = 1;
 	ft_sort_file(arr_dir, count);
-	while (i < count)
+	while (i < count && ret >= 0)
 	{
 		ft_display_path(arr_dir[i].name);
-		ft_ls_noargs(ft_strdup(arr_dir[i].name), buff, opt_R, ft_param_get('a'));
+		ret = ft_ls_noargs(ft_strdup(arr_dir[i].name), \
+				buff, opt_R, ft_param_get('a'));
 		i++;
 	}
-	return (1);
+	return (ret);
 }
 
 /*
@@ -114,12 +123,13 @@ static int			ft_ls_argslaunch(t_list **buff, int count[3], int opt_R)
 	else if (!(arr_dir = (t_file *)ft_memalloc(sizeof(t_file) * (count[2] + 1))))
 		return (ERR_CODE_1);
 	i = 0;
-	while (i < 3)
+	ret = 1;
+	while (i < 3 && ret >= 0)
 	{
 		if (i == 0)
 			ret = ft_ls_argserr(ft_buff_get(*buff), count[i]);
 		else if (i == 1)
-			ret = ft_ls_argsfile(ft_buff_get(*buff), arr_file, count[i], arr_dir);
+			ft_ls_argsfile(ft_buff_get(*buff), arr_file, count[i], arr_dir);
 		else
 			ret = ft_ls_argsdir(buff, arr_dir, count[i], opt_R);
 		i++;

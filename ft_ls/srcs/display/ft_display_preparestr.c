@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 10:01:17 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/14 17:26:19 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/15 18:05:03 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,14 +85,15 @@ static int			ft_insert_basic_digit(char **str, int dispval, int count)
 ** "%-s %d %-s  %-s  %d %s"
 ** "%-s %d %-s  %-s  %d,%d %s"
 */
-extern int			ft_display_preparestr(t_disp *disp, char **str)
+extern char				*ft_display_preparestr(t_disp *disp)
 {
 	int				str_len;
+	char			*str;
 	int				count;
 
 	str_len = ft_count_strlen(disp);
 	if (!(*str = ft_strnew(str_len)))
-		return (-1);
+		return (0);
 	count = 0;
 	count = ft_insert_basic_str(str, disp->mode, count);
 	count += ft_strcpy_x(&(*str)[count], " ");
@@ -111,5 +112,5 @@ extern int			ft_display_preparestr(t_disp *disp, char **str)
 	else
 		count = ft_insert_basic_digit(str, disp->size, count);
 	count += ft_strcpy_x(&(*str)[count], " %s ");
-	return (1);
+	return (str);
 }
