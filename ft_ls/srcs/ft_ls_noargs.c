@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:04:20 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/15 18:00:47 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/16 20:28:12 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,19 +66,28 @@ static int			ft_ls_noargs_aux(char *path, t_list **buff, int opt_R, int opt_a)
 	t_file			file;
 
 	ret = 1;
-	if (!(dd = opendir(path)))
+	dd = 0;
+	if ((dd = opendir(path)) <= 0)
 		return (ft_err_basic());
+	ft_printf("Open : %lx", (unsigned long)dd);
+	int i;
+
+	i = 0;
 	while (ret > 0 && (ndetail = readdir(dd)) != 0)
 	{
 		file.path = ft_strattach(path, ndetail->d_name, "/");
 		file.err = (lstat(file.path, &file.stat)) ? errno : 0;
 		ft_strcpy(file.name, ndetail->d_name);
 		ft_buff_insert(buff, &file, LS_BUFFSIZE);
+		i++;
 	}
 	ft_sort_file((t_file *)ft_buff_get(*buff)->buff, ft_buff_get(*buff)->cr);
 	ret = ft_display_ls((t_buff *)(*buff)->content);
 	if (ret >= 0 && opt_R > 0)
 		ret = ft_ls_subdir(buff, opt_R, opt_a);
+	ft_lstremove(buff, 0, &ft_buff_delelem);
+	ft_printf("Close : %lx", (unsigned long)dd);
+	closedir(dd);
 	return (ret);
 }
 

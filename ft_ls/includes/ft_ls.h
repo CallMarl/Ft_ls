@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:07:46 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/15 20:37:04 by                  ###   ########.fr       */
+/*   Updated: 2018/05/16 19:24:33 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int						ft_ls_noargs(char *path, t_list **buff, int opt_R, int opt_A);
 
 # define LS_BUFFSIZE 256
 
+void					ft_buff_delelem(void *elem);
 t_buff					*ft_buff_get(t_list *buff);
 t_file					*ft_buff_getfile(t_buff *buff, int i);
 int						ft_buff_insert(t_list **list, t_file *elem, size_t b_size);

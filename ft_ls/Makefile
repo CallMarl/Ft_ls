@@ -6,7 +6,7 @@
 #    By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/03 17:06:17 by pprikazs          #+#    #+#              #
-#    Updated: 2018/05/15 15:34:55 by pprikazs         ###   ########.fr        #
+#    Updated: 2018/05/16 18:16:11 by pprikazs         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,11 +17,11 @@ DEBUG = no
 FLAGS = -Wall -Wextra -Werror
 
 ifeq ($(DEBUG), yes)
-	FLAGS = $(FLAGS) -g -fsanitize=adress
+	FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 endif
 
 NOFLAGS = no
-ifeq ($(DEBUG), yes)
+ifeq ($(NOFLAGS), yes)
 	FLAGS = -g -w
 endif
 	
@@ -35,6 +35,7 @@ SRCS = ./main.c \
 	   ./srcs/ft_ls.c \
 	   ./srcs/ft_ls_args.c \
 	   ./srcs/ft_ls_noargs.c \
+	   ./srcs/buff/ft_buff_delelem.c \
 	   ./srcs/buff/ft_buff_get.c \
 	   ./srcs/buff/ft_buff_getfile.c \
 	   ./srcs/buff/ft_buff_insert.c \
@@ -77,7 +78,7 @@ all : $(NAME)
 $(NAME) : $(OBJ) $(DEPS)
 	@echo "Compilation ft_ls1..."
 	@$(MAKE) -C $(LIB_DIR)
-	@$(CC) $(OBJ) -o $@ $(LIBS)
+	@$(CC) $(OBJ) -o $@ $(LIBS) $(FLAGS)
 
 clean :
 	@$(MAKE) clean -C $(LIB_DIR)
