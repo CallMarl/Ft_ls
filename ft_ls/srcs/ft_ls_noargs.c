@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:04:20 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/17 00:39:51 by                  ###   ########.fr       */
+/*   Updated: 2018/05/17 01:07:55 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,10 @@ static int			ft_ls_noargs_aux(char *path, t_list **buff, int opt_R, int opt_a)
 	i = 0;
 	while (ret > 0 && (ndetail = readdir(dd)) != 0)
 	{
-		file.path = ft_strattach(path, ndetail->d_name, "/");
+		if (path[0] == '/' && path[1] == '\0')
+			file.path = ft_strjoin("/", ndetail->d_name);
+		else
+			file.path = ft_strattach(path, ndetail->d_name, "/");
 		file.err = (lstat(file.path, &file.stat)) ? errno : 0;
 		ft_strcpy(file.name, ndetail->d_name);
 		ft_buff_insert(buff, &file, LS_BUFFSIZE);
