@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:02:45 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/15 17:41:24 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/16 12:54:15 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static int			ft_ls_argserr(t_buff *buff, int count)
 		i++;
 	}
 	ft_qsort((void *)arr_err, count, sizeof(t_file), &ft_sort_filecmp_c);
+	ft_memdel((void *)&arr_err);
 	return (ft_err_args(arr_err, count));
 }
 
@@ -134,6 +135,8 @@ static int			ft_ls_argslaunch(t_list **buff, int count[3], int opt_R)
 			ret = ft_ls_argsdir(buff, arr_dir, count[i], opt_R);
 		i++;
 	}
+	ft_memdel((void **)&arr_dir);
+	ft_memdel((void **)&arr_file);
 	return (ret);
 }
 
