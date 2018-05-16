@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 09:53:54 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/15 21:16:53 by                  ###   ########.fr       */
+/*   Updated: 2018/05/16 12:48:16 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ static void			ft_display_long_aux(t_buff *buff, char *str, int mm, int opt_a)
 				ft_display_classic(str, file, time, mode);
 			ft_display_file(file, 1);
 			ft_putchar('\n');
+			ft_strdel(&time);
 		}
 		i++;
 	}
