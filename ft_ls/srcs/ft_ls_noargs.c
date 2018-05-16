@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:04:20 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/17 01:07:55 by                  ###   ########.fr       */
+/*   Updated: 2018/05/17 01:23:22 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,6 @@ static int			ft_ls_noargs_aux(char *path, t_list **buff, int opt_R, int opt_a)
 	dd = 0;
 	if ((dd = opendir(path)) == 0)
 		return (ft_err_basic());
-	int i;
-
-	i = 0;
 	while (ret > 0 && (ndetail = readdir(dd)) != 0)
 	{
 		if (path[0] == '/' && path[1] == '\0')
@@ -81,7 +78,6 @@ static int			ft_ls_noargs_aux(char *path, t_list **buff, int opt_R, int opt_a)
 		file.err = (lstat(file.path, &file.stat)) ? errno : 0;
 		ft_strcpy(file.name, ndetail->d_name);
 		ft_buff_insert(buff, &file, LS_BUFFSIZE);
-		i++;
 	}
 	ft_sort_file((t_file *)ft_buff_get(*buff)->buff, ft_buff_get(*buff)->cr);
 	ret = ft_display_ls((t_buff *)(*buff)->content);
