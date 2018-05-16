@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:04:20 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/16 20:28:12 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/17 00:39:51 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int			ft_ls_subdir(t_list **buff, int opt_R, int opt_a)
 
 	i = 0;
 	tmp = (t_buff *)(*buff)->content;
-	while (i < tmp->b_size)
+	while (i < tmp->cr)
 	{
 		file = ft_buff_getfile(tmp, i);
 		if (ft_strcmp(file->name, ".") != 0 && ft_strcmp(file->name, "..") != 0 \
@@ -67,9 +67,8 @@ static int			ft_ls_noargs_aux(char *path, t_list **buff, int opt_R, int opt_a)
 
 	ret = 1;
 	dd = 0;
-	if ((dd = opendir(path)) <= 0)
+	if ((dd = opendir(path)) == 0)
 		return (ft_err_basic());
-	ft_printf("Open : %lx", (unsigned long)dd);
 	int i;
 
 	i = 0;
@@ -86,7 +85,6 @@ static int			ft_ls_noargs_aux(char *path, t_list **buff, int opt_R, int opt_a)
 	if (ret >= 0 && opt_R > 0)
 		ret = ft_ls_subdir(buff, opt_R, opt_a);
 	ft_lstremove(buff, 0, &ft_buff_delelem);
-	ft_printf("Close : %lx", (unsigned long)dd);
 	closedir(dd);
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 12:32:19 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/16 12:46:09 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/16 22:49:47 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@
 		char			*tmp2;
 		
 		current = time(0);
-		file = stat->st_mtimensec;
+		file = stat->st_mtim.tv_sec;
 		str = 0;
 		str = ctime(&file);
 		if (current - file < 15768000 && current - file > 15768000)
