@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_utils_pflag_d.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/03 17:07:38 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/17 18:09:16 by pprikazs         ###   ########.fr       */
+/*   Created: 2018/05/17 18:38:17 by pprikazs          #+#    #+#             */
+/*   Updated: 2018/05/17 19:04:28 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "ft_ls.h"
+#include "libft.h"
 
-int			main(int argc, char **argv)
+/*
+** insert un %d avec une valeur dispval dans str. Par exemple %10d.
+*/
+
+extern size_t		ft_utils_pflag_d(char **str, int dispval, \
+		size_t count)
 {
-	int		ret;
+	char		*tmp;
 
-	ret = ft_ls(argc, argv);
-	return (ret);
+	count += ft_strcpy_x(&(*str)[count], "%");
+	tmp = ft_utils_insertnbr(&(*str)[count], dispval);
+	count += ((size_t)tmp - (size_t)&(*str)[count]);
+	count += ft_strcpy_x(&(*str)[count], "d");
+	return (count);
 }

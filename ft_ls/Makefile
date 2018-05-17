@@ -6,7 +6,7 @@
 #    By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/03 17:06:17 by pprikazs          #+#    #+#              #
-#    Updated: 2018/05/16 18:16:11 by pprikazs         ###   ########.fr        #
+#    Updated: 2018/05/17 20:02:04 by pprikazs         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = ft_ls
 CC = gcc
 
 DEBUG = no
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -O3
 
 ifeq ($(DEBUG), yes)
 	FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
@@ -41,6 +41,17 @@ SRCS = ./main.c \
 	   ./srcs/buff/ft_buff_insert.c \
 	   ./srcs/buff/ft_buff_new.c \
 	   ./srcs/buff/ft_buff_rm.c \
+	   ./srcs/display/utils/ft_utils_getgidlen.c \
+	   ./srcs/display/utils/ft_utils_getuidlen.c \
+	   ./srcs/display/utils/ft_utils_insertnbr.c \
+	   ./srcs/display/utils/ft_utils_mode.c \
+	   ./srcs/display/utils/ft_utils_modetype.c \
+	   ./srcs/display/utils/ft_utils_nbweight.c \
+	   ./srcs/display/utils/ft_utils_pflag_d.c \
+	   ./srcs/display/utils/ft_utils_pflag_offs.c \
+	   ./srcs/display/utils/ft_utils_pflag_s.c \
+	   ./srcs/display/utils/ft_utils_putblanck.c \
+	   ./srcs/display/utils/ft_utils_time.c \
 	   ./srcs/display/ft_display_column.c \
 	   ./srcs/display/ft_display_file.c \
 	   ./srcs/display/ft_display_long.c \
@@ -50,11 +61,6 @@ SRCS = ./main.c \
 	   ./srcs/display/ft_display_preparestr.c \
 	   ./srcs/display/ft_display_short.c \
 	   ./srcs/display/ft_display_usage.c \
-	   ./srcs/display/ft_display_utils1.c \
-	   ./srcs/display/ft_display_utils2.c \
-	   ./srcs/error/ft_err_opendir.c \
-	   ./srcs/error/ft_err_openstat.c \
-	   ./srcs/error/ft_err_readlink.c \
 	   ./srcs/param/ft_param_get.c \
 	   ./srcs/param/ft_param_parse.c \
 	   ./srcs/sort/ft_sort_file.c \

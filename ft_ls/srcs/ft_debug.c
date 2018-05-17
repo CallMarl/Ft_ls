@@ -6,13 +6,12 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:39:40 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/14 09:35:29 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/17 16:52:10 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_ls.h"
-#define RC ft_putchar('\n');
 
 extern t_param		g_param[];
 
@@ -27,7 +26,8 @@ extern void			ft_debug_strarr(char **strarr)
 
 /*
 ** Fonction qui affiche le contenu du buffer
-*/ 
+*/
+
 extern void			ft_debug_buff(t_buff *buff)
 {
 	size_t			i;
@@ -39,34 +39,39 @@ extern void			ft_debug_buff(t_buff *buff)
 		file = &((t_file *)buff->buff)[i];
 		ft_putstr("file name : ");
 		ft_putendl(file->name);
-//		ft_putstr("file mode : ");
-//		ft_putnbr(file->stat.st_mode);
-//		ft_putchar('\n');
-//		ft_putnbr(file->stat.st_rdev);
-//		ft_putchar('\n');
-//		ft_putstr("file err : ");
-//		ft_putnbr(file->err);
-//		ft_putendl("");
+		ft_putstr("file mode : ");
+		ft_putnbr(file->stat.st_mode);
+		ft_putchar('\n');
+		ft_putnbr(file->stat.st_rdev);
+		ft_putchar('\n');
+		ft_putstr("file err : ");
+		ft_putnbr(file->err);
+		ft_putendl("");
 		i++;
 	}
 }
 
+/*
+** Fonction de debug de la structur disp
+*/
+
 extern void			ft_debug_disp(t_disp *disp)
 {
 	ft_putstr("mode len : ");
-	ft_putnbr(disp->mode);RC;
-	ft_putstr("nlink len : ");
-	ft_putnbr(disp->nlink);RC;
-	ft_putstr("uid len : ");
-	ft_putnbr(disp->uid);RC;
-	ft_putstr("gid len : ");
-	ft_putnbr(disp->gid);RC;
-	ft_putstr("size len : ");
-	ft_putnbr(disp->size);RC;
-	ft_putstr("major len : ");
-	ft_putnbr(disp->major);RC;
-	ft_putstr("minor len : ");
-	ft_putnbr(disp->minor);RC;
+	ft_putnbr(disp->mode);
+	ft_putstr("\nnlink len : ");
+	ft_putnbr(disp->nlink);
+	ft_putstr("\nuid len : ");
+	ft_putnbr(disp->uid);
+	ft_putstr("\ngid len : ");
+	ft_putnbr(disp->gid);
+	ft_putstr("\nsize len : ");
+	ft_putnbr(disp->size);
+	ft_putstr("\nmajor len : ");
+	ft_putnbr(disp->major);
+	ft_putstr("\nminor len : ");
+	ft_putnbr(disp->minor);
+	ft_putchar('\n');
 }
 
 /*

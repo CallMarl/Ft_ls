@@ -1,22 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_utils_putblanck.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/03 17:07:38 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/17 18:09:16 by pprikazs         ###   ########.fr       */
+/*   Created: 2018/05/17 18:26:24 by pprikazs          #+#    #+#             */
+/*   Updated: 2018/05/17 18:26:55 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "ft_ls.h"
 
-int			main(int argc, char **argv)
+extern void			ft_utils_putblanck(size_t size)
 {
-	int		ret;
+	size_t			i;
+	char			*str;
 
-	ret = ft_ls(argc, argv);
-	return (ret);
+	i = 0;
+	if (size < 3)
+	{
+		while (i++ < size)
+			ft_putchar(' ');
+	}
+	else
+	{
+		if ((str = ft_strnew_c(size, ' ')))
+		{
+			ft_putstr(str);
+			ft_strdel(&str);
+		}
+		else
+		{
+			while (i++ < size)
+				ft_putchar(' ');
+		}
+	}
 }

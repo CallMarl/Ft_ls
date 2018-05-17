@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:07:46 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/16 19:24:33 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/17 18:41:26 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ struct					s_file
 
 int						ft_ls(int argc, char **argv);
 int						ft_ls_args(char **argv, int size, t_list **buff);
-int						ft_ls_noargs(char *path, t_list **buff, int opt_R, int opt_A);
+int						ft_ls_noargs(char *path, t_list **buff, \
+		int opt_r, int opt_a);
 
 /*
 ** Gestion du buffer
@@ -52,7 +53,8 @@ int						ft_ls_noargs(char *path, t_list **buff, int opt_R, int opt_A);
 void					ft_buff_delelem(void *elem);
 t_buff					*ft_buff_get(t_list *buff);
 t_file					*ft_buff_getfile(t_buff *buff, int i);
-int						ft_buff_insert(t_list **list, t_file *elem, size_t b_size);
+int						ft_buff_insert(t_list **list, t_file *elem, \
+		size_t b_size);
 int						ft_buff_new(t_list **list, size_t b_size);
 void					ft_buff_rm(void *elem, size_t size);
 
@@ -94,21 +96,35 @@ struct					s_disp
 
 int						ft_display_column(t_buff *buff, int opt_a);
 void					ft_display_file(t_file *file, int opt_l);
-int					ft_display_long(t_buff *buff, int opt_a);
+int						ft_display_long(t_buff *buff, int opt_a);
 int						ft_display_ls(t_buff *buff);
 void					ft_display_path(char *path);
-void					ft_display_prepare(t_buff *buff, t_disp *disp, int opt_a, size_t *block);
-char						*ft_display_preparestr(t_disp *disp);
-int					ft_display_short(t_buff *buff, int opt_a);
+void					ft_display_prepare(t_buff *buff, t_disp *disp, \
+		int opt_a, size_t *block);
+char					*ft_display_preparestr(t_disp *disp);
+int						ft_display_short(t_buff *buff, int opt_a);
 void					ft_display_usage(void);
-int						ft_getuidlen(int uid);
-int						ft_getgidlen(int gid);
-char					*ft_insertnbr(char *str, int nbr);
-size_t						ft_insert_offset_str(char **str, int dispval, size_t count);
-char					*ft_ls_time(struct stat *stat, char *str);
-void					ft_mode(mode_t st_mode, char mode[12]);
-int						ft_modetype(mode_t st_mode);
-int						ft_nbweight(int nb);
+
+
+int						ft_utils_getgidlen(int gid);
+int						ft_utils_getuidlen(int uid);
+char					*ft_utils_insertnbr(char *str, int nbr);
+void					ft_utils_mode(mode_t st_mode, char mode[12]);
+int						ft_utils_modetype(mode_t st_mode);
+int						ft_utils_nbweight(int nb);
+size_t					ft_utils_pflag_d(char **str, int dispval, \
+		size_t count);
+size_t					ft_utils_pflag_offs(char **str, int dispval, \
+		size_t count);
+size_t					ft_utils_pflag_s(char **str, int dispval, \
+		size_t count);
+void					ft_utils_putblanck(size_t size);
+char					*ft_utils_time(struct stat *stat, char *str);
+
+
+
+size_t					ft_insert_offset_str(char **str, int dispval, \
+		size_t count);
 
 /*
 ** Gestion des display en mode debug
@@ -135,13 +151,8 @@ struct					s_error
 # define ERR_MESS_1 "Erreur d'allocation lors de l'execuion du programme"
 # define ERR_MESS_2 "Erreur de définition de paramettre"
 
-int				ft_error(int err_code);
-int				ft_err_args(t_file *file, int count);
-int				ft_err_basic(void);
-
-
-int				ft_err_opendir(void);
-int				ft_err_openstat(void);
-int				ft_err_readlink(void);
+int						ft_error(int err_code);
+int						ft_err_args(t_file *file, int count);
+int						ft_err_basic(void);
 
 #endif

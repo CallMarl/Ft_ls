@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 16:53:15 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/15 15:00:04 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/17 19:02:57 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,36 +41,9 @@ static size_t		ft_compt_nb_column(void)
 {
 	struct winsize ws;
 
-
 	if (ioctl(STDIN_FILENO, TIOCGWINSZ, &ws) == -1)
 		return (0);
 	return ((size_t)ws.ws_col);
-}
-
-static void			ft_putblanck(size_t size)
-{
-	size_t			i;
-	char			*str;
-
-	i = 0;
-	if (size < 3)
-	{
-		while (i++ < size)
-			ft_putchar(' ');
-	}
-	else
-	{
-		if ((str = ft_strnew_c(size, ' ')))
-		{
-			ft_putstr(str);
-			ft_strdel(&str);
-		}
-		else
-		{
-			while (i++ < size)
-				ft_putchar(' ');
-		}
-	}
 }
 
 static void			ft_display_column_aux(t_buff *buff, size_t max_len, \
@@ -90,7 +63,7 @@ static void			ft_display_column_aux(t_buff *buff, size_t max_len, \
 		if (file->name[0] != '.' || opt_a != 0)
 		{
 			ft_display_file(file, 0);
-			ft_putblanck(max_len - ft_strlen(file->name) + 1);
+			ft_utils_putblanck(max_len - ft_strlen(file->name) + 1);
 			y++;
 		}
 		if (y == nb_file)

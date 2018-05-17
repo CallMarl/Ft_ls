@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 18:26:00 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/11 18:38:39 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/17 16:12:12 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** ft_ls. Si le flag est à un alors il est définit sinon non.
 */
 
-t_param		g_param[] = 
+t_param		g_param[] =
 {
 	{'l', 0},
 	{'1', 0},

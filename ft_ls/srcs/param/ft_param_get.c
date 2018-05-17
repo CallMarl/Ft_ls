@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 12:12:04 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/11 18:34:12 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/17 16:02:11 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 extern t_param		g_param[];
 
 /*
-** Aucun cas d'erreur n'est retourné dans cette fonction, un appel a un 
+** Aucun cas d'erreur n'est retourné dans cette fonction, un appel a un
 ** paramettre qui n'existe pas retournera 0.
 */
 

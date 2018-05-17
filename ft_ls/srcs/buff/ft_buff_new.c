@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 19:12:24 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/16 18:45:59 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/17 17:10:21 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "ft_ls.h"
 
 /*
-** Fonction de rappel, demandé par la libft et la fonction ft_buffinit, 
+** Fonction de rappel, demandé par la libft et la fonction ft_buffinit,
 ** afin de définir la taille d'un élément du buffer.
 */
 
@@ -22,7 +22,6 @@ static size_t		ft_e_size(void)
 {
 	return ((size_t)sizeof(t_file));
 }
-
 
 /*
 ** Insertion d'un nouveau maillon t_list en tete de list et allocation

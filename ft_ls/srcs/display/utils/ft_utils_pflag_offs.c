@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_utils_pflag_offs.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/03 17:07:38 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/17 18:09:16 by pprikazs         ###   ########.fr       */
+/*   Created: 2018/05/17 18:36:43 by pprikazs          #+#    #+#             */
+/*   Updated: 2018/05/17 19:04:37 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "ft_ls.h"
+#include "libft.h"
 
-int			main(int argc, char **argv)
+/*
+** insert un %-s avec une valeur dispval dans str. Par exemple %-10s.
+*/
+
+extern size_t		ft_utils_pflag_offs(char **str, int dispval, \
+		size_t count)
 {
-	int		ret;
+	char			*tmp;
 
-	ret = ft_ls(argc, argv);
-	return (ret);
+	count += ft_strcpy_x(&(*str)[count], "%-");
+	tmp = ft_utils_insertnbr(&(*str)[count], dispval);
+	count += ((size_t)tmp - (size_t)&(*str)[count]);
+	count += ft_strcpy_x(&(*str)[count], "s");
+	return (count);
 }

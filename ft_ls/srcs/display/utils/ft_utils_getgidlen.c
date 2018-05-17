@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_err_openstat.c                                  :+:      :+:    :+:   */
+/*   ft_utils_getgidlen.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/11 17:43:32 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/15 15:48:24 by pprikazs         ###   ########.fr       */
+/*   Created: 2018/05/17 18:16:11 by pprikazs          #+#    #+#             */
+/*   Updated: 2018/05/17 18:17:27 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <errno.h>
-#include <stdio.h>
-#include "libft.h"
+#include <grp.h>
+#include <libft.h>
 
-extern int			ft_err_openstat(void)
+/*
+** Compte le nombre de caractere dans le gid ayant pour valeur gid
+*/
+
+extern int			ft_utils_getgidlen(int gid)
 {
-	char			*str;
+	struct group		*grp;
+	int					len;
 
-	str = "ls";
-	perror(str);
-	ft_putendl(str);
-	return (-1);
+	grp = getgrgid(gid);
+	len = ft_strlen(grp->gr_name);
+	return (len);
 }

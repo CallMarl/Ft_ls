@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_err_opendir.c                                   :+:      :+:    :+:   */
+/*   ft_utils_nbweight.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/11 17:42:01 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/13 16:59:39 by pprikazs         ###   ########.fr       */
+/*   Created: 2018/05/17 18:20:51 by pprikazs          #+#    #+#             */
+/*   Updated: 2018/05/17 18:21:03 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <errno.h>
-#include "libft.h"
+/*
+** Compte le nombre de chiffre dans un nombre
+*/
 
-extern int			ft_err_opendir(void)
+extern int			ft_utils_nbweight(int nb)
 {
-	return (-1);
+	int					i;
+
+	i = 1;
+	while ((nb /= 10) > 0)
+		i++;
+	return (i);
 }

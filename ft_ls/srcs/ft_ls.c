@@ -6,14 +6,13 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:39:35 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/16 19:11:44 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/17 18:09:29 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <sys/types.h>
 #include "libft.h"
 #include "ft_ls.h"
-
 
 /*
 ** Surcouche de la fonction main().
@@ -22,7 +21,7 @@
 
 extern int			ft_ls(int argc, char **argv)
 {
-	int 			ret;
+	int				ret;
 	int				cur;
 	t_list			*buff;
 	char			*str;
@@ -31,7 +30,7 @@ extern int			ft_ls(int argc, char **argv)
 	ret = cur;
 	buff = 0;
 	if (ret > 0)
-	{	
+	{
 		if (cur + 1 < argc)
 			ret = ft_ls_args(&argv[cur], argc - cur, &buff);
 		else

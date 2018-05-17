@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 10:01:17 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/15 20:37:36 by                  ###   ########.fr       */
+/*   Updated: 2018/05/17 19:15:00 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,57 +27,29 @@ static int			ft_count_strlen(t_disp *disp)
 	if (disp->major != 0 || disp->minor != 0)
 	{
 		len += 3;
-		len += (ft_nbweight(disp->major) + 1);
-		len += (ft_nbweight(disp->minor) + 1);
+		len += (ft_utils_nbweight(disp->major) + 1);
+		len += (ft_utils_nbweight(disp->minor) + 1);
 	}
 	else
-		len += (ft_nbweight(disp->size));
-	len += (ft_nbweight(disp->mode));
-	len += (ft_nbweight(disp->nlink));
-	len += (ft_nbweight(disp->uid));
-	len += (ft_nbweight(disp->gid));
+		len += (ft_utils_nbweight(disp->size));
+	len += (ft_utils_nbweight(disp->mode));
+	len += (ft_utils_nbweight(disp->nlink));
+	len += (ft_utils_nbweight(disp->uid));
+	len += (ft_utils_nbweight(disp->gid));
 	return (len);
 }
 
-/*
-** insert un %s avec une valeur dispval dans str. Par exemple %10s.
-*/
-
-static size_t			ft_insert_basic_str(char **str, int dispval, size_t count)
+static void			ft_display_preparestr_aux(t_disp *disp, \
+		size_t *count, char **str)
 {
-	char			*tmp;
-
-	count += ft_strcpy_x(&(*str)[count], "%");
-	tmp = ft_insertnbr(&(*str)[count], dispval);
-	count += ((size_t)tmp - (size_t)&(*str)[count]);
-	count += ft_strcpy_x(&(*str)[count], "s");
-	return (count);
-}
-
-/*
-** insert un %-s avec une valeur dispval dans str. Par exemple %-10s.
-*/
-
-extern size_t			ft_insert_offset_str(char **str, int dispval, size_t count)
-{
-	char			*tmp;
-
-	count += ft_strcpy_x(&(*str)[count], "%-");
-	tmp = ft_insertnbr(&(*str)[count], dispval);
-	count += ((size_t)tmp - (size_t)&(*str)[count]);
-	count += ft_strcpy_x(&(*str)[count], "s");
-	return (count);
-}
-
-static size_t			ft_insert_basic_digit(char **str, int dispval, size_t count)
-{
-	char			*tmp;
-
-	count += ft_strcpy_x(&(*str)[count], "%");
-	tmp = ft_insertnbr(&(*str)[count], dispval);
-	count += ((size_t)tmp - (size_t)&(*str)[count]);
-	count += ft_strcpy_x(&(*str)[count], "d");
-	return (count);
+	if (disp->major != 0 || disp->minor != 0)
+	{
+		*count = ft_utils_pflag_d(str, disp->major + 1, *count);
+		(*count) += ft_strcpy_x(str[*count], ",");
+		*count = ft_utils_pflag_d(str, disp->minor + 1, *count);
+	}
+	else
+		*count = ft_utils_pflag_d(str, disp->size, *count);
 }
 
 /*
@@ -86,32 +58,26 @@ static size_t			ft_insert_basic_digit(char **str, int dispval, size_t count)
 ** "%-s %d %-s  %-s  %d %s"
 ** "%-s %d %-s  %-s  %d,%d %s"
 */
-extern char				*ft_display_preparestr(t_disp *disp)
+
+extern char			*ft_display_preparestr(t_disp *disp)
 {
 	int				str_len;
 	char			*str;
-	size_t				count;
+	size_t			count;
 
 	str_len = ft_count_strlen(disp);
 	if (!(str = ft_strnew(str_len)))
 		return (0);
 	count = 0;
-	count = ft_insert_basic_str(&str, disp->mode, count);
+	count = ft_utils_pflag_s(&str, disp->mode, count);
 	count += ft_strcpy_x(&str[count], " ");
-	count = ft_insert_basic_digit(&str, disp->nlink, count);
+	count = ft_utils_pflag_d(&str, disp->nlink, count);
 	count += ft_strcpy_x(&str[count], " ");
-	count = ft_insert_offset_str(&str, disp->uid, count);
+	count = ft_utils_pflag_offs(&str, disp->uid, count);
 	count += ft_strcpy_x(&str[count], "  ");
-	count = ft_insert_offset_str(&str, disp->gid, count);
+	count = ft_utils_pflag_offs(&str, disp->gid, count);
 	count += ft_strcpy_x(&str[count], "  ");
-	if (disp->major != 0 || disp->minor != 0)
-	{
-		count = ft_insert_basic_digit(&str, disp->major + 1, count);
-		count += ft_strcpy_x(&str[count], ",");
-		count = ft_insert_basic_digit(&str, disp->minor + 1, count);
-	}
-	else
-		count = ft_insert_basic_digit(&str, disp->size, count);
+	ft_display_preparestr_aux(disp, &count, &str);
 	count += ft_strcpy_x(&str[count], " %s ");
 	return (str);
 }

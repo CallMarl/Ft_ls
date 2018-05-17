@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 09:53:54 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/16 20:18:03 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/17 19:24:00 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 #include "libft.h"
 #include "ft_ls.h"
 
-static void			ft_display_mm(char *str, t_file *file, char *time, char *mode)
+static void			ft_display_mm(char *str, t_file *file, \
+		char *time, char *mode)
 {
 	ft_printf(str, \
 			mode, \
@@ -26,11 +27,11 @@ static void			ft_display_mm(char *str, t_file *file, char *time, char *mode)
 			getgrgid(file->stat.st_gid)->gr_name, \
 			(file->stat.st_rdev) ? major(file->stat.st_rdev) : 0, \
 			(file->stat.st_rdev) ? minor(file->stat.st_rdev) : 0, \
-			time
-		);
+			time);
 }
 
-static void			ft_display_classic(char *str, t_file *file, char *time, char *mode)
+static void			ft_display_classic(char *str, t_file *file, \
+		char *time, char *mode)
 {
 	ft_printf(str, \
 			mode, \
@@ -38,14 +39,14 @@ static void			ft_display_classic(char *str, t_file *file, char *time, char *mode
 			getpwuid(file->stat.st_uid)->pw_name, \
 			getgrgid(file->stat.st_gid)->gr_name, \
 			file->stat.st_size, \
-			time
-		);
+			time);
 }
 
-static void			ft_display_long_aux(t_buff *buff, char *str, int mm, int opt_a)
+static void			ft_display_long_aux(t_buff *buff, char *str, \
+		int mm, int opt_a)
 {
 	char			mode[12];
-	char 			*time;
+	char			*time;
 	size_t			i;
 	t_file			*file;
 
@@ -55,9 +56,9 @@ static void			ft_display_long_aux(t_buff *buff, char *str, int mm, int opt_a)
 		file = &((t_file *)buff->buff)[i];
 		if (file->name[0] != '.' || opt_a != 0)
 		{
-			ft_mode(file->stat.st_mode, mode);
+			ft_utils_mode(file->stat.st_mode, mode);
 			time = 0;
-			time = ft_ls_time(&file->stat, time);
+			time = ft_utils_time(&file->stat, time);
 			if (mm != 0)
 				ft_display_mm(str, file, time, mode);
 			else

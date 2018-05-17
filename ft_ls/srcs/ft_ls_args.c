@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:02:45 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/16 12:54:15 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/17 16:11:00 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int			ft_ls_argserr(t_buff *buff, int count)
 /*
 ** Récupère dans le buffer tout les appel à lstat correspondant à un fichier
 ** les range par ordre ascii et les affiche. Elle recupère aussi tout les appel
-** a lstat correcpondant et les place dans le tableau arr_dir par soucie de 
+** a lstat correcpondant et les place dans le tableau arr_dir par soucie de
 ** performance.
 */
 
@@ -71,7 +71,7 @@ static void			ft_ls_argsfile(t_buff *buff, t_file *arr_file, \
 		file = ft_buff_getfile(buff, i);
 		if (file->err == 0 && S_ISDIR(file->stat.st_mode))
 			ft_strcpy(arr_dir[j++].name, file->name);
-		else if (file->err == 0 )
+		else if (file->err == 0)
 		{
 			arr_file[count].stat = file->stat;
 			ft_strcpy(arr_file[count++].name, file->name);
@@ -89,9 +89,9 @@ static void			ft_ls_argsfile(t_buff *buff, t_file *arr_file, \
 */
 
 static int			ft_ls_argsdir(t_list **buff, t_file *arr_dir, \
-		int count, _Bool opt_R)
+		int count, _Bool opt_r)
 {
-	int 			i;
+	int				i;
 	int				ret;
 
 	i = 0;
@@ -101,7 +101,7 @@ static int			ft_ls_argsdir(t_list **buff, t_file *arr_dir, \
 	{
 		ft_display_path(arr_dir[i].name);
 		ret = ft_ls_noargs(ft_strdup(arr_dir[i].name), \
-				buff, opt_R, ft_param_get('a'));
+				buff, opt_r, ft_param_get('a'));
 		i++;
 	}
 	return (ret);
@@ -112,7 +112,7 @@ static int			ft_ls_argsdir(t_list **buff, t_file *arr_dir, \
 ** soit elle appel ft_ls_noargs() dans le cas d'un dossier
 */
 
-static int			ft_ls_argslaunch(t_list **buff, int count[3], int opt_R)
+static int			ft_ls_argslaunch(t_list **buff, int count[3], int opt_r)
 {
 	t_file			*arr_dir;
 	t_file			*arr_file;
@@ -121,7 +121,7 @@ static int			ft_ls_argslaunch(t_list **buff, int count[3], int opt_R)
 
 	if (!(arr_file = (t_file *)ft_memalloc(sizeof(t_file) * (count[1] + 1))))
 		return (ERR_CODE_1);
-	else if (!(arr_dir = (t_file *)ft_memalloc(sizeof(t_file) * (count[2] + 1))))
+	if (!(arr_dir = (t_file *)ft_memalloc(sizeof(t_file) * (count[2] + 1))))
 		return (ERR_CODE_1);
 	i = 0;
 	ret = 1;
@@ -132,7 +132,7 @@ static int			ft_ls_argslaunch(t_list **buff, int count[3], int opt_R)
 		else if (i == 1)
 			ft_ls_argsfile(ft_buff_get(*buff), arr_file, count[i], arr_dir);
 		else
-			ret = ft_ls_argsdir(buff, arr_dir, count[i], opt_R);
+			ret = ft_ls_argsdir(buff, arr_dir, count[i], opt_r);
 		i++;
 	}
 	ft_memdel((void **)&arr_dir);
@@ -141,7 +141,7 @@ static int			ft_ls_argslaunch(t_list **buff, int count[3], int opt_R)
 }
 
 /*
-** Initialisation d'un buffer dans le cas ou des chemin son spécifier en 
+** Initialisation d'un buffer dans le cas ou des chemin son spécifier en
 ** argument de la commande ft_ls.
 */
 

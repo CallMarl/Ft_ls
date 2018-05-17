@@ -6,12 +6,11 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/13 17:46:06 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/15 18:02:16 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/17 19:19:49 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
-#include <sys/types.h>
 #include "libft.h"
 #include "ft_ls.h"
 
@@ -23,22 +22,22 @@ static void				ft_display_prepare_aux(t_disp *disp, t_file *file)
 {
 	int					tmp;
 
-	tmp = ft_nbweight(file->stat.st_nlink);
+	tmp = ft_utils_nbweight(file->stat.st_nlink);
 	disp->nlink = (tmp > disp->nlink) ? tmp : disp->nlink;
-	tmp = ft_getuidlen(file->stat.st_uid);
+	tmp = ft_utils_getuidlen(file->stat.st_uid);
 	disp->uid = (tmp > disp->uid) ? tmp : disp->uid;
-	tmp = ft_getgidlen(file->stat.st_gid);
+	tmp = ft_utils_getgidlen(file->stat.st_gid);
 	disp->gid = (tmp > disp->gid) ? tmp : disp->gid;
 	if (file->stat.st_rdev != 0)
 	{
-		tmp = ft_nbweight(major(file->stat.st_rdev));
+		tmp = ft_utils_nbweight(major(file->stat.st_rdev));
 		disp->major = (tmp > disp->major) ? tmp : disp->major;
-		tmp = ft_nbweight(minor(file->stat.st_rdev));
+		tmp = ft_utils_nbweight(minor(file->stat.st_rdev));
 		disp->minor = (tmp > disp->minor) ? tmp : disp->minor;
 	}
 	else
 	{
-		tmp = ft_nbweight(file->stat.st_size);
+		tmp = ft_utils_nbweight(file->stat.st_size);
 		disp->size = (tmp > disp->size) ? tmp : disp->size;
 	}
 }
