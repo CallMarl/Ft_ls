@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 09:53:54 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/18 12:27:57 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/18 14:18:31 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,18 @@
 static void
 	ft_display_mm(char *str, t_file *file, char *time, char *mode)
 {
+	struct passwd		*pwd;
+	struct group		*grp;
+	char				*uid_str;
+	char				*gid_str;
+
+	uid_str = ((pwd = getpwuid(file->stat.st_uid))) ? pwd->pw_name : 0;
+	gid_str = ((grp = getgrgid(file->stat.st_gid))) ? grp->gr_name : 0;
 	ft_printf(str, \
 			mode, \
 			file->stat.st_nlink, \
-			getpwuid(file->stat.st_uid)->pw_name, \
-			getgrgid(file->stat.st_gid)->gr_name, \
+			uid_str, \
+			gid_str, \
 			(file->stat.st_rdev) ? major(file->stat.st_rdev) : 0, \
 			(file->stat.st_rdev) ? minor(file->stat.st_rdev) : 0, \
 			time);
@@ -33,11 +40,18 @@ static void
 static void
 	ft_display_classic(char *str, t_file *file, char *time, char *mode)
 {
+	struct passwd		*pwd;
+	struct group		*grp;
+	char				*uid_str;
+	char				*gid_str;
+
+	uid_str = ((pwd = getpwuid(file->stat.st_uid))) ? pwd->pw_name : 0;
+	gid_str = ((grp = getgrgid(file->stat.st_gid))) ? grp->gr_name : 0;
 	ft_printf(str, \
 			mode, \
 			file->stat.st_nlink, \
-			getpwuid(file->stat.st_uid)->pw_name, \
-			getgrgid(file->stat.st_gid)->gr_name, \
+			uid_str, \
+			gid_str, \
 			file->stat.st_size, \
 			time);
 }

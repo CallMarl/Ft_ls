@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 18:16:11 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/18 12:22:57 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/18 14:08:18 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ extern int
 	struct group		*grp;
 	int					len;
 
-	grp = getgrgid(gid);
-	len = ft_strlen(grp->gr_name);
+	len = 0;
+	if (!(grp = getgrgid(gid)))
+		return (len);
+	if (grp->gr_name)
+		len = ft_strlen(grp->gr_name);
 	return (len);
 }

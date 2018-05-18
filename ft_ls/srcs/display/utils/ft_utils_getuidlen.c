@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 18:17:32 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/18 12:23:07 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/18 14:08:13 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ extern int
 	struct passwd		*pwd;
 	int					len;
 
-	pwd = getpwuid(uid);
-	len = ft_strlen(pwd->pw_name);
+	len = 0;
+	if (!(pwd = getpwuid(uid)))
+		return (len);
+	if (pwd->pw_name)
+		len = ft_strlen(pwd->pw_name);
 	return (len);
 }
