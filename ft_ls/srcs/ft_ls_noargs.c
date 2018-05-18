@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:04:20 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/17 16:08:33 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/18 11:54:14 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int			ft_ls_subdir(t_list **buff, int opt_r, int opt_a)
 		{
 			if (file->name[0] != '.' || opt_a != 0)
 			{
-				ft_display_path(file->path);
+				ft_display_path1(file->path);
 				ret = ft_ls_noargs(file->path, buff, opt_r, opt_a);
 			}
 			if (ret < 0)

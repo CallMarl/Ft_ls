@@ -6,7 +6,7 @@
 #    By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/03 17:06:17 by pprikazs          #+#    #+#              #
-#    Updated: 2018/05/17 20:02:04 by pprikazs         ###   ########.fr        #
+#    Updated: 2018/05/18 10:52:08 by pprikazs         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = ft_ls
 CC = gcc
 
 DEBUG = no
-FLAGS = -Wall -Wextra -Werror -O3
+FLAGS = -Wall -Wextra -Werror
 
 ifeq ($(DEBUG), yes)
 	FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
@@ -65,7 +65,8 @@ SRCS = ./main.c \
 	   ./srcs/param/ft_param_parse.c \
 	   ./srcs/sort/ft_sort_file.c \
 	   ./srcs/sort/ft_sort_filecmp_c.c \
-	   ./srcs/sort/ft_sort_filecmp_d.c
+	   ./srcs/sort/ft_sort_filecmp_d.c \
+	   ./srcs/sort/ft_sort_timecmp_c.c
 
 OBJ = $(SRCS:./%.c=./%.o)
 	

@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:07:46 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/17 18:41:26 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/18 11:55:33 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int						ft_param_get(char param);
 void					ft_sort_file(t_file *files, size_t size);
 int						ft_sort_filecmp_c(const void *f1, const void *f2);
 int						ft_sort_filecmp_d(const void *f1, const void *f2);
+int						ft_sort_timecmp_c(const void *f1, const void *f2);
 
 /*
 ** Gestion des display
@@ -98,14 +99,13 @@ int						ft_display_column(t_buff *buff, int opt_a);
 void					ft_display_file(t_file *file, int opt_l);
 int						ft_display_long(t_buff *buff, int opt_a);
 int						ft_display_ls(t_buff *buff);
-void					ft_display_path(char *path);
+void					ft_display_path1(char *path);
+void					ft_display_path2(char *path);
 void					ft_display_prepare(t_buff *buff, t_disp *disp, \
 		int opt_a, size_t *block);
 char					*ft_display_preparestr(t_disp *disp);
 int						ft_display_short(t_buff *buff, int opt_a);
 void					ft_display_usage(void);
-
-
 int						ft_utils_getgidlen(int gid);
 int						ft_utils_getuidlen(int uid);
 char					*ft_utils_insertnbr(char *str, int nbr);
@@ -120,11 +120,6 @@ size_t					ft_utils_pflag_s(char **str, int dispval, \
 		size_t count);
 void					ft_utils_putblanck(size_t size);
 char					*ft_utils_time(struct stat *stat, char *str);
-
-
-
-size_t					ft_insert_offset_str(char **str, int dispval, \
-		size_t count);
 
 /*
 ** Gestion des display en mode debug

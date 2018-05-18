@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:02:45 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/17 16:11:00 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/18 12:01:38 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static int			ft_ls_argserr(t_buff *buff, int count)
 	t_file			*arr_err;
 	size_t			i;
 	t_file			*file;
+	int				ret;
 
 	if (!(arr_err = (t_file *)ft_memalloc(sizeof(t_file) * (count))))
 		return (ERR_CODE_1);
@@ -44,8 +45,9 @@ static int			ft_ls_argserr(t_buff *buff, int count)
 		i++;
 	}
 	ft_qsort((void *)arr_err, count, sizeof(t_file), &ft_sort_filecmp_c);
+	ret = (count != 0) ? ft_err_args(arr_err, count) : 1;
 	ft_memdel((void *)&arr_err);
-	return (ft_err_args(arr_err, count));
+	return (ret);
 }
 
 /*
@@ -81,7 +83,8 @@ static void			ft_ls_argsfile(t_buff *buff, t_file *arr_file, \
 	ft_sort_file(arr_file, count);
 	tmp.buff = (void *)arr_file;
 	tmp.cr = count;
-	ft_display_ls(&tmp);
+	if (count != 0)
+		ft_display_ls(&tmp);
 }
 
 /*
@@ -99,7 +102,10 @@ static int			ft_ls_argsdir(t_list **buff, t_file *arr_dir, \
 	ft_sort_file(arr_dir, count);
 	while (i < count && ret >= 0)
 	{
-		ft_display_path(arr_dir[i].name);
+		if (i == 0)
+			ft_display_path2(arr_dir[i].name);
+		else
+			ft_display_path1(arr_dir[i].name);
 		ret = ft_ls_noargs(ft_strdup(arr_dir[i].name), \
 				buff, opt_r, ft_param_get('a'));
 		i++;

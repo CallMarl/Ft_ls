@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 18:21:59 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/17 18:27:12 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/18 11:26:43 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ extern char			*ft_utils_time(struct stat *stat, char *str)
 	file = stat->st_mtimespec.tv_sec;
 	str = 0;
 	str = ctime(&file);
-	if (current - file < 15768000 && current - file > 15768000)
+	if (current - file > -15768000 && current - file < 15768000)
 		str = ft_strsub(str, 4, 12);
 	else
 	{

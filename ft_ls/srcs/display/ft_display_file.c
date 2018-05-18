@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/11 19:31:18 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/17 19:10:06 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/18 10:48:16 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ extern void			ft_display_file(t_file *file, int opt_l)
 {
 	if (S_ISCHR(file->stat.st_mode))
 		ft_putcolor_8("33", file->name);
-	else if (S_ISCHR(file->stat.st_mode))
+	else if (S_ISDIR(file->stat.st_mode))
 		ft_putcolor_24("000;255;255", file->name);
 	else if (S_ISBLK(file->stat.st_mode))
 		ft_putcolor_24("001;049;180", file->name);
