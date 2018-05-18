@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 16:53:15 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/17 19:02:57 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/18 12:19:11 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,17 @@ static size_t		ft_compt_nb_column(void)
 	return ((size_t)ws.ws_col);
 }
 
+static inline void	ft_display_column_update(size_t *y, size_t nb_file, \
+		size_t *z)
+{
+	if (*y == nb_file)
+	{
+		ft_putchar('\n');
+		*z = *y;
+		*y = 0;
+	}
+}
+
 static void			ft_display_column_aux(t_buff *buff, size_t max_len, \
 		size_t nb_file, int opt_a)
 {
@@ -66,12 +77,7 @@ static void			ft_display_column_aux(t_buff *buff, size_t max_len, \
 			ft_utils_putblanck(max_len - ft_strlen(file->name) + 1);
 			y++;
 		}
-		if (y == nb_file)
-		{
-			ft_putchar('\n');
-			z = y;
-			y = 0;
-		}
+		ft_display_column_update(&y, nb_file, &z);
 		i++;
 	}
 	if (z != nb_file)
