@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 09:53:54 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/18 14:18:31 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/18 15:20:57 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@ static void
 	char				*uid_str;
 	char				*gid_str;
 
-	uid_str = ((pwd = getpwuid(file->stat.st_uid))) ? pwd->pw_name : 0;
-	gid_str = ((grp = getgrgid(file->stat.st_gid))) ? grp->gr_name : 0;
+	pwd = getpwuid(file->stat.st_uid);
+	uid_str = (pwd) ? pwd->pw_name : 0;
+	grp = getgrgid(file->stat.st_gid);
+	gid_str = (grp) ? grp->gr_name : 0;
 	ft_printf(str, \
 			mode, \
 			file->stat.st_nlink, \
@@ -45,8 +47,10 @@ static void
 	char				*uid_str;
 	char				*gid_str;
 
-	uid_str = ((pwd = getpwuid(file->stat.st_uid))) ? pwd->pw_name : 0;
-	gid_str = ((grp = getgrgid(file->stat.st_gid))) ? grp->gr_name : 0;
+	pwd = getpwuid(file->stat.st_uid);
+	uid_str = (pwd) ? pwd->pw_name : 0;
+	grp = getgrgid(file->stat.st_gid);
+	gid_str = (grp) ? grp->gr_name : 0;
 	ft_printf(str, \
 			mode, \
 			file->stat.st_nlink, \
