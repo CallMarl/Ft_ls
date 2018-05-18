@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 11:39:44 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/17 16:01:52 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/18 12:53:34 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ extern t_param		g_param[];
 ** sinon le paramettre n'existe pas.
 */
 
-static int			ft_param_insert(char param, int val)
+static int
+	ft_param_insert(char param, int val)
 {
 	int				i;
 
@@ -40,7 +41,8 @@ static int			ft_param_insert(char param, int val)
 	return (ERR_CODE_2);
 }
 
-static int			ft_param_read(char *param, int call)
+static int
+	ft_param_read(char *param, int call)
 {
 	int				i;
 	int				ret;
@@ -61,7 +63,8 @@ static int			ft_param_read(char *param, int call)
 ** argument de la commande et initialise le tableau g_param.
 */
 
-extern int			ft_param_parse(int argc, char **argv)
+extern int
+	ft_param_parse(int argc, char **argv)
 {
 	int				i;
 	int				ret;

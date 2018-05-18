@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 18:36:43 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/17 19:04:37 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/18 12:24:04 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 ** insert un %-s avec une valeur dispval dans str. Par exemple %-10s.
 */
 
-extern size_t		ft_utils_pflag_offs(char **str, int dispval, \
-		size_t count)
+extern size_t
+	ft_utils_pflag_offs(char **str, int dispval, size_t count)
 {
 	char			*tmp;
 

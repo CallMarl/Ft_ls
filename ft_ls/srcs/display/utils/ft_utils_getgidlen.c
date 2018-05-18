@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 18:16:11 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/17 18:17:27 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/18 12:22:57 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 ** Compte le nombre de caractere dans le gid ayant pour valeur gid
 */
 
-extern int			ft_utils_getgidlen(int gid)
+extern int
+	ft_utils_getgidlen(int gid)
 {
 	struct group		*grp;
 	int					len;

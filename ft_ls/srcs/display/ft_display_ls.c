@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/11 18:13:21 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/15 18:01:04 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/18 12:28:08 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 ** Fonction de lancement de l'affichage de ft_ls
 */
 
-extern int			ft_display_ls(t_buff *buff)
+extern int
+	ft_display_ls(t_buff *buff)
 {
 	int				opt_l;
 	int				opt_a;

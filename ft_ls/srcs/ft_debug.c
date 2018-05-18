@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:39:40 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/17 16:52:10 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/18 12:54:32 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 extern t_param		g_param[];
 
-extern void			ft_debug_strarr(char **strarr)
+extern void
+	ft_debug_strarr(char **strarr)
 {
 	int				i;
 
@@ -28,7 +29,8 @@ extern void			ft_debug_strarr(char **strarr)
 ** Fonction qui affiche le contenu du buffer
 */
 
-extern void			ft_debug_buff(t_buff *buff)
+extern void
+	ft_debug_buff(t_buff *buff)
 {
 	size_t			i;
 	t_file			*file;
@@ -55,7 +57,8 @@ extern void			ft_debug_buff(t_buff *buff)
 ** Fonction de debug de la structur disp
 */
 
-extern void			ft_debug_disp(t_disp *disp)
+extern void
+	ft_debug_disp(t_disp *disp)
 {
 	ft_putstr("mode len : ");
 	ft_putnbr(disp->mode);
@@ -79,7 +82,8 @@ extern void			ft_debug_disp(t_disp *disp)
 ** ft_ls.
 */
 
-extern void			ft_debug_param(void)
+extern void
+	ft_debug_param(void)
 {
 	int				i;
 

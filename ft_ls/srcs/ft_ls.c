@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:39:35 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/17 18:09:29 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/18 12:59:05 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 ** Fonction de lancement du programme ft_ls.
 */
 
-extern int			ft_ls(int argc, char **argv)
+extern int
+	ft_ls(int argc, char **argv)
 {
 	int				ret;
 	int				cur;

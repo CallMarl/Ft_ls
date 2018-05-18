@@ -6,14 +6,15 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 17:17:28 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/16 20:20:29 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/18 12:21:58 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_ls.h"
 
-extern void			ft_buff_delelem(void *elem)
+extern void
+	ft_buff_delelem(void *elem)
 {
 	t_list			*list;
 	t_buff			*tmp;

@@ -6,14 +6,15 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 12:13:26 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/18 10:40:07 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/18 12:53:46 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_ls.h"
 
-extern void			ft_sort_file(t_file *files, size_t size)
+extern void
+	ft_sort_file(t_file *files, size_t size)
 {
 	if (ft_param_get('r'))
 		ft_qsort((void *)files, size, sizeof(t_file), &ft_sort_filecmp_d);

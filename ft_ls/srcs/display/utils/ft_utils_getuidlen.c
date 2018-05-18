@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 18:17:32 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/17 18:18:27 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/18 12:23:07 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 ** Compte le nombre de caractere dans l'uid ayant pour valeur uid
 */
 
-extern int			ft_utils_getuidlen(int uid)
+extern int
+	ft_utils_getuidlen(int uid)
 {
 	struct passwd		*pwd;
 	int					len;

@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 09:53:54 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/17 19:24:00 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/18 12:27:57 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 #include "libft.h"
 #include "ft_ls.h"
 
-static void			ft_display_mm(char *str, t_file *file, \
-		char *time, char *mode)
+static void
+	ft_display_mm(char *str, t_file *file, char *time, char *mode)
 {
 	ft_printf(str, \
 			mode, \
@@ -30,8 +30,8 @@ static void			ft_display_mm(char *str, t_file *file, \
 			time);
 }
 
-static void			ft_display_classic(char *str, t_file *file, \
-		char *time, char *mode)
+static void
+	ft_display_classic(char *str, t_file *file, char *time, char *mode)
 {
 	ft_printf(str, \
 			mode, \
@@ -42,8 +42,8 @@ static void			ft_display_classic(char *str, t_file *file, \
 			time);
 }
 
-static void			ft_display_long_aux(t_buff *buff, char *str, \
-		int mm, int opt_a)
+static void
+	ft_display_long_aux(t_buff *buff, char *str, int mm, int opt_a)
 {
 	char			mode[12];
 	char			*time;
@@ -75,7 +75,8 @@ static void			ft_display_long_aux(t_buff *buff, char *str, \
 ** Structure qui indique la largeur des colone pour chacun des précision
 */
 
-static	void		ft_disp_init(t_disp *disp)
+static void
+	ft_disp_init(t_disp *disp)
 {
 	disp->mode = 11;
 	disp->nlink = 0;
@@ -90,7 +91,8 @@ static	void		ft_disp_init(t_disp *disp)
 ** Affichage basic des dossier comme avec ls -1
 */
 
-extern int			ft_display_long(t_buff *buff, int opt_a)
+extern int
+	ft_display_long(t_buff *buff, int opt_a)
 {
 	t_disp			disp;
 	char			*str;

@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 18:38:17 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/17 19:04:28 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/18 12:23:52 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 ** insert un %d avec une valeur dispval dans str. Par exemple %10d.
 */
 
-extern size_t		ft_utils_pflag_d(char **str, int dispval, \
-		size_t count)
+extern size_t
+	ft_utils_pflag_d(char **str, int dispval, size_t count)
 {
 	char		*tmp;
 

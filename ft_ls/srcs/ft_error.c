@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:39:31 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/18 11:45:12 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/18 12:58:53 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 #include "libft.h"
 #include "ft_ls.h"
 
-extern int			ft_err_basic(void)
+extern int
+	ft_err_basic(void)
 {
 	char			*ls;
 
@@ -24,7 +25,8 @@ extern int			ft_err_basic(void)
 	return (0);
 }
 
-extern int			ft_err_args(t_file *file, int count)
+extern int
+	ft_err_args(t_file *file, int count)
 {
 	int				i;
 
@@ -39,7 +41,8 @@ extern int			ft_err_args(t_file *file, int count)
 	return (0);
 }
 
-static t_error		*ft_init_error1(void)
+static t_error
+	*ft_init_error1(void)
 {
 	static t_error		error_list[] = {
 		{ ERR_CODE_1, ERR_MESS_1 },
@@ -54,14 +57,24 @@ static t_error		*ft_init_error1(void)
 ** Fonction de gestion des erreurs.
 */
 
-extern int			ft_error(int err_code)
+extern int
+	ft_error(int err_code)
 {
 	t_error			*error_list;
+	int				i;
 
 	error_list = ft_init_error1();
 	if (err_code == ERR_CODE_2)
 		ft_display_usage();
-	(void)error_list;
-	(void)err_code;
+	i = 0;
+	while (error_list[i].err_code != 0)
+	{
+		if (err_code == error_list[i].err_code)
+		{
+			ft_putendl(error_list[i].err_message);
+			break ;
+		}
+		i++;
+	}
 	return (0);
 }

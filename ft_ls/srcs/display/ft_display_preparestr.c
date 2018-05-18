@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 10:01:17 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/17 19:15:00 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/18 12:29:10 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 ** un minor ou un major sont définit.
 */
 
-static int			ft_count_strlen(t_disp *disp)
+static int
+	ft_count_strlen(t_disp *disp)
 {
 	int				len;
 
@@ -39,8 +40,8 @@ static int			ft_count_strlen(t_disp *disp)
 	return (len);
 }
 
-static void			ft_display_preparestr_aux(t_disp *disp, \
-		size_t *count, char **str)
+static void
+	ft_display_preparestr_aux(t_disp *disp, size_t *count, char **str)
 {
 	if (disp->major != 0 || disp->minor != 0)
 	{
@@ -59,7 +60,8 @@ static void			ft_display_preparestr_aux(t_disp *disp, \
 ** "%-s %d %-s  %-s  %d,%d %s"
 */
 
-extern char			*ft_display_preparestr(t_disp *disp)
+extern char
+	*ft_display_preparestr(t_disp *disp)
 {
 	int				str_len;
 	char			*str;

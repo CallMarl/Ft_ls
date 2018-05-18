@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/11 19:31:18 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/18 10:48:16 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/18 12:26:19 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 #include "libft.h"
 #include "ft_ls.h"
 
-static void			ft_display_link(char *path)
+static void
+	ft_display_link(char *path)
 {
 	char			link[LS_BUFFSIZE];
 	size_t			last;
@@ -30,7 +31,8 @@ static void			ft_display_link(char *path)
 	}
 }
 
-extern void			ft_display_file(t_file *file, int opt_l)
+extern void
+	ft_display_file(t_file *file, int opt_l)
 {
 	if (S_ISCHR(file->stat.st_mode))
 		ft_putcolor_8("33", file->name);

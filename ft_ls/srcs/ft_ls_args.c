@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:02:45 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/18 12:01:38 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/18 13:00:49 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@
 ** les range par ordre ascii. Et affiche les erreurs
 */
 
-static int			ft_ls_argserr(t_buff *buff, int count)
+static int
+	ft_ls_argserr(t_buff *buff, int count)
 {
 	t_file			*arr_err;
 	size_t			i;
@@ -57,8 +58,8 @@ static int			ft_ls_argserr(t_buff *buff, int count)
 ** performance.
 */
 
-static void			ft_ls_argsfile(t_buff *buff, t_file *arr_file, \
-		int count, t_file *arr_dir)
+static void
+	ft_ls_argsfile(t_buff *buff, t_file *arr_file, int count, t_file *arr_dir)
 {
 	size_t			i;
 	size_t			j;
@@ -91,8 +92,8 @@ static void			ft_ls_argsfile(t_buff *buff, t_file *arr_file, \
 ** Fait un appel à ft_ls_noarg pour chacun des dossier du tableau arr_dir
 */
 
-static int			ft_ls_argsdir(t_list **buff, t_file *arr_dir, \
-		int count, _Bool opt_r)
+static int
+	ft_ls_argsdir(t_list **buff, t_file *arr_dir, int count, _Bool opt_r)
 {
 	int				i;
 	int				ret;
@@ -118,7 +119,8 @@ static int			ft_ls_argsdir(t_list **buff, t_file *arr_dir, \
 ** soit elle appel ft_ls_noargs() dans le cas d'un dossier
 */
 
-static int			ft_ls_argslaunch(t_list **buff, int count[3], int opt_r)
+static int
+	ft_ls_argslaunch(t_list **buff, int count[3], int opt_r)
 {
 	t_file			*arr_dir;
 	t_file			*arr_file;
@@ -151,7 +153,8 @@ static int			ft_ls_argslaunch(t_list **buff, int count[3], int opt_r)
 ** argument de la commande ft_ls.
 */
 
-extern int			ft_ls_args(char **argv, int size, t_list **buff)
+extern int
+	ft_ls_args(char **argv, int size, t_list **buff)
 {
 	int				i;
 	int				count[3];

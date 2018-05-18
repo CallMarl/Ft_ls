@@ -6,13 +6,14 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 18:26:24 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/17 18:26:55 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/18 12:24:24 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-extern void			ft_utils_putblanck(size_t size)
+extern void
+	ft_utils_putblanck(size_t size)
 {
 	size_t			i;
 	char			*str;

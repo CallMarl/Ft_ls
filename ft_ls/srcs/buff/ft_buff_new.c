@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 19:12:24 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/17 17:10:21 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/18 12:22:40 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 ** afin de définir la taille d'un élément du buffer.
 */
 
-static size_t		ft_e_size(void)
+static size_t
+	ft_e_size(void)
 {
 	return ((size_t)sizeof(t_file));
 }
@@ -28,7 +29,8 @@ static size_t		ft_e_size(void)
 ** du buffer. Ou nouveaux buffer.
 */
 
-extern int			ft_buff_new(t_list **list, size_t b_size)
+extern int
+	ft_buff_new(t_list **list, size_t b_size)
 {
 	t_buff			buff;
 

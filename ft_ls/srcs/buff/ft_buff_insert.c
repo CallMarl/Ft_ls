@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 12:33:19 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/11 15:02:09 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/18 12:22:26 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 ** au buffer l'element
 */
 
-extern int			ft_buff_insert(t_list **list, t_file *elem, size_t b_size)
+extern int
+	ft_buff_insert(t_list **list, t_file *elem, size_t b_size)
 {
 	int				ret;
 	int				i;

@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 18:20:51 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/17 18:21:03 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/18 12:23:39 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 ** Compte le nombre de chiffre dans un nombre
 */
 
-extern int			ft_utils_nbweight(int nb)
+extern int
+	ft_utils_nbweight(int nb)
 {
 	int					i;
 

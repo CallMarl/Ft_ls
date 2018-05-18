@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/13 17:46:06 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/17 19:19:49 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/18 12:28:43 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 ** Fonction auxiliaire a ft_display_prpepare.
 */
 
-static void				ft_display_prepare_aux(t_disp *disp, t_file *file)
+static void
+	ft_display_prepare_aux(t_disp *disp, t_file *file)
 {
 	int					tmp;
 
@@ -47,8 +48,8 @@ static void				ft_display_prepare_aux(t_disp *disp, t_file *file)
 ** éléments, sauvegarde dans disp la plus grande valeur trouvé.
 */
 
-extern void				ft_display_prepare(t_buff *buff, t_disp *disp, \
-		int opt_a, size_t *block)
+extern void
+	ft_display_prepare(t_buff *buff, t_disp *disp, int opt_a, size_t *block)
 {
 	size_t				i;
 	t_file				*file;

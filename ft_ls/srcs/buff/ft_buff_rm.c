@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 14:09:24 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/07 14:39:03 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/18 12:22:48 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 ** chacun des élement de la list chainé.
 */
 
-extern void			ft_buff_rm(void *elem, size_t size)
+extern void
+	ft_buff_rm(void *elem, size_t size)
 {
 	ft_buffdel((t_buff *)elem);
 	elem = 0;

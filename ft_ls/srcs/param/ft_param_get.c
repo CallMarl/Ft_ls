@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 12:12:04 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/17 16:02:11 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/18 13:02:09 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ extern t_param		g_param[];
 ** paramettre qui n'existe pas retournera 0.
 */
 
-extern int			ft_param_get(char param)
+extern int
+	ft_param_get(char param)
 {
 	int				i;
 

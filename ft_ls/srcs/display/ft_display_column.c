@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 16:53:15 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/18 12:19:11 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/18 12:26:01 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 #include "libft.h"
 #include "ft_ls.h"
 
-static size_t		ft_display_getmaxlen(t_buff *buff)
+static size_t
+	ft_display_getmaxlen(t_buff *buff)
 {
 	size_t			i;
 	size_t			len;
@@ -37,7 +38,8 @@ static size_t		ft_display_getmaxlen(t_buff *buff)
 	return (max_len);
 }
 
-static size_t		ft_compt_nb_column(void)
+static size_t
+	ft_compt_nb_column(void)
 {
 	struct winsize ws;
 
@@ -46,8 +48,8 @@ static size_t		ft_compt_nb_column(void)
 	return ((size_t)ws.ws_col);
 }
 
-static inline void	ft_display_column_update(size_t *y, size_t nb_file, \
-		size_t *z)
+static inline void
+	ft_display_column_update(size_t *y, size_t nb_file, size_t *z)
 {
 	if (*y == nb_file)
 	{
@@ -57,8 +59,9 @@ static inline void	ft_display_column_update(size_t *y, size_t nb_file, \
 	}
 }
 
-static void			ft_display_column_aux(t_buff *buff, size_t max_len, \
-		size_t nb_file, int opt_a)
+static void
+	ft_display_column_aux(t_buff *buff, size_t max_len, size_t nb_file, \
+			int opt_a)
 {
 	size_t			i;
 	size_t			y;
@@ -88,7 +91,8 @@ static void			ft_display_column_aux(t_buff *buff, size_t max_len, \
 ** Bonus display fonction
 */
 
-extern int			ft_display_column(t_buff *buff, int opt_a)
+extern int
+	ft_display_column(t_buff *buff, int opt_a)
 {
 	size_t			max_len;
 	size_t			tmp;

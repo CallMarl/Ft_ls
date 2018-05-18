@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 18:23:22 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/17 19:04:12 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/18 12:23:22 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 #include "libft.h"
 #include "ft_ls.h"
 
-extern void			ft_utils_mode(mode_t st_mode, char mode[12])
+extern void
+	ft_utils_mode(mode_t st_mode, char mode[12])
 {
 	char			*mode_type;
 	int				count;

@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 18:19:38 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/18 11:26:46 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/18 12:23:30 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 ** Return a value for the type mode
 */
 
-extern int			ft_utils_modetype(mode_t st_mode)
+extern int
+	ft_utils_modetype(mode_t st_mode)
 {
 	if (S_ISFIFO(st_mode))
 		return (0);

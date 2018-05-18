@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 18:18:32 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/17 18:19:22 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/18 12:23:15 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 ** Insert un nombre dans un chaine de caractere
 */
 
-extern char			*ft_utils_insertnbr(char *str, int nbr)
+extern char
+	*ft_utils_insertnbr(char *str, int nbr)
 {
 	int size;
 	int tmp;
