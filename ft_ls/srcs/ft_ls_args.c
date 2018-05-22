@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:02:45 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/18 13:00:49 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/22 17:01:32 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,11 @@ static void
 	while (i < buff->cr)
 	{
 		file = ft_buff_getfile(buff, i);
-		if (file->err == 0 && S_ISDIR(file->stat.st_mode))
+		ft_putstr(file->name);
+		if (file->err == 0 && (S_ISDIR(file->stat.st_mode)
+				|| (S_ISLNK(file->stat.st_mode)
+					&& (char *)file->name != 0
+					&& file->name[ft_strlen(file->name) - 1] == '/')))
 			ft_strcpy(arr_dir[j++].name, file->name);
 		else if (file->err == 0)
 		{

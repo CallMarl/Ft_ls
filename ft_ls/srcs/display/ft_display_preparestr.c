@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 10:01:17 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/18 12:29:10 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/22 17:08:40 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,9 @@ static void
 {
 	if (disp->major != 0 || disp->minor != 0)
 	{
+		ft_putendl("\ncoucou");
 		*count = ft_utils_pflag_d(str, disp->major + 1, *count);
-		(*count) += ft_strcpy_x(str[*count], ",");
+		(*count) += ft_strcpy_x(&(*str)[*count], ",");
 		*count = ft_utils_pflag_d(str, disp->minor + 1, *count);
 	}
 	else
@@ -80,6 +81,6 @@ extern char
 	count = ft_utils_pflag_offs(&str, disp->gid, count);
 	count += ft_strcpy_x(&str[count], "  ");
 	ft_display_preparestr_aux(disp, &count, &str);
-	count += ft_strcpy_x(&str[count], " %s ");
+	count += ft_strcpy_x(&str[count], " %12s ");
 	return (str);
 }

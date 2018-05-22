@@ -6,12 +6,13 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 18:17:32 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/18 14:08:13 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/22 16:43:13 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pwd.h>
 #include "libft.h"
+#include "ft_ls.h"
 
 /*
 ** Compte le nombre de caractere dans l'uid ayant pour valeur uid
@@ -25,7 +26,7 @@ extern int
 
 	len = 0;
 	if (!(pwd = getpwuid(uid)))
-		return (len);
+		return (ft_utils_nbweight(uid));
 	if (pwd->pw_name)
 		len = ft_strlen(pwd->pw_name);
 	return (len);

@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 09:53:54 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/18 15:20:57 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/22 16:52:13 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ static void
 	char				*gid_str;
 
 	pwd = getpwuid(file->stat.st_uid);
-	uid_str = (pwd) ? pwd->pw_name : 0;
+	uid_str = (pwd) ? pwd->pw_name : ft_itoa(file->stat.st_uid);
 	grp = getgrgid(file->stat.st_gid);
-	gid_str = (grp) ? grp->gr_name : 0;
+	gid_str = (grp) ? grp->gr_name : ft_itoa(file->stat.st_gid);
 	ft_printf(str, \
 			mode, \
 			file->stat.st_nlink, \
@@ -37,6 +37,10 @@ static void
 			(file->stat.st_rdev) ? major(file->stat.st_rdev) : 0, \
 			(file->stat.st_rdev) ? minor(file->stat.st_rdev) : 0, \
 			time);
+	if (pwd == 0)
+		ft_strdel(&uid_str);
+	if (grp == 0)
+		ft_strdel(&gid_str);
 }
 
 static void
@@ -48,9 +52,9 @@ static void
 	char				*gid_str;
 
 	pwd = getpwuid(file->stat.st_uid);
-	uid_str = (pwd) ? pwd->pw_name : 0;
+	uid_str = (pwd) ? pwd->pw_name : ft_itoa(file->stat.st_uid);
 	grp = getgrgid(file->stat.st_gid);
-	gid_str = (grp) ? grp->gr_name : 0;
+	gid_str = (grp) ? grp->gr_name : ft_itoa(file->stat.st_gid);
 	ft_printf(str, \
 			mode, \
 			file->stat.st_nlink, \
@@ -58,6 +62,10 @@ static void
 			gid_str, \
 			file->stat.st_size, \
 			time);
+	if (pwd == 0)
+		ft_strdel(&uid_str);
+	if (grp == 0)
+		ft_strdel(&gid_str);
 }
 
 static void
