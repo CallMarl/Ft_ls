@@ -16,5 +16,6 @@ echo "Desinisialisation des liens..."
 
 rm -f $root/ft_ls/libs/libft.a
 rm -rf $root/ft_ls/libs
+rm -f $rott/ft_ls/includes/libft.h
 
 echo "Désinitialisation finit..."
