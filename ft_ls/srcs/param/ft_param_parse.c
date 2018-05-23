@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 11:39:44 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/23 09:13:07 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/23 09:32:26 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ static int
 		if (param == g_param[i].key)
 		{
 			g_param[i].val = val;
+			if (g_param[i].key == 'f')
+				g_param[i + 1].val = val;
 			return (1);
 		}
 		i++;

@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/11 19:31:18 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/23 09:12:23 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/23 09:25:25 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void
 	char			link[LS_BUFFSIZE];
 	size_t			last;
 
-	if (ft_param_get('H') != 0)
+	if (ft_param_get('h') == 0)
 	{
 		ft_putstr(" -> ");
 		if (!(last = readlink(path, link, LS_BUFFSIZE)))

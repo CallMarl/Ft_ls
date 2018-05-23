@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:04:20 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/23 09:13:46 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/23 09:23:09 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,8 +118,8 @@ extern int
 	else
 	{
 		ft_strcpy(file.name, path);
-		ft_display_file(&file, ft_param_get('l'));
-		ft_putchar('\n');
+		ft_buff_insert(buff, &file, LS_BUFFSIZE);
+		ft_display_ls((t_buff *)(*buff)->content);
 		ft_lstremove(buff, 0, &ft_buff_delelem);
 	}
 	return (ret);
