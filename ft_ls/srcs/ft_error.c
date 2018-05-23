@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:39:31 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/18 12:58:53 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/23 09:13:29 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,18 @@ extern int
 	error_list = ft_init_error1();
 	if (err_code == ERR_CODE_2)
 		ft_display_usage();
-	i = 0;
-	while (error_list[i].err_code != 0)
+	else
 	{
-		if (err_code == error_list[i].err_code)
+		i = 0;
+		while (error_list[i].err_code != 0)
 		{
-			ft_putendl(error_list[i].err_message);
-			break ;
+			if (err_code == error_list[i].err_code)
+			{
+				ft_putendl(error_list[i].err_message);
+				break ;
+			}
+			i++;
 		}
-		i++;
 	}
 	return (0);
 }

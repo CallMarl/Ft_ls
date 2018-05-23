@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:04:20 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/22 16:25:51 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/23 09:13:46 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,14 +113,14 @@ extern int
 		return (ERR_CODE_1);
 	else if (lstat(path, &(file.stat)))
 		ret = ft_err_basic();
-	else if (S_ISDIR(file.stat.st_mode) || S_ISLNK(file.stat.st_mode))
+	else if (S_ISDIR(file.stat.st_mode))
 		ret = ft_ls_noargs_aux(path, buff, opt_r, opt_a);
 	else
 	{
-		ft_lstremove(buff, 0, &ft_buff_delelem);
 		ft_strcpy(file.name, path);
 		ft_display_file(&file, ft_param_get('l'));
 		ft_putchar('\n');
+		ft_lstremove(buff, 0, &ft_buff_delelem);
 	}
 	return (ret);
 }

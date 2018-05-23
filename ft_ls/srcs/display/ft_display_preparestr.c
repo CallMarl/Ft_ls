@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 10:01:17 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/22 17:08:40 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/23 09:12:48 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int
 {
 	int				len;
 
-	len = 23;
+	len = 26;
 	if (disp->major != 0 || disp->minor != 0)
 	{
 		len += 3;
@@ -81,6 +81,9 @@ extern char
 	count = ft_utils_pflag_offs(&str, disp->gid, count);
 	count += ft_strcpy_x(&str[count], "  ");
 	ft_display_preparestr_aux(disp, &count, &str);
-	count += ft_strcpy_x(&str[count], " %12s ");
+	if (ft_param_get('T'))
+		count += ft_strcpy_x(&str[count], " %24s ");
+	else
+		count += ft_strcpy_x(&str[count], " %-12s ");
 	return (str);
 }

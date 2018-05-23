@@ -6,7 +6,7 @@
 #    By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/03 17:06:17 by pprikazs          #+#    #+#              #
-#    Updated: 2018/05/18 10:52:08 by pprikazs         ###   ########.fr        #
+#    Updated: 2018/05/23 08:36:06 by pprikazs         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,6 +66,7 @@ SRCS = ./main.c \
 	   ./srcs/sort/ft_sort_file.c \
 	   ./srcs/sort/ft_sort_filecmp_c.c \
 	   ./srcs/sort/ft_sort_filecmp_d.c \
+	   ./srcs/sort/ft_sort_sizecmp_c.c \
 	   ./srcs/sort/ft_sort_timecmp_c.c
 
 OBJ = $(SRCS:./%.c=./%.o)

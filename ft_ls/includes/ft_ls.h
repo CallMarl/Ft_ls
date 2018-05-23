@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:07:46 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/18 11:55:33 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/23 08:44:00 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int						ft_param_get(char param);
 void					ft_sort_file(t_file *files, size_t size);
 int						ft_sort_filecmp_c(const void *f1, const void *f2);
 int						ft_sort_filecmp_d(const void *f1, const void *f2);
+int						ft_sort_sizecmp_c(const void *f1, const void *f2);
 int						ft_sort_timecmp_c(const void *f1, const void *f2);
 
 /*

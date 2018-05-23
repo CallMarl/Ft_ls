@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/11 19:31:18 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/18 12:26:19 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/23 09:12:23 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,16 @@ static void
 	char			link[LS_BUFFSIZE];
 	size_t			last;
 
-	ft_putstr(" -> ");
-	if (!(last = readlink(path, link, LS_BUFFSIZE)))
-		ft_err_basic();
-	else
+	if (ft_param_get('H') != 0)
 	{
-		link[last] = '\0';
-		ft_putstr(link);
+		ft_putstr(" -> ");
+		if (!(last = readlink(path, link, LS_BUFFSIZE)))
+			ft_err_basic();
+		else
+		{
+			link[last] = '\0';
+			ft_putstr(link);
+		}
 	}
 }
 

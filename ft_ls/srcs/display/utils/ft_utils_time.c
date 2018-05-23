@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 18:21:59 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/18 12:24:44 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/23 08:57:50 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ extern char
 	file = stat->st_mtimespec.tv_sec;
 	str = 0;
 	str = ctime(&file);
-	if (current - file > -15768000 && current - file < 15768000)
+	if (ft_param_get('T') != 0)
+		str = ft_strsub(str, 0, 24);
+	else if (current - file > -15768000 && current - file < 15768000)
 		str = ft_strsub(str, 4, 12);
 	else
 	{
@@ -56,7 +58,9 @@ extern char
 	file = stat->st_mtim.tv_sec;
 	str = 0;
 	str = ctime(&file);
-	if (current - file < 15768000 && current - file > 15768000)
+	if (ft_param_get('T') != 0)
+		str = ft_strsub(str, 0, 24);
+	else if (current - file < 15768000 && current - file > 15768000)
 		str = ft_strsub(str, 4, 12);
 	else
 	{
