@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:04:20 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/23 09:23:09 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/27 14:53:16 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static int
 		ft_ls_set_file(path, buff, &file, ndetail);
 	ft_sort_file((t_file *)ft_buff_get(*buff)->buff, ft_buff_get(*buff)->cr);
 	if (ret > 0)
-		ret = ft_display_ls((t_buff *)(*buff)->content);
+		ret = ft_display_ls((t_buff *)(*buff)->content, 1);
 	if (ret >= 0 && opt_r > 0)
 		ret = ft_ls_subdir(buff, opt_r, opt_a);
 	ft_lstremove(buff, 0, &ft_buff_delelem);
@@ -119,7 +119,7 @@ extern int
 	{
 		ft_strcpy(file.name, path);
 		ft_buff_insert(buff, &file, LS_BUFFSIZE);
-		ft_display_ls((t_buff *)(*buff)->content);
+		ft_display_ls((t_buff *)(*buff)->content, 0);
 		ft_lstremove(buff, 0, &ft_buff_delelem);
 	}
 	return (ret);

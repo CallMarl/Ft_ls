@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:07:46 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/23 11:34:40 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/27 15:11:17 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,11 @@ struct					s_file
 
 int						ft_ls(int argc, char **argv);
 int						ft_ls_args(char **argv, int size, t_list **buff);
+int						ft_ls_argserr(t_buff *buff, int count);
+void					ft_ls_argsfile(t_buff *buff, t_file *arr_file, \
+		int count, t_file *arr_dir);
+int						ft_ls_argsdir(t_list **buff, t_file *arr_dir, \
+		int count, _Bool opt_r);
 int						ft_ls_noargs(char *path, t_list **buff, \
 		int opt_r, int opt_a);
 
@@ -98,8 +103,8 @@ struct					s_disp
 
 int						ft_display_column(t_buff *buff, int opt_a);
 void					ft_display_file(t_file *file, int opt_l);
-int						ft_display_long(t_buff *buff, int opt_a);
-int						ft_display_ls(t_buff *buff);
+int						ft_display_long(t_buff *buff, int opt_a, int total);
+int						ft_display_ls(t_buff *buff, int total);
 void					ft_display_path1(char *path);
 void					ft_display_path2(char *path);
 void					ft_display_prepare(t_buff *buff, t_disp *disp, \

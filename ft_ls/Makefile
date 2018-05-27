@@ -6,7 +6,7 @@
 #    By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/03 17:06:17 by pprikazs          #+#    #+#              #
-#    Updated: 2018/05/23 08:36:06 by pprikazs         ###   ########.fr        #
+#    Updated: 2018/05/27 15:14:49 by pprikazs         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRCS = ./main.c \
 	   ./srcs/ft_global.c \
 	   ./srcs/ft_ls.c \
 	   ./srcs/ft_ls_args.c \
+	   ./srcs/ft_ls_args_aux.c \
 	   ./srcs/ft_ls_noargs.c \
 	   ./srcs/buff/ft_buff_delelem.c \
 	   ./srcs/buff/ft_buff_get.c \
@@ -84,7 +85,7 @@ all : $(NAME)
 	$(CC) $(INCLUDES) -c $< -o $@ $(FLAGS)
 
 $(NAME) : $(OBJ) $(DEPS)
-	@echo "Compilation ft_ls1..."
+	@echo "Compilation " $(NAME)"..."
 	@$(MAKE) -C $(LIB_DIR)
 	@$(CC) $(OBJ) -o $@ $(LIBS) $(FLAGS)
 
