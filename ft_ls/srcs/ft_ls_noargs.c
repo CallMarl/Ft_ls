@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:04:20 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/27 14:53:16 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/27 15:25:09 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ static int
 	{
 		file = ft_buff_getfile(tmp, i);
 		if (ft_strcmp(file->name, ".") != 0 \
-				&& ft_strcmp(file->name, "..") != 0 \
-				&& (file->stat.st_mode & S_IFDIR) == S_IFDIR)
+			&& ft_strcmp(file->name, "..") != 0 \
+			&& S_ISDIR(file->stat.st_mode))
 		{
 			if (file->name[0] != '.' || opt_a != 0)
 			{
