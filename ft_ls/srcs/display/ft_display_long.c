@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 09:53:54 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/27 14:50:26 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/27 15:33:31 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,7 @@ static void
 	}
 	uid_str = (pwd) ? pwd->pw_name : ft_itoa(file->stat.st_uid);
 	gid_str = (grp) ? grp->gr_name : ft_itoa(file->stat.st_gid);
-	ft_printf(str, \
-			mode, \
-			file->stat.st_nlink, \
-			uid_str, \
-			gid_str, \
+	ft_printf(str, mode, file->stat.st_nlink, uid_str, gid_str, \
 			(file->stat.st_rdev) ? major(file->stat.st_rdev) : 0, \
 			(file->stat.st_rdev) ? minor(file->stat.st_rdev) : 0, \
 			time);
@@ -65,11 +61,7 @@ static void
 	}
 	uid_str = (pwd) ? pwd->pw_name : ft_itoa(file->stat.st_uid);
 	gid_str = (grp) ? grp->gr_name : ft_itoa(file->stat.st_gid);
-	ft_printf(str, \
-			mode, \
-			file->stat.st_nlink, \
-			uid_str, \
-			gid_str, \
+	ft_printf(str, mode, file->stat.st_nlink, uid_str, gid_str, \
 			file->stat.st_size, \
 			time);
 	if (pwd == 0)
