@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 17:07:46 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/23 08:44:00 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/23 11:34:40 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int						ft_ls_noargs(char *path, t_list **buff, \
 ** Gestion du buffer
 */
 
-# define LS_BUFFSIZE 256
+# define LS_BUFFSIZE 1024
 
 void					ft_buff_delelem(void *elem);
 t_buff					*ft_buff_get(t_list *buff);

@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 18:23:22 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/18 12:23:22 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/27 14:42:33 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ extern void
 	count += ft_strcpy_x(&mode[count], right[(st_mode >> 3) & 7]);
 	count += ft_strcpy_x(&mode[count], right[(st_mode) & 7]);
 	if ((S_ISVTX & st_mode) != 0)
-		mode[3] = (S_IXOTH & st_mode) ? 't' : 'T';
-	else if ((S_ISGID & st_mode) != 0)
-		mode[6] = (S_IXGRP & st_mode) ? 's' : 'l';
-	else if ((S_ISUID & st_mode) != 0)
-		mode[9] = (S_IXUSR & st_mode) ? 's' : 'S';
+		mode[9] = (S_IXOTH & st_mode) ? 't' : 'T';
+	if ((S_ISGID & st_mode) != 0)
+		mode[6] = (S_IXGRP & st_mode) ? 's' : 'S';
+	if ((S_ISUID & st_mode) != 0)
+		mode[3] = (S_IXUSR & st_mode) ? 's' : 'S';
 	mode[10] = ' ';
 	mode[11] = '\0';
 }

@@ -6,7 +6,7 @@
 /*   By: pprikazs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 10:01:17 by pprikazs          #+#    #+#             */
-/*   Updated: 2018/05/23 09:12:48 by pprikazs         ###   ########.fr       */
+/*   Updated: 2018/05/23 11:31:31 by pprikazs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static void
 {
 	if (disp->major != 0 || disp->minor != 0)
 	{
-		ft_putendl("\ncoucou");
 		*count = ft_utils_pflag_d(str, disp->major + 1, *count);
 		(*count) += ft_strcpy_x(&(*str)[*count], ",");
 		*count = ft_utils_pflag_d(str, disp->minor + 1, *count);
